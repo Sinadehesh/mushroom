@@ -31,12 +31,11 @@ flashcard practice and a browsable mushroom guide. Everything runs offline.
 | Spaced repetition (Leitner boxes) + Mycology IQ     | ✅ Built and unit-tested                                                                 |
 | Fungarium, mushroom guide, mushroom pages, settings | ✅ Built                                                                                 |
 | Mushroom database                                   | ✅ 71 species (35 gilled, 16 pores & brackets, 20 ridges/spines/other), each with a fact |
-| Photos                                              | ⏳ Pipeline ready (iNaturalist, CC0 / CC BY / CC BY-SA). No photos curated yet           |
+| Photos                                              | ✅ 213 real iNaturalist photos, 3 per species, CC0 / CC BY / CC BY-SA with credits       |
 | iOS shield (Screen Time API)                        | ⏳ Not started. See [docs/PLATFORM_INTEGRATION.md](docs/PLATFORM_INTEGRATION.md)         |
 | Android blocker (UsageStats + foreground service)   | ⏳ Not started. See [docs/PLATFORM_INTEGRATION.md](docs/PLATFORM_INTEGRATION.md)         |
 
-Until photos are curated, each mushroom shows its group's emoji and the lock screen hints at the family. Until the
-native blockers exist, `src/blocker/index.ts` is a simulated blocker. Use **Preview the lock screen** on the
+Until the native blockers exist, `src/blocker/index.ts` is a simulated blocker. Use **Preview the lock screen** on the
 Fungarium tab to try the full intercept flow.
 
 ## Run it
@@ -144,11 +143,16 @@ npm run photos:find -- chanterelle   # candidates from the iNaturalist API, with
 npm run photos:download              # downloads from iNaturalist's open-data bucket, resizes to 1000px
 ```
 
+`photos:find` needs the iNaturalist API. If a network policy blocks it (it answers 403 in some sandboxes), you can
+pick photos from iNaturalist's [open-data bucket](https://github.com/inaturalist/inaturalist-open-data) instead,
+which `photos:download` already uses. Its `taxa`, `observations` and `photos` tables list every observation with its
+licence. That's how the bundled set was chosen: research-grade observations only, photos at least 700 px, and 12
+candidates per species reviewed on contact sheets.
+
 ## Next steps
 
-1. Curate 3 photos per mushroom with `photos:find` and `photos:download`.
-2. Build the iOS blocker with `react-native-device-activity`, and request the Family Controls distribution
+1. Build the iOS blocker with `react-native-device-activity`, and request the Family Controls distribution
    entitlement from Apple now, since approval takes time.
-3. Build the Android blocker as a local Expo module (Kotlin foreground service + UsageStats).
-4. Grow the deck to 300–500 species, with regional decks (Europe, North America) so the look-alikes match what
+2. Build the Android blocker as a local Expo module (Kotlin foreground service + UsageStats).
+3. Grow the deck to 300–500 species, with regional decks (Europe, North America) so the look-alikes match what
    grows near the user.

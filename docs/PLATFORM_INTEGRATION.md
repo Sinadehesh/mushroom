@@ -91,10 +91,10 @@ service to the manifest. `npx create-expo-module@latest --local` scaffolds it.
 
 - Everything works offline. Photos are bundled under `assets/mushrooms/`, and
   progress lives in AsyncStorage.
-- Budget: 3 photos per mushroom at 1000 px (mozjpeg, quality 74) is roughly
-  150 KB per photo. At 400 mushrooms that's about 180 MB, too much to bundle. At
-  that size, bundle 1–2 photos per mushroom and download the rest with
-  on-demand asset packs, or switch to WebP.
+- Budget: 3 photos per mushroom at 1000 px (mozjpeg, quality 74) averages about
+  110 KB per photo, so today's 71 mushrooms take 23 MB. At 400 mushrooms that
+  would be about 130 MB. At that size, bundle 1–2 photos per mushroom and
+  download the rest on demand, or switch to WebP.
 - **Licensing:** photos come from iNaturalist. Only CC0, CC BY and CC BY-SA
   are allowed; CC BY-NC is excluded because the app may be sold. CC BY and
   CC BY-SA require visible attribution. The credit line under each photo and
