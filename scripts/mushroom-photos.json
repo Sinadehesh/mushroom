@@ -1,1 +1,1635 @@
-{}
+{
+  "amethyst-deceiver": [
+    {
+      "photoId": 161309647,
+      "ext": "jpg",
+      "license": "CC-BY",
+      "author": "Bryan Rennick",
+      "observationUrl": "https://www.inaturalist.org/observations/b75d1531-3dca-4f44-80d3-a86c12e3fdac"
+    },
+    {
+      "photoId": 105477465,
+      "ext": "jpeg",
+      "license": "CC-BY",
+      "author": "Dominika Nowak",
+      "observationUrl": "https://www.inaturalist.org/observations/1495f34b-145a-4c7e-ab9e-f9e5d17d2b78"
+    },
+    {
+      "photoId": 445466888,
+      "ext": "jpeg",
+      "license": "CC-BY",
+      "author": "Clément Maouche",
+      "observationUrl": "https://www.inaturalist.org/observations/8051868a-45bd-491e-985e-b55c04619e43"
+    }
+  ],
+  "artists-bracket": [
+    {
+      "photoId": 66741169,
+      "ext": "jpg",
+      "license": "CC-BY",
+      "author": "Justin Flint",
+      "observationUrl": "https://www.inaturalist.org/observations/3a2014c4-d1d4-4b0b-bfa7-efd2dce3aa4b"
+    },
+    {
+      "photoId": 570262728,
+      "ext": "jpg",
+      "license": "CC-BY-SA",
+      "author": "Gilles San Martin",
+      "observationUrl": "https://www.inaturalist.org/observations/681027c0-b4e6-4c17-aa4f-e80a9320fef6"
+    },
+    {
+      "photoId": 539495140,
+      "ext": "jpg",
+      "license": "CC-BY",
+      "author": "Atsushi Nakajima",
+      "observationUrl": "https://www.inaturalist.org/observations/ff075d91-1c5d-4095-bc21-ce5e5349626f"
+    }
+  ],
+  "bay-bolete": [
+    {
+      "photoId": 226947225,
+      "ext": "jpg",
+      "license": "CC-BY",
+      "author": "Christine Young",
+      "observationUrl": "https://www.inaturalist.org/observations/b10657b4-f64b-4e46-bc82-2217b145f615"
+    },
+    {
+      "photoId": 721764041,
+      "ext": "jpg",
+      "license": "CC-BY",
+      "author": "Jerzy Tomes",
+      "observationUrl": "https://www.inaturalist.org/observations/155f3bdb-80e0-4813-9982-e1c0671df2f4"
+    },
+    {
+      "photoId": 310411976,
+      "ext": "jpg",
+      "license": "CC0",
+      "author": "Bartosz Czołczyński",
+      "observationUrl": "https://www.inaturalist.org/observations/75a9aba0-3ebb-467c-bdbc-ab908d4d8a63"
+    }
+  ],
+  "beefsteak-fungus": [
+    {
+      "photoId": 55964047,
+      "ext": "jpeg",
+      "license": "CC-BY",
+      "author": "Jose Castro",
+      "observationUrl": "https://www.inaturalist.org/observations/3bbf2cc7-061e-43b0-89f2-a67cd4150c91"
+    },
+    {
+      "photoId": 227402665,
+      "ext": "jpeg",
+      "license": "CC-BY",
+      "author": "bogsuckers",
+      "observationUrl": "https://www.inaturalist.org/observations/facdd081-da7d-4ec3-89ee-2f42a7975486"
+    },
+    {
+      "photoId": 560918001,
+      "ext": "jpg",
+      "license": "CC-BY",
+      "author": "Chris Sampson",
+      "observationUrl": "https://www.inaturalist.org/observations/f6693efa-9208-457d-bcab-c9957ba30953"
+    }
+  ],
+  "birch-polypore": [
+    {
+      "photoId": 429307930,
+      "ext": "jpeg",
+      "license": "CC-BY",
+      "author": "StarStats",
+      "observationUrl": "https://www.inaturalist.org/observations/5a6ba815-a7ad-4345-bf8c-20d754e7950a"
+    },
+    {
+      "photoId": 231774462,
+      "ext": "jpeg",
+      "license": "CC0",
+      "author": "Charlie Farrell",
+      "observationUrl": "https://www.inaturalist.org/observations/b026472a-fdb3-4960-a196-8b1a60616c0e"
+    },
+    {
+      "photoId": 476237,
+      "ext": "JPG",
+      "license": "CC-BY-SA",
+      "author": "Fluff Berger",
+      "observationUrl": "https://www.inaturalist.org/observations/faf8e7dc-a7fe-4835-933e-a7c600f2d1e7"
+    }
+  ],
+  "birds-nest-fungus": [
+    {
+      "photoId": 167788009,
+      "ext": "jpg",
+      "license": "CC-BY",
+      "author": "Michele Wiseman",
+      "observationUrl": "https://www.inaturalist.org/observations/ef8293fb-699e-4ee5-ab45-14075ea37d74"
+    },
+    {
+      "photoId": 142007192,
+      "ext": "jpeg",
+      "license": "CC0",
+      "author": "cgmayers",
+      "observationUrl": "https://www.inaturalist.org/observations/2bf62878-1ee4-4829-b3b8-6c854a2ce900"
+    },
+    {
+      "photoId": 104508339,
+      "ext": "jpg",
+      "license": "CC0",
+      "author": "Ken Kneidel",
+      "observationUrl": "https://www.inaturalist.org/observations/b2a558a0-9dd3-4e72-b416-1110229aacae"
+    }
+  ],
+  "bitter-bolete": [
+    {
+      "photoId": 319303451,
+      "ext": "jpeg",
+      "license": "CC-BY",
+      "author": "Niko Ioannidis",
+      "observationUrl": "https://www.inaturalist.org/observations/5dd59395-049a-4016-8673-72817279fe43"
+    },
+    {
+      "photoId": 330249400,
+      "ext": "jpg",
+      "license": "CC-BY",
+      "author": "Petr Harant",
+      "observationUrl": "https://www.inaturalist.org/observations/0812d4a4-801a-4beb-af9a-a4e451243a57"
+    },
+    {
+      "photoId": 241641160,
+      "ext": "jpg",
+      "license": "CC-BY",
+      "author": "Анна Рыбакова",
+      "observationUrl": "https://www.inaturalist.org/observations/a3ee6164-7390-4791-b360-7c905f7ee199"
+    }
+  ],
+  "black-trumpet": [
+    {
+      "photoId": 237362700,
+      "ext": "jpeg",
+      "license": "CC-BY",
+      "author": "Johannes Graf",
+      "observationUrl": "https://www.inaturalist.org/observations/0cd7d94c-6ed0-4328-89d4-b7a3a928848a"
+    },
+    {
+      "photoId": 603022444,
+      "ext": "jpg",
+      "license": "CC-BY",
+      "author": "Daniel Castanhal García",
+      "observationUrl": "https://www.inaturalist.org/observations/e6c6645c-bf86-4f29-8127-52113e1e8759"
+    },
+    {
+      "photoId": 311324513,
+      "ext": "jpeg",
+      "license": "CC-BY",
+      "author": "sugarsnap_t",
+      "observationUrl": "https://www.inaturalist.org/observations/c735787e-1a7d-4279-a711-75b44cb850c8"
+    }
+  ],
+  "blusher": [
+    {
+      "photoId": 362602831,
+      "ext": "jpeg",
+      "license": "CC-BY",
+      "author": "Pablo Silva",
+      "observationUrl": "https://www.inaturalist.org/observations/cbf6daa0-35a4-417f-b6ab-ce9e6c7ab5a6"
+    },
+    {
+      "photoId": 238858180,
+      "ext": "jpeg",
+      "license": "CC-BY",
+      "author": "Sheelagh Halsey",
+      "observationUrl": "https://www.inaturalist.org/observations/b95024f0-c168-4290-a0cc-4410e3638369"
+    },
+    {
+      "photoId": 102069006,
+      "ext": "jpeg",
+      "license": "CC-BY",
+      "author": "Carminda Santos",
+      "observationUrl": "https://www.inaturalist.org/observations/a0277abb-0719-40ff-87ef-8faeddd276e8"
+    }
+  ],
+  "brown-birch-bolete": [
+    {
+      "photoId": 329176617,
+      "ext": "jpeg",
+      "license": "CC-BY",
+      "author": "ikelman",
+      "observationUrl": "https://www.inaturalist.org/observations/f0f2f10d-d561-4a08-aa43-32e1696b757a"
+    },
+    {
+      "photoId": 328004450,
+      "ext": "jpg",
+      "license": "CC-BY",
+      "author": "Michel Langeveld",
+      "observationUrl": "https://www.inaturalist.org/observations/a43dec58-2ee8-4368-b82c-5e9be5b52682"
+    },
+    {
+      "photoId": 204705888,
+      "ext": "jpeg",
+      "license": "CC0",
+      "author": "Radosław Puchałka",
+      "observationUrl": "https://www.inaturalist.org/observations/5017fd7a-358b-4586-952a-71b5650cc62e"
+    }
+  ],
+  "brown-roll-rim": [
+    {
+      "photoId": 540938076,
+      "ext": "jpg",
+      "license": "CC-BY",
+      "author": "Drew Palmer",
+      "observationUrl": "https://www.inaturalist.org/observations/a6d5afaf-0d8a-4ab8-84de-54fd5da8342e"
+    },
+    {
+      "photoId": 151773515,
+      "ext": "jpeg",
+      "license": "CC-BY",
+      "author": "Eugene Popov",
+      "observationUrl": "https://www.inaturalist.org/observations/441fbcfd-d417-4f39-8f0b-27e599611aa0"
+    },
+    {
+      "photoId": 27013538,
+      "ext": "jpg",
+      "license": "CC-BY",
+      "author": "Paul Cook",
+      "observationUrl": "https://www.inaturalist.org/observations/ff099d83-f607-4bab-a75e-cb01b8bcca1a"
+    }
+  ],
+  "button-mushroom": [
+    {
+      "photoId": 6464471,
+      "ext": "jpeg",
+      "license": "CC-BY",
+      "author": "Alan Rockefeller",
+      "observationUrl": "https://www.inaturalist.org/observations/c6e1601d-54db-43a2-9e7a-729887282464"
+    },
+    {
+      "photoId": 32035035,
+      "ext": "jpg",
+      "license": "CC-BY",
+      "author": "Adam J. Searcy",
+      "observationUrl": "https://www.inaturalist.org/observations/b23afa2f-778c-40ac-8abd-0b4bdfd1319c"
+    },
+    {
+      "photoId": 38300979,
+      "ext": "jpeg",
+      "license": "CC-BY",
+      "author": "Елена А. Кизилова",
+      "observationUrl": "https://www.inaturalist.org/observations/1e466526-cc2c-4726-824a-11cf8761c932"
+    }
+  ],
+  "caesars-mushroom": [
+    {
+      "photoId": 438603965,
+      "ext": "jpg",
+      "license": "CC-BY",
+      "author": "Asrın Akıncıoğlu",
+      "observationUrl": "https://www.inaturalist.org/observations/37e34ce1-0ad1-4061-9d75-d43a9a939a82"
+    },
+    {
+      "photoId": 326888926,
+      "ext": "jpeg",
+      "license": "CC-BY",
+      "author": "Lorenzo Emanuele Labate",
+      "observationUrl": "https://www.inaturalist.org/observations/c31fd0c1-095b-43a9-ad6d-46166300efa7"
+    },
+    {
+      "photoId": 161474202,
+      "ext": "jpeg",
+      "license": "CC-BY",
+      "author": "Алена Ручка",
+      "observationUrl": "https://www.inaturalist.org/observations/70e4efc1-a10c-4ea9-9c57-dc1478565961"
+    }
+  ],
+  "candlesnuff-fungus": [
+    {
+      "photoId": 334988426,
+      "ext": "jpg",
+      "license": "CC-BY",
+      "author": "Jamie O'Neill",
+      "observationUrl": "https://www.inaturalist.org/observations/362db4d8-0b10-41dd-ae47-eeabf957ca68"
+    },
+    {
+      "photoId": 512343924,
+      "ext": "jpg",
+      "license": "CC-BY",
+      "author": "ca lou",
+      "observationUrl": "https://www.inaturalist.org/observations/5e1806b1-8a29-4f8f-8b14-bee5f99b92d7"
+    },
+    {
+      "photoId": 248312553,
+      "ext": "jpeg",
+      "license": "CC-BY",
+      "author": "Alex",
+      "observationUrl": "https://www.inaturalist.org/observations/12119e05-7f18-451c-8f3a-de493efa0e85"
+    }
+  ],
+  "cauliflower-fungus": [
+    {
+      "photoId": 587744279,
+      "ext": "jpg",
+      "license": "CC-BY",
+      "author": "Stanislav Murashkin",
+      "observationUrl": "https://www.inaturalist.org/observations/d1c9df53-6d84-429c-9307-2db2e08561c8"
+    },
+    {
+      "photoId": 422905104,
+      "ext": "jpeg",
+      "license": "CC-BY",
+      "author": "Vitaly Radionov",
+      "observationUrl": "https://www.inaturalist.org/observations/165f5656-9d65-42e9-99e8-8dfd53051871"
+    },
+    {
+      "photoId": 450311842,
+      "ext": "jpeg",
+      "license": "CC-BY",
+      "author": "Hel Smith",
+      "observationUrl": "https://www.inaturalist.org/observations/945cfe87-1666-4b65-b37a-371718a7059a"
+    }
+  ],
+  "chaga": [
+    {
+      "photoId": 161480481,
+      "ext": "jpg",
+      "license": "CC-BY",
+      "author": "Mary E. Macaulay, P.Eng.",
+      "observationUrl": "https://www.inaturalist.org/observations/2206bba2-6a96-48ae-88ed-69f647a4214e"
+    },
+    {
+      "photoId": 480776456,
+      "ext": "jpg",
+      "license": "CC-BY",
+      "author": "Stanislav Murashkin",
+      "observationUrl": "https://www.inaturalist.org/observations/23fd427b-4c74-4ef1-bb75-89b5be2d4da5"
+    },
+    {
+      "photoId": 467210481,
+      "ext": "jpg",
+      "license": "CC-BY",
+      "author": "Patrick Jackson",
+      "observationUrl": "https://www.inaturalist.org/observations/5dd9ae42-550e-4785-8cbe-310112ad6156"
+    }
+  ],
+  "chanterelle": [
+    {
+      "photoId": 424764796,
+      "ext": "jpeg",
+      "license": "CC0",
+      "author": "Dr. Alan Inman",
+      "observationUrl": "https://www.inaturalist.org/observations/476f847b-b7c6-4769-90d2-080e15d0b6bc"
+    },
+    {
+      "photoId": 341999858,
+      "ext": "jpg",
+      "license": "CC-BY",
+      "author": "Oleg Kosterin",
+      "observationUrl": "https://www.inaturalist.org/observations/1a4d3bfc-9edc-489c-bd38-1bea95d7b575"
+    },
+    {
+      "photoId": 332746365,
+      "ext": "jpeg",
+      "license": "CC-BY",
+      "author": "Поляков Александр",
+      "observationUrl": "https://www.inaturalist.org/observations/d196d0bc-b1f1-4381-8305-58f1b570d998"
+    }
+  ],
+  "charcoal-burner": [
+    {
+      "photoId": 566888690,
+      "ext": "jpg",
+      "license": "CC-BY",
+      "author": "victor laborde",
+      "observationUrl": "https://www.inaturalist.org/observations/da8a996a-71e3-4245-bc1d-2c9bd9871bc8"
+    },
+    {
+      "photoId": 86798548,
+      "ext": "jpeg",
+      "license": "CC-BY",
+      "author": "Tyler Ekholm",
+      "observationUrl": "https://www.inaturalist.org/observations/f08e6688-cff3-4b50-9042-c625eec10c95"
+    },
+    {
+      "photoId": 239866330,
+      "ext": "jpg",
+      "license": "CC0",
+      "author": "T. Pedro Hafermann",
+      "observationUrl": "https://www.inaturalist.org/observations/2abd0066-3e6a-42b1-8a60-ca90c2464a86"
+    }
+  ],
+  "chicken-of-the-woods": [
+    {
+      "photoId": 528095898,
+      "ext": "jpg",
+      "license": "CC-BY",
+      "author": "Erik",
+      "observationUrl": "https://www.inaturalist.org/observations/406a46f8-3e5c-490d-80f9-c907cf63fec8"
+    },
+    {
+      "photoId": 138770075,
+      "ext": "jpg",
+      "license": "CC0",
+      "author": "plant512",
+      "observationUrl": "https://www.inaturalist.org/observations/ffecd14c-0686-42a3-bab7-66fa0b1aed7e"
+    },
+    {
+      "photoId": 503222502,
+      "ext": "jpeg",
+      "license": "CC-BY",
+      "author": "Elena Obradović",
+      "observationUrl": "https://www.inaturalist.org/observations/79dc8f07-b83f-4e8c-94f2-8f7e3119395a"
+    }
+  ],
+  "collared-earthstar": [
+    {
+      "photoId": 133302028,
+      "ext": "jpg",
+      "license": "CC0",
+      "author": "Eileen Laidlaw",
+      "observationUrl": "https://www.inaturalist.org/observations/a4cd4b58-c0ef-4e6b-a40f-1b6e42ca9b6e"
+    },
+    {
+      "photoId": 703463778,
+      "ext": "jpg",
+      "license": "CC0",
+      "author": "Nathan Cobbett",
+      "observationUrl": "https://www.inaturalist.org/observations/0bde5f5f-6b42-46a5-b96d-91c495c8758e"
+    },
+    {
+      "photoId": 15169904,
+      "ext": "jpg",
+      "license": "CC-BY",
+      "author": "Wynand Uys",
+      "observationUrl": "https://www.inaturalist.org/observations/dce3edf8-abaa-49a1-a36f-46b417f719fb"
+    }
+  ],
+  "common-earthball": [
+    {
+      "photoId": 326878982,
+      "ext": "jpg",
+      "license": "CC-BY",
+      "author": "Larry Jensen",
+      "observationUrl": "https://www.inaturalist.org/observations/2c8143e5-6f4a-41d9-a750-b04ae1e765cb"
+    },
+    {
+      "photoId": 457340555,
+      "ext": "jpg",
+      "license": "CC-BY",
+      "author": "Michel Langeveld",
+      "observationUrl": "https://www.inaturalist.org/observations/109d1bda-67f2-4c52-b319-511ecbbe4299"
+    },
+    {
+      "photoId": 338398407,
+      "ext": "jpg",
+      "license": "CC-BY",
+      "author": "Thierry Arbault",
+      "observationUrl": "https://www.inaturalist.org/observations/cba49a50-0be7-4ea4-a480-3b5727de4131"
+    }
+  ],
+  "common-ink-cap": [
+    {
+      "photoId": 29104099,
+      "ext": "jpg",
+      "license": "CC-BY",
+      "author": "Vsevolod Rudyi",
+      "observationUrl": "https://www.inaturalist.org/observations/4cb52d24-231a-4b86-8b86-73fedc40fb0c"
+    },
+    {
+      "photoId": 143416531,
+      "ext": "jpeg",
+      "license": "CC-BY-SA",
+      "author": "Ingimar",
+      "observationUrl": "https://www.inaturalist.org/observations/aa29d636-1bb8-4d70-86c3-a4955ecb46c4"
+    },
+    {
+      "photoId": 336280049,
+      "ext": "jpg",
+      "license": "CC0",
+      "author": "Franky Adair",
+      "observationUrl": "https://www.inaturalist.org/observations/df8521f5-8994-47f7-9c0d-b8e50ee2014e"
+    }
+  ],
+  "common-puffball": [
+    {
+      "photoId": 593786211,
+      "ext": "jpg",
+      "license": "CC-BY",
+      "author": "Katharine Khamhaengwong",
+      "observationUrl": "https://www.inaturalist.org/observations/bb725ec8-e2ef-4132-8f7b-9c1a8a65b0ec"
+    },
+    {
+      "photoId": 320490446,
+      "ext": "jpeg",
+      "license": "CC-BY",
+      "author": "Елена А. Кизилова",
+      "observationUrl": "https://www.inaturalist.org/observations/9868e763-136e-4231-82e9-16266855d432"
+    },
+    {
+      "photoId": 337682004,
+      "ext": "jpg",
+      "license": "CC-BY",
+      "author": "Donatas Pocius",
+      "observationUrl": "https://www.inaturalist.org/observations/4356782c-8bfe-4baf-95c7-ded6410b440d"
+    }
+  ],
+  "common-stinkhorn": [
+    {
+      "photoId": 447301293,
+      "ext": "jpeg",
+      "license": "CC0",
+      "author": "Paul van Maaren",
+      "observationUrl": "https://www.inaturalist.org/observations/5d1951af-6a5b-4921-927c-baaa4687ab0e"
+    },
+    {
+      "photoId": 338814834,
+      "ext": "jpeg",
+      "license": "CC-BY",
+      "author": "J Castillo",
+      "observationUrl": "https://www.inaturalist.org/observations/55d87ab6-2c64-4ef9-a5b2-38e90cb1c8ac"
+    },
+    {
+      "photoId": 30698731,
+      "ext": "jpeg",
+      "license": "CC-BY",
+      "author": "Eugene Popov",
+      "observationUrl": "https://www.inaturalist.org/observations/f8feb48b-50f6-43e8-8302-0b6e4bd2fc55"
+    }
+  ],
+  "dead-mans-fingers": [
+    {
+      "photoId": 208118283,
+      "ext": "jpeg",
+      "license": "CC-BY",
+      "author": "Matthew Rozanoff",
+      "observationUrl": "https://www.inaturalist.org/observations/583d2e84-dcfe-4d68-a404-a3f6ae36c36c"
+    },
+    {
+      "photoId": 142782468,
+      "ext": "jpg",
+      "license": "CC-BY",
+      "author": "Larry Jensen",
+      "observationUrl": "https://www.inaturalist.org/observations/f9ee4fc4-04ef-44b3-a395-839b4b0d2060"
+    },
+    {
+      "photoId": 111143269,
+      "ext": "jpeg",
+      "license": "CC-BY",
+      "author": "Ross Krisztina",
+      "observationUrl": "https://www.inaturalist.org/observations/b2cc775f-7a2e-4a4e-b3a6-169f428734d4"
+    }
+  ],
+  "deadly-fibrecap": [
+    {
+      "photoId": 78468338,
+      "ext": "jpg",
+      "license": "CC-BY",
+      "author": "Enrico Tomschke",
+      "observationUrl": "https://www.inaturalist.org/observations/ef05757a-039a-41e8-a215-764938e1050e"
+    },
+    {
+      "photoId": 667678400,
+      "ext": "jpg",
+      "license": "CC0",
+      "author": "Sara Scorey",
+      "observationUrl": "https://www.inaturalist.org/observations/5d0a53b6-69b8-4e47-b17f-f97b776c8425"
+    },
+    {
+      "photoId": 702228227,
+      "ext": "jpg",
+      "license": "CC-BY",
+      "author": "Jose Castro",
+      "observationUrl": "https://www.inaturalist.org/observations/712c99c8-df5a-43c6-b356-e049c00615a1"
+    }
+  ],
+  "deadly-webcap": [
+    {
+      "photoId": 432119176,
+      "ext": "jpeg",
+      "license": "CC-BY",
+      "author": "Virn Stothers",
+      "observationUrl": "https://www.inaturalist.org/observations/cb1c9808-8373-4948-be21-33b62e47f62a"
+    },
+    {
+      "photoId": 315854468,
+      "ext": "jpg",
+      "license": "CC-BY",
+      "author": "wkee4ager",
+      "observationUrl": "https://www.inaturalist.org/observations/2acc8ed2-cd36-4815-9c46-b57a655d617d"
+    },
+    {
+      "photoId": 421652141,
+      "ext": "jpeg",
+      "license": "CC-BY",
+      "author": "ikelman",
+      "observationUrl": "https://www.inaturalist.org/observations/b0b62c6d-1562-4f72-b20a-84986f5f7330"
+    }
+  ],
+  "death-cap": [
+    {
+      "photoId": 12437678,
+      "ext": "jpeg",
+      "license": "CC-BY-SA",
+      "author": "Tim Sage",
+      "observationUrl": "https://www.inaturalist.org/observations/fd151961-6d8b-489b-b708-b646dea23b82"
+    },
+    {
+      "photoId": 594303833,
+      "ext": "jpg",
+      "license": "CC-BY",
+      "author": "reagan peschke",
+      "observationUrl": "https://www.inaturalist.org/observations/6f943c61-c467-4ed2-8be9-5bd1ec6117f9"
+    },
+    {
+      "photoId": 324388637,
+      "ext": "jpg",
+      "license": "CC-BY",
+      "author": "MichellePrice_CJBG",
+      "observationUrl": "https://www.inaturalist.org/observations/b539e95c-880b-42cf-9416-3d30c2eb57bb"
+    }
+  ],
+  "destroying-angel": [
+    {
+      "photoId": 426242885,
+      "ext": "jpeg",
+      "license": "CC-BY",
+      "author": "wkee4ager",
+      "observationUrl": "https://www.inaturalist.org/observations/3944a95a-a505-4610-a72b-8230fdd975ae"
+    },
+    {
+      "photoId": 551045680,
+      "ext": "jpg",
+      "license": "CC-BY",
+      "author": "ionafraser",
+      "observationUrl": "https://www.inaturalist.org/observations/ac25535e-8f48-4c35-bb8f-3bbaa4dda9f6"
+    },
+    {
+      "photoId": 723471883,
+      "ext": "jpg",
+      "license": "CC0",
+      "author": "Солей",
+      "observationUrl": "https://www.inaturalist.org/observations/5ed14707-1fad-4e6c-9888-62e7fe1c3d50"
+    }
+  ],
+  "dryads-saddle": [
+    {
+      "photoId": 272590161,
+      "ext": "jpeg",
+      "license": "CC-BY",
+      "author": "Emmett Collins-Sussman",
+      "observationUrl": "https://www.inaturalist.org/observations/ba89cfd6-2212-4820-b207-0c3b414527d7"
+    },
+    {
+      "photoId": 18293342,
+      "ext": "jpg",
+      "license": "CC-BY-SA",
+      "author": "Jacob Malcom",
+      "observationUrl": "https://www.inaturalist.org/observations/511317a5-44f6-4fff-bb22-880f1c9ae472"
+    },
+    {
+      "photoId": 662767168,
+      "ext": "jpg",
+      "license": "CC-BY",
+      "author": "Erin Collins",
+      "observationUrl": "https://www.inaturalist.org/observations/6359fa1d-73fe-4693-a061-656ef7248f67"
+    }
+  ],
+  "fairy-ring-champignon": [
+    {
+      "photoId": 12823596,
+      "ext": "jpeg",
+      "license": "CC-BY",
+      "author": "Davide Puddu",
+      "observationUrl": "https://www.inaturalist.org/observations/da7d8273-72c3-4698-a324-03f5b627151f"
+    },
+    {
+      "photoId": 249222078,
+      "ext": "jpeg",
+      "license": "CC-BY",
+      "author": "Yves Bas",
+      "observationUrl": "https://www.inaturalist.org/observations/99edd95f-ba4a-40c4-8cf0-afec461963e7"
+    },
+    {
+      "photoId": 41999879,
+      "ext": "jpg",
+      "license": "CC0",
+      "author": "mister_bumble",
+      "observationUrl": "https://www.inaturalist.org/observations/85b58a4d-c638-40a8-9244-83eb75e0091b"
+    }
+  ],
+  "false-chanterelle": [
+    {
+      "photoId": 443861937,
+      "ext": "jpeg",
+      "license": "CC-BY-SA",
+      "author": "Björn Sothmann",
+      "observationUrl": "https://www.inaturalist.org/observations/ee52e350-9f86-4095-bd05-12705ea991ec"
+    },
+    {
+      "photoId": 598088251,
+      "ext": "jpg",
+      "license": "CC-BY",
+      "author": "joqatana",
+      "observationUrl": "https://www.inaturalist.org/observations/510f220c-eca0-4049-8c2f-e7650139ae59"
+    },
+    {
+      "photoId": 600143810,
+      "ext": "jpg",
+      "license": "CC-BY",
+      "author": "ikelman",
+      "observationUrl": "https://www.inaturalist.org/observations/05cb6c3d-6761-4cad-8cd6-3d91f772ed3d"
+    }
+  ],
+  "false-morel": [
+    {
+      "photoId": 40451574,
+      "ext": "jpeg",
+      "license": "CC-BY",
+      "author": "Henry Mulligan",
+      "observationUrl": "https://www.inaturalist.org/observations/2537ec76-3a13-4e2d-a726-e689bec2f0b2"
+    },
+    {
+      "photoId": 280945507,
+      "ext": "jpeg",
+      "license": "CC0",
+      "author": "Camille Boucher",
+      "observationUrl": "https://www.inaturalist.org/observations/9a227aa0-4a1c-4668-a093-d07c7d02ac5c"
+    },
+    {
+      "photoId": 20010549,
+      "ext": "jpeg",
+      "license": "CC-BY",
+      "author": "Alexandria 'Alex' Wenninger",
+      "observationUrl": "https://www.inaturalist.org/observations/58f4477e-dd2b-4292-8880-cca80ec83718"
+    }
+  ],
+  "false-parasol": [
+    {
+      "photoId": 17487715,
+      "ext": "jpg",
+      "license": "CC-BY",
+      "author": "Nicolas Olejnik",
+      "observationUrl": "https://www.inaturalist.org/observations/569e0675-631b-4adb-b306-7296ad016848"
+    },
+    {
+      "photoId": 214497838,
+      "ext": "jpg",
+      "license": "CC-BY",
+      "author": "Annie Weissman",
+      "observationUrl": "https://www.inaturalist.org/observations/dbc8ef62-f5ad-47fb-965f-2d42404769db"
+    },
+    {
+      "photoId": 53610349,
+      "ext": "jpg",
+      "license": "CC0",
+      "author": "pynklynx",
+      "observationUrl": "https://www.inaturalist.org/observations/4c95782c-02a3-4271-9db9-da3c60a311b7"
+    }
+  ],
+  "field-mushroom": [
+    {
+      "photoId": 209682916,
+      "ext": "jpeg",
+      "license": "CC-BY-SA",
+      "author": "Oscar Alejandro Morales Juárez",
+      "observationUrl": "https://www.inaturalist.org/observations/b8918b62-244f-41c8-b5ca-8cb84538ccf1"
+    },
+    {
+      "photoId": 376376428,
+      "ext": "jpeg",
+      "license": "CC-BY",
+      "author": "Julian Pietragalla",
+      "observationUrl": "https://www.inaturalist.org/observations/44869197-4c48-41f3-ba2a-7e85e30c1778"
+    },
+    {
+      "photoId": 52767119,
+      "ext": "jpg",
+      "license": "CC0",
+      "author": "Peter Gabler",
+      "observationUrl": "https://www.inaturalist.org/observations/adaf4c77-26fc-472a-8486-aa7000c382fe"
+    }
+  ],
+  "fly-agaric": [
+    {
+      "photoId": 396815564,
+      "ext": "jpg",
+      "license": "CC-BY",
+      "author": "Alessandro Popoli",
+      "observationUrl": "https://www.inaturalist.org/observations/f06d5d35-5b09-4525-b474-507fc4f45a21"
+    },
+    {
+      "photoId": 32814225,
+      "ext": "jpeg",
+      "license": "CC-BY",
+      "author": "Dmitriy Bochkov",
+      "observationUrl": "https://www.inaturalist.org/observations/6deaacd4-0fc6-40b5-980f-29f8c8832bf5"
+    },
+    {
+      "photoId": 101401311,
+      "ext": "jpeg",
+      "license": "CC-BY-SA",
+      "author": "brentnmoran",
+      "observationUrl": "https://www.inaturalist.org/observations/544737ac-7fbb-4093-a926-44f27bb6d363"
+    }
+  ],
+  "fools-funnel": [
+    {
+      "photoId": 440636318,
+      "ext": "jpeg",
+      "license": "CC-BY",
+      "author": "Lucian Clanet",
+      "observationUrl": "https://www.inaturalist.org/observations/95bcda99-80da-48e7-9229-f537b12e8d9f"
+    },
+    {
+      "photoId": 234897847,
+      "ext": "jpeg",
+      "license": "CC-BY",
+      "author": "Nadezhda Kiseleva",
+      "observationUrl": "https://www.inaturalist.org/observations/aa9dcea0-0870-491c-b166-8b5f4eaf7be3"
+    },
+    {
+      "photoId": 439047822,
+      "ext": "jpeg",
+      "license": "CC-BY",
+      "author": "Jose Castro",
+      "observationUrl": "https://www.inaturalist.org/observations/072dda4f-30ff-4d9d-829c-9ad3b95f1673"
+    }
+  ],
+  "funeral-bell": [
+    {
+      "photoId": 335640074,
+      "ext": "jpeg",
+      "license": "CC-BY",
+      "author": "Cody Johnson",
+      "observationUrl": "https://www.inaturalist.org/observations/46462605-bb73-4c76-9d0c-aea9c38dcafb"
+    },
+    {
+      "photoId": 333182039,
+      "ext": "jpeg",
+      "license": "CC-BY-SA",
+      "author": "Tom Sisan",
+      "observationUrl": "https://www.inaturalist.org/observations/d9b5eb6b-b461-439a-ba21-ce3566ba550c"
+    },
+    {
+      "photoId": 587814041,
+      "ext": "jpg",
+      "license": "CC-BY",
+      "author": "Clément Maouche",
+      "observationUrl": "https://www.inaturalist.org/observations/e21a9d3a-bfdf-4dbe-bea0-a203b23d222b"
+    }
+  ],
+  "giant-puffball": [
+    {
+      "photoId": 421287439,
+      "ext": "jpeg",
+      "license": "CC-BY",
+      "author": "Emmett Collins-Sussman",
+      "observationUrl": "https://www.inaturalist.org/observations/3d62db05-d744-4640-b6a7-90039aa42bc0"
+    },
+    {
+      "photoId": 56039636,
+      "ext": "jpg",
+      "license": "CC-BY",
+      "author": "Brian White",
+      "observationUrl": "https://www.inaturalist.org/observations/966d2a95-4484-4bef-8e28-6d98c346a16e"
+    },
+    {
+      "photoId": 575040526,
+      "ext": "jpg",
+      "license": "CC-BY",
+      "author": "guywallbanks",
+      "observationUrl": "https://www.inaturalist.org/observations/def9616c-6a1e-4494-934b-0048b355605e"
+    }
+  ],
+  "hedgehog-mushroom": [
+    {
+      "photoId": 573324739,
+      "ext": "jpg",
+      "license": "CC-BY",
+      "author": "norgram",
+      "observationUrl": "https://www.inaturalist.org/observations/f3028463-1343-4fe0-ac39-46204c0f065a"
+    },
+    {
+      "photoId": 144010935,
+      "ext": "jpg",
+      "license": "CC-BY",
+      "author": "Tatiana Strus",
+      "observationUrl": "https://www.inaturalist.org/observations/587790b8-395a-4788-bca5-2c70dec5b481"
+    },
+    {
+      "photoId": 565752929,
+      "ext": "jpg",
+      "license": "CC-BY",
+      "author": "gerardbertrand",
+      "observationUrl": "https://www.inaturalist.org/observations/4649eaa9-d19c-4423-8d92-27a334286b25"
+    }
+  ],
+  "hen-of-the-woods": [
+    {
+      "photoId": 99085994,
+      "ext": "jpg",
+      "license": "CC0",
+      "author": "Bethany Teigen",
+      "observationUrl": "https://www.inaturalist.org/observations/47c65c49-812f-4eb9-b224-df3b170a3f65"
+    },
+    {
+      "photoId": 240118623,
+      "ext": "jpeg",
+      "license": "CC-BY",
+      "author": "Elizabeth Axley",
+      "observationUrl": "https://www.inaturalist.org/observations/26955264-85a4-4ace-9cc6-989da368eb0e"
+    },
+    {
+      "photoId": 239857697,
+      "ext": "jpg",
+      "license": "CC-BY",
+      "author": "Annie Weissman",
+      "observationUrl": "https://www.inaturalist.org/observations/29abf229-3bd3-4849-96fb-2901e290b302"
+    }
+  ],
+  "honey-fungus": [
+    {
+      "photoId": 172134752,
+      "ext": "jpeg",
+      "license": "CC-BY",
+      "author": "Alex",
+      "observationUrl": "https://www.inaturalist.org/observations/22921418-530f-4b56-8d15-5c2268ba2935"
+    },
+    {
+      "photoId": 593200949,
+      "ext": "jpg",
+      "license": "CC0",
+      "author": "kk6zly",
+      "observationUrl": "https://www.inaturalist.org/observations/1fd5e1c3-5da4-49db-9371-690d9dc93a8c"
+    },
+    {
+      "photoId": 458285352,
+      "ext": "jpg",
+      "license": "CC0",
+      "author": "Caleb O'Reilly",
+      "observationUrl": "https://www.inaturalist.org/observations/5bdac57a-1bea-446d-9e99-ce441f492489"
+    }
+  ],
+  "horse-mushroom": [
+    {
+      "photoId": 55280948,
+      "ext": "jpg",
+      "license": "CC0",
+      "author": "Sigrid Jakob",
+      "observationUrl": "https://www.inaturalist.org/observations/64ef3cc4-3287-48a5-b8fc-5c319b99294b"
+    },
+    {
+      "photoId": 596028547,
+      "ext": "jpg",
+      "license": "CC0",
+      "author": "Michael Werth",
+      "observationUrl": "https://www.inaturalist.org/observations/c2d21f04-3b53-4af0-b75b-ed1dfec0255f"
+    },
+    {
+      "photoId": 233762828,
+      "ext": "jpeg",
+      "license": "CC0",
+      "author": "szegedigombasz",
+      "observationUrl": "https://www.inaturalist.org/observations/18fea878-b63b-4b8d-bfba-f7c443791841"
+    }
+  ],
+  "jack-o-lantern": [
+    {
+      "photoId": 243695545,
+      "ext": "jpg",
+      "license": "CC-BY",
+      "author": "Daniel Franco",
+      "observationUrl": "https://www.inaturalist.org/observations/258419af-85d0-40ba-bd66-775adf96b6c7"
+    },
+    {
+      "photoId": 444025588,
+      "ext": "jpeg",
+      "license": "CC-BY",
+      "author": "zebedeugalinha",
+      "observationUrl": "https://www.inaturalist.org/observations/db35c2da-b82b-4357-9c39-da05e53c46fb"
+    },
+    {
+      "photoId": 252277993,
+      "ext": "jpeg",
+      "license": "CC-BY",
+      "author": "Mario Bassini",
+      "observationUrl": "https://www.inaturalist.org/observations/11452c2f-93cc-434c-85ae-b8697508bb2a"
+    }
+  ],
+  "jelly-ear": [
+    {
+      "photoId": 460155496,
+      "ext": "jpeg",
+      "license": "CC-BY",
+      "author": "Rob Drake",
+      "observationUrl": "https://www.inaturalist.org/observations/a04fece7-9206-403a-a9ad-da5959480e1e"
+    },
+    {
+      "photoId": 598764396,
+      "ext": "jpg",
+      "license": "CC0",
+      "author": "Rosie Bibby",
+      "observationUrl": "https://www.inaturalist.org/observations/fc520cd4-b8af-4214-aaa7-beb87f024a70"
+    },
+    {
+      "photoId": 666078169,
+      "ext": "jpg",
+      "license": "CC0",
+      "author": "Munster Mad",
+      "observationUrl": "https://www.inaturalist.org/observations/bdf72fb4-9b0a-4254-86a1-e4b4e8346d44"
+    }
+  ],
+  "lions-mane": [
+    {
+      "photoId": 174548447,
+      "ext": "jpg",
+      "license": "CC-BY",
+      "author": "Samantha Knight",
+      "observationUrl": "https://www.inaturalist.org/observations/77585365-2b68-4122-b8dc-f4b5c0d426e0"
+    },
+    {
+      "photoId": 26093289,
+      "ext": "jpg",
+      "license": "CC-BY",
+      "author": "Serenella Linares",
+      "observationUrl": "https://www.inaturalist.org/observations/02741108-1566-4b8c-92cd-4797c35d05b0"
+    },
+    {
+      "photoId": 250987462,
+      "ext": "jpeg",
+      "license": "CC-BY",
+      "author": "martin_livezey",
+      "observationUrl": "https://www.inaturalist.org/observations/37018825-c062-4ef1-afc3-a26dd0056849"
+    }
+  ],
+  "morel": [
+    {
+      "photoId": 652085391,
+      "ext": "jpg",
+      "license": "CC-BY",
+      "author": "Patrick Bayan",
+      "observationUrl": "https://www.inaturalist.org/observations/e04acb81-524e-4a63-b777-5272df899647"
+    },
+    {
+      "photoId": 192325019,
+      "ext": "jpeg",
+      "license": "CC-BY",
+      "author": "Nico Hernandez",
+      "observationUrl": "https://www.inaturalist.org/observations/513bf18a-66d8-4f83-aae8-67a8fcc68490"
+    },
+    {
+      "photoId": 363706544,
+      "ext": "jpg",
+      "license": "CC-BY",
+      "author": "Andreas Stiller",
+      "observationUrl": "https://www.inaturalist.org/observations/ab50f344-c77c-4779-9026-a367fabe8980"
+    }
+  ],
+  "old-man-of-the-woods": [
+    {
+      "photoId": 543740466,
+      "ext": "jpg",
+      "license": "CC0",
+      "author": "Aubrey Inkster",
+      "observationUrl": "https://www.inaturalist.org/observations/7892ce67-3d41-441b-b1d3-0b2aa4dea038"
+    },
+    {
+      "photoId": 210374389,
+      "ext": "jpg",
+      "license": "CC-BY",
+      "author": "Tim Kennedy",
+      "observationUrl": "https://www.inaturalist.org/observations/6a94de0a-c1a6-47db-b763-2c675fa701eb"
+    },
+    {
+      "photoId": 149307719,
+      "ext": "jpg",
+      "license": "CC-BY",
+      "author": "Doug Suitor",
+      "observationUrl": "https://www.inaturalist.org/observations/f46d4156-de44-41a6-8206-930553b74ad4"
+    }
+  ],
+  "orange-peel-fungus": [
+    {
+      "photoId": 334957832,
+      "ext": "jpeg",
+      "license": "CC-BY",
+      "author": "Robyn Armstrong",
+      "observationUrl": "https://www.inaturalist.org/observations/a41c6bad-b5a6-4f32-bf04-d2b724a15570"
+    },
+    {
+      "photoId": 250780925,
+      "ext": "jpeg",
+      "license": "CC-BY",
+      "author": "martin_livezey",
+      "observationUrl": "https://www.inaturalist.org/observations/5b71a2e2-8bc5-476e-92e6-1ab2b096c6f9"
+    },
+    {
+      "photoId": 53697215,
+      "ext": "jpg",
+      "license": "CC-BY",
+      "author": "aarongunnar",
+      "observationUrl": "https://www.inaturalist.org/observations/c7a062fd-8a81-4e70-8551-2eb84966b21c"
+    }
+  ],
+  "oyster-mushroom": [
+    {
+      "photoId": 365822936,
+      "ext": "jpeg",
+      "license": "CC-BY",
+      "author": "Zachary Justus",
+      "observationUrl": "https://www.inaturalist.org/observations/af757851-b2cb-41fd-95d3-61e029f3f4af"
+    },
+    {
+      "photoId": 174715355,
+      "ext": "jpeg",
+      "license": "CC-BY",
+      "author": "Sheelagh Halsey",
+      "observationUrl": "https://www.inaturalist.org/observations/d25b11fa-970e-4c1a-a5d6-c8b38f0e1bc6"
+    },
+    {
+      "photoId": 74490083,
+      "ext": "jpeg",
+      "license": "CC-BY",
+      "author": "Александр Тихонов",
+      "observationUrl": "https://www.inaturalist.org/observations/b2650084-9a31-4de3-82b9-63abb08e6066"
+    }
+  ],
+  "panther-cap": [
+    {
+      "photoId": 458299074,
+      "ext": "jpeg",
+      "license": "CC-BY",
+      "author": "Ross Krisztina",
+      "observationUrl": "https://www.inaturalist.org/observations/3dc352fe-96d6-470a-bdfb-8c7f4ee7a3cd"
+    },
+    {
+      "photoId": 446272403,
+      "ext": "jpeg",
+      "license": "CC-BY",
+      "author": "Lukas Large",
+      "observationUrl": "https://www.inaturalist.org/observations/5d72e846-9d71-458f-a33f-1bc87a1ad91d"
+    },
+    {
+      "photoId": 443633627,
+      "ext": "jpeg",
+      "license": "CC-BY",
+      "author": "Scheufler Stefan",
+      "observationUrl": "https://www.inaturalist.org/observations/93fefedd-9259-43b1-a798-41449814a434"
+    }
+  ],
+  "parasol": [
+    {
+      "photoId": 435835733,
+      "ext": "jpeg",
+      "license": "CC0",
+      "author": "Jiří Podhorecký",
+      "observationUrl": "https://www.inaturalist.org/observations/3184db43-3e2f-4d3a-8050-a20ea53ac9c3"
+    },
+    {
+      "photoId": 306767863,
+      "ext": "jpg",
+      "license": "CC-BY",
+      "author": "spoonbilling",
+      "observationUrl": "https://www.inaturalist.org/observations/9e3c4659-37a0-402d-80fb-fccc08b7224b"
+    },
+    {
+      "photoId": 231435091,
+      "ext": "jpeg",
+      "license": "CC-BY-SA",
+      "author": "alcesevropsky",
+      "observationUrl": "https://www.inaturalist.org/observations/1424f6dc-48e6-4646-adf5-32a2ff0b7d26"
+    }
+  ],
+  "porcelain-fungus": [
+    {
+      "photoId": 572319580,
+      "ext": "jpg",
+      "license": "CC-BY",
+      "author": "Luke",
+      "observationUrl": "https://www.inaturalist.org/observations/c17c496e-2857-4111-a34e-133cbe398646"
+    },
+    {
+      "photoId": 236864777,
+      "ext": "jpg",
+      "license": "CC-BY",
+      "author": "Martin Kalfatovic",
+      "observationUrl": "https://www.inaturalist.org/observations/0836df84-a12c-4072-8aff-a6defe67ceff"
+    },
+    {
+      "photoId": 318547875,
+      "ext": "jpg",
+      "license": "CC-BY",
+      "author": "Michel Langeveld",
+      "observationUrl": "https://www.inaturalist.org/observations/e69d20f8-a907-4d60-8505-f0fb19316f4d"
+    }
+  ],
+  "porcini": [
+    {
+      "photoId": 334418898,
+      "ext": "jpg",
+      "license": "CC-BY",
+      "author": "Marius K.",
+      "observationUrl": "https://www.inaturalist.org/observations/a52e7b2b-2429-45af-a311-39e32dbee5ed"
+    },
+    {
+      "photoId": 569592844,
+      "ext": "jpg",
+      "license": "CC-BY",
+      "author": "Johan Adler",
+      "observationUrl": "https://www.inaturalist.org/observations/4c44d9ee-dc70-4aa2-8237-8dd36fdd0adc"
+    },
+    {
+      "photoId": 98041888,
+      "ext": "jpeg",
+      "license": "CC-BY",
+      "author": "Seth Musker",
+      "observationUrl": "https://www.inaturalist.org/observations/0e9f4802-3209-4078-a23f-f29bbb935abf"
+    }
+  ],
+  "reishi": [
+    {
+      "photoId": 212127493,
+      "ext": "jpg",
+      "license": "CC-BY",
+      "author": "Dutza K.",
+      "observationUrl": "https://www.inaturalist.org/observations/d16b87ba-18e6-456e-8ba3-47829f4916a4"
+    },
+    {
+      "photoId": 142856739,
+      "ext": "jpeg",
+      "license": "CC-BY",
+      "author": "Tatiana Strus",
+      "observationUrl": "https://www.inaturalist.org/observations/fbb128d6-d663-47f2-b378-cdda2f56ce2f"
+    },
+    {
+      "photoId": 571157397,
+      "ext": "jpg",
+      "license": "CC-BY",
+      "author": "yellowplant",
+      "observationUrl": "https://www.inaturalist.org/observations/b126d8dc-d8f5-4761-99f4-77a8a3e8a446"
+    }
+  ],
+  "saffron-milk-cap": [
+    {
+      "photoId": 5669463,
+      "ext": "jpeg",
+      "license": "CC-BY",
+      "author": "Alan Rockefeller",
+      "observationUrl": "https://www.inaturalist.org/observations/4b5c79ff-34f6-413f-aeee-0de20789be90"
+    },
+    {
+      "photoId": 286012852,
+      "ext": "jpeg",
+      "license": "CC-BY",
+      "author": "Heath Hunter",
+      "observationUrl": "https://www.inaturalist.org/observations/f36b6742-266e-4476-b537-1230b0b15508"
+    },
+    {
+      "photoId": 173334704,
+      "ext": "jpg",
+      "license": "CC0",
+      "author": "stephvg",
+      "observationUrl": "https://www.inaturalist.org/observations/8e85b58e-637d-4545-9126-0711b1d16526"
+    }
+  ],
+  "satans-bolete": [
+    {
+      "photoId": 158015353,
+      "ext": "jpeg",
+      "license": "CC-BY",
+      "author": "carnifex",
+      "observationUrl": "https://www.inaturalist.org/observations/86c6658d-fc75-468d-84f6-39a949818bfe"
+    },
+    {
+      "photoId": 229081830,
+      "ext": "jpeg",
+      "license": "CC-BY-SA",
+      "author": "Markéta Žlebková",
+      "observationUrl": "https://www.inaturalist.org/observations/b6c1ba53-76f7-44b7-ba04-353f2a409e26"
+    },
+    {
+      "photoId": 414982226,
+      "ext": "jpeg",
+      "license": "CC-BY",
+      "author": "Fyodor Pudovikov",
+      "observationUrl": "https://www.inaturalist.org/observations/47494207-06d2-41f0-b43b-f92cd6a4015b"
+    }
+  ],
+  "scarlet-elf-cup": [
+    {
+      "photoId": 25839436,
+      "ext": "jpeg",
+      "license": "CC-BY",
+      "author": "Eugene Popov",
+      "observationUrl": "https://www.inaturalist.org/observations/ced0bb01-9c37-48dc-90e6-b20c35c01508"
+    },
+    {
+      "photoId": 640714155,
+      "ext": "jpg",
+      "license": "CC-BY",
+      "author": "Sofia Voynovskaya",
+      "observationUrl": "https://www.inaturalist.org/observations/5db280e6-bd04-4a56-a7eb-c84d72fc5393"
+    },
+    {
+      "photoId": 127790441,
+      "ext": "jpeg",
+      "license": "CC0",
+      "author": "Yehor Yatsiuk",
+      "observationUrl": "https://www.inaturalist.org/observations/ae37d145-f4b8-455d-80f7-d9f27e68ed8d"
+    }
+  ],
+  "shaggy-ink-cap": [
+    {
+      "photoId": 162885982,
+      "ext": "jpg",
+      "license": "CC0",
+      "author": "eboenzli",
+      "observationUrl": "https://www.inaturalist.org/observations/38fe8924-f9b5-4a13-889d-54acdd6e1927"
+    },
+    {
+      "photoId": 326039071,
+      "ext": "jpeg",
+      "license": "CC-BY",
+      "author": "Simon Rolph",
+      "observationUrl": "https://www.inaturalist.org/observations/4f79bd39-d0e3-4e22-a0c4-b532c7718367"
+    },
+    {
+      "photoId": 459657539,
+      "ext": "jpeg",
+      "license": "CC-BY",
+      "author": "bogsuckers",
+      "observationUrl": "https://www.inaturalist.org/observations/31df2c19-30f4-4b13-8716-00ef4fe5d50b"
+    }
+  ],
+  "shaggy-parasol": [
+    {
+      "photoId": 236490436,
+      "ext": "jpeg",
+      "license": "CC-BY",
+      "author": "bogsuckers",
+      "observationUrl": "https://www.inaturalist.org/observations/b523c066-c19a-452a-aa42-5ff7e16e0a56"
+    },
+    {
+      "photoId": 235390543,
+      "ext": "jpeg",
+      "license": "CC0",
+      "author": "Liubov Ilminska",
+      "observationUrl": "https://www.inaturalist.org/observations/7209664b-1b9e-40b3-b4a4-9b363f9a4a2f"
+    },
+    {
+      "photoId": 41159117,
+      "ext": "jpeg",
+      "license": "CC-BY",
+      "author": "Petra Caltová",
+      "observationUrl": "https://www.inaturalist.org/observations/77a8a634-10ec-4b8e-88e9-9cf38c6a58af"
+    }
+  ],
+  "shiitake": [
+    {
+      "photoId": 113623237,
+      "ext": "jpg",
+      "license": "CC-BY",
+      "author": "りなべる",
+      "observationUrl": "https://www.inaturalist.org/observations/72c00955-1a4b-41e6-a06a-7af076965ea5"
+    },
+    {
+      "photoId": 263782428,
+      "ext": "jpeg",
+      "license": "CC-BY",
+      "author": "MUNENORI YAMAKAWA",
+      "observationUrl": "https://www.inaturalist.org/observations/3622a70a-1a0a-415f-bced-f6c353462401"
+    },
+    {
+      "photoId": 349508031,
+      "ext": "jpg",
+      "license": "CC-BY",
+      "author": "Chris walker",
+      "observationUrl": "https://www.inaturalist.org/observations/9c429725-96cd-4960-b08e-0ab41ae58ae4"
+    }
+  ],
+  "sickener": [
+    {
+      "photoId": 570138740,
+      "ext": "jpg",
+      "license": "CC-BY",
+      "author": "Charlotte Forrest-King",
+      "observationUrl": "https://www.inaturalist.org/observations/714fbc9d-8a5d-4156-997a-01ef089578be"
+    },
+    {
+      "photoId": 99901367,
+      "ext": "jpeg",
+      "license": "CC-BY",
+      "author": "Alan Rockefeller",
+      "observationUrl": "https://www.inaturalist.org/observations/58fddecb-3bae-4c1c-9679-166d9e708190"
+    },
+    {
+      "photoId": 563201585,
+      "ext": "jpg",
+      "license": "CC-BY",
+      "author": "Scott Shanks",
+      "observationUrl": "https://www.inaturalist.org/observations/121707f8-9f32-41ac-b71d-0b0bd76d1a00"
+    }
+  ],
+  "slippery-jack": [
+    {
+      "photoId": 65555044,
+      "ext": "jpg",
+      "license": "CC-BY",
+      "author": "Mark",
+      "observationUrl": "https://www.inaturalist.org/observations/0ea60c57-8f65-4bd2-8304-e6ab58c1121c"
+    },
+    {
+      "photoId": 71893513,
+      "ext": "jpeg",
+      "license": "CC-BY",
+      "author": "rempson",
+      "observationUrl": "https://www.inaturalist.org/observations/c738c5c8-cf7d-4c06-8bad-c9fc3b95ac5e"
+    },
+    {
+      "photoId": 330017517,
+      "ext": "jpg",
+      "license": "CC-BY",
+      "author": "arthur_haendler",
+      "observationUrl": "https://www.inaturalist.org/observations/0fd58eaa-93fd-4811-9e17-43e2fa457137"
+    }
+  ],
+  "st-georges-mushroom": [
+    {
+      "photoId": 641863407,
+      "ext": "jpg",
+      "license": "CC-BY",
+      "author": "Lukas Large",
+      "observationUrl": "https://www.inaturalist.org/observations/7f0c5e13-1044-4508-b33e-2eebde0f9c42"
+    },
+    {
+      "photoId": 130015614,
+      "ext": "jpg",
+      "license": "CC0",
+      "author": "T. Pedro Hafermann",
+      "observationUrl": "https://www.inaturalist.org/observations/c82e246c-6575-4b92-aa6a-f6d1a60a6d25"
+    },
+    {
+      "photoId": 628514466,
+      "ext": "jpg",
+      "license": "CC-BY",
+      "author": "Cara Ennis",
+      "observationUrl": "https://www.inaturalist.org/observations/1344719e-0dbe-4b5f-8ea1-7448e227a892"
+    }
+  ],
+  "sulphur-tuft": [
+    {
+      "photoId": 101881512,
+      "ext": "jpg",
+      "license": "CC-BY",
+      "author": "Michael Bakker Paiva",
+      "observationUrl": "https://www.inaturalist.org/observations/11ef2e3c-bd32-43d5-8d1d-f1ec6f96e954"
+    },
+    {
+      "photoId": 47648311,
+      "ext": "jpeg",
+      "license": "CC-BY",
+      "author": "Christina s.l.",
+      "observationUrl": "https://www.inaturalist.org/observations/99f4415d-89b5-4556-acd7-cc50df417550"
+    },
+    {
+      "photoId": 437979324,
+      "ext": "jpeg",
+      "license": "CC-BY",
+      "author": "Susan Marley",
+      "observationUrl": "https://www.inaturalist.org/observations/b5695ef0-ead5-4436-b3e7-0f48b11780c7"
+    }
+  ],
+  "tinder-fungus": [
+    {
+      "photoId": 602098407,
+      "ext": "jpg",
+      "license": "CC-BY",
+      "author": "Gijs Romijn",
+      "observationUrl": "https://www.inaturalist.org/observations/30cdefbe-156b-4c5a-805c-75f7f1ea7bce"
+    },
+    {
+      "photoId": 117824911,
+      "ext": "jpg",
+      "license": "CC-BY",
+      "author": "Piotr Lukasik",
+      "observationUrl": "https://www.inaturalist.org/observations/975f458b-cf54-47cf-b746-87610dc1a8c5"
+    },
+    {
+      "photoId": 663093811,
+      "ext": "jpg",
+      "license": "CC-BY",
+      "author": "Анна Митрошенкова",
+      "observationUrl": "https://www.inaturalist.org/observations/eb288cd8-084f-4431-b8a9-16437e596512"
+    }
+  ],
+  "turkey-tail": [
+    {
+      "photoId": 175874852,
+      "ext": "jpg",
+      "license": "CC-BY",
+      "author": "Leila Dasher",
+      "observationUrl": "https://www.inaturalist.org/observations/1550f8bb-df4d-4538-98f7-a711e3c00f82"
+    },
+    {
+      "photoId": 25380316,
+      "ext": "jpeg",
+      "license": "CC-BY",
+      "author": "Jonathan Layman",
+      "observationUrl": "https://www.inaturalist.org/observations/7773f37d-253e-430e-9820-1967066272f2"
+    },
+    {
+      "photoId": 440378132,
+      "ext": "jpeg",
+      "license": "CC-BY",
+      "author": "Bobo-X",
+      "observationUrl": "https://www.inaturalist.org/observations/c71f4056-af91-45a7-9dfa-a4a7364afe42"
+    }
+  ],
+  "velvet-shank": [
+    {
+      "photoId": 363849207,
+      "ext": "jpg",
+      "license": "CC0",
+      "author": "kristinpiston",
+      "observationUrl": "https://www.inaturalist.org/observations/82953140-9033-42d1-b3bc-2af683c578e1"
+    },
+    {
+      "photoId": 349321966,
+      "ext": "jpg",
+      "license": "CC-BY",
+      "author": "Cole Wolf",
+      "observationUrl": "https://www.inaturalist.org/observations/cdf2fdfb-1e1e-4fa8-9096-4833a272d0e1"
+    },
+    {
+      "photoId": 417908415,
+      "ext": "jpeg",
+      "license": "CC-BY",
+      "author": "Josh Sutton",
+      "observationUrl": "https://www.inaturalist.org/observations/acaf3ece-fefa-4fd3-99de-7d2275fb3116"
+    }
+  ],
+  "wood-blewit": [
+    {
+      "photoId": 246737991,
+      "ext": "jpeg",
+      "license": "CC-BY",
+      "author": "Mandy Hackney",
+      "observationUrl": "https://www.inaturalist.org/observations/5224081f-1f90-49ea-9004-1fab119a41c2"
+    },
+    {
+      "photoId": 175068687,
+      "ext": "jpeg",
+      "license": "CC-BY",
+      "author": "Alan Rockefeller",
+      "observationUrl": "https://www.inaturalist.org/observations/898a3e60-b70c-43b0-b27c-303af0be9676"
+    },
+    {
+      "photoId": 174662679,
+      "ext": "jpg",
+      "license": "CC-BY",
+      "author": "Karen Kincy",
+      "observationUrl": "https://www.inaturalist.org/observations/11b908e0-ea75-4e17-bb3d-59051e4e756e"
+    }
+  ],
+  "yellow-brain": [
+    {
+      "photoId": 456753516,
+      "ext": "jpg",
+      "license": "CC-BY-SA",
+      "author": "V. Ross Johnson",
+      "observationUrl": "https://www.inaturalist.org/observations/ec4e1a7a-09e7-4a81-b04f-171b747cb5a6"
+    },
+    {
+      "photoId": 458595626,
+      "ext": "jpeg",
+      "license": "CC-BY",
+      "author": "Michael Berardozzi",
+      "observationUrl": "https://www.inaturalist.org/observations/ebb9e359-be2e-4504-872a-09ce51e08178"
+    },
+    {
+      "photoId": 28631053,
+      "ext": "jpg",
+      "license": "CC-BY",
+      "author": "John Steel",
+      "observationUrl": "https://www.inaturalist.org/observations/6c847035-3dac-4746-8768-f29627187dc4"
+    }
+  ],
+  "yellow-stainer": [
+    {
+      "photoId": 235071795,
+      "ext": "jpg",
+      "license": "CC-BY",
+      "author": "Lee",
+      "observationUrl": "https://www.inaturalist.org/observations/e6636118-0807-4bcd-9f1f-663973a3c0df"
+    },
+    {
+      "photoId": 5762751,
+      "ext": "jpeg",
+      "license": "CC-BY",
+      "author": "Alan Rockefeller",
+      "observationUrl": "https://www.inaturalist.org/observations/98c0b797-9ae9-4ad9-b4b1-2ec204e91b3c"
+    },
+    {
+      "photoId": 24573728,
+      "ext": "jpeg",
+      "license": "CC-BY-SA",
+      "author": "pinonbistro",
+      "observationUrl": "https://www.inaturalist.org/observations/a122024f-037a-4fd2-a342-d1378d3cf3b4"
+    }
+  ]
+}

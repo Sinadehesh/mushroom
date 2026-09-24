@@ -2,4 +2,360 @@
 // Photos: iNaturalist observers, CC0 / CC BY / CC BY-SA. See scripts/mushroom-photos.json.
 import type { MushroomImage } from './mushroomImageTypes';
 
-export const MUSHROOM_IMAGES: Record<string, MushroomImage[]> = {};
+export const MUSHROOM_IMAGES: Record<string, MushroomImage[]> = {
+  "amethyst-deceiver": [
+    { source: require('../../assets/mushrooms/amethyst-deceiver-1.jpg'), credit: {"author":"Bryan Rennick","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/b75d1531-3dca-4f44-80d3-a86c12e3fdac"} },
+    { source: require('../../assets/mushrooms/amethyst-deceiver-2.jpg'), credit: {"author":"Dominika Nowak","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/1495f34b-145a-4c7e-ab9e-f9e5d17d2b78"} },
+    { source: require('../../assets/mushrooms/amethyst-deceiver-3.jpg'), credit: {"author":"Clément Maouche","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/8051868a-45bd-491e-985e-b55c04619e43"} },
+  ],
+  "artists-bracket": [
+    { source: require('../../assets/mushrooms/artists-bracket-1.jpg'), credit: {"author":"Justin Flint","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/3a2014c4-d1d4-4b0b-bfa7-efd2dce3aa4b"} },
+    { source: require('../../assets/mushrooms/artists-bracket-2.jpg'), credit: {"author":"Gilles San Martin","license":"CC BY-SA","sourceUrl":"https://www.inaturalist.org/observations/681027c0-b4e6-4c17-aa4f-e80a9320fef6"} },
+    { source: require('../../assets/mushrooms/artists-bracket-3.jpg'), credit: {"author":"Atsushi Nakajima","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/ff075d91-1c5d-4095-bc21-ce5e5349626f"} },
+  ],
+  "bay-bolete": [
+    { source: require('../../assets/mushrooms/bay-bolete-1.jpg'), credit: {"author":"Christine Young","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/b10657b4-f64b-4e46-bc82-2217b145f615"} },
+    { source: require('../../assets/mushrooms/bay-bolete-2.jpg'), credit: {"author":"Jerzy Tomes","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/155f3bdb-80e0-4813-9982-e1c0671df2f4"} },
+    { source: require('../../assets/mushrooms/bay-bolete-3.jpg'), credit: {"author":"Bartosz Czołczyński","license":"CC0","sourceUrl":"https://www.inaturalist.org/observations/75a9aba0-3ebb-467c-bdbc-ab908d4d8a63"} },
+  ],
+  "beefsteak-fungus": [
+    { source: require('../../assets/mushrooms/beefsteak-fungus-1.jpg'), credit: {"author":"Jose Castro","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/3bbf2cc7-061e-43b0-89f2-a67cd4150c91"} },
+    { source: require('../../assets/mushrooms/beefsteak-fungus-2.jpg'), credit: {"author":"bogsuckers","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/facdd081-da7d-4ec3-89ee-2f42a7975486"} },
+    { source: require('../../assets/mushrooms/beefsteak-fungus-3.jpg'), credit: {"author":"Chris Sampson","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/f6693efa-9208-457d-bcab-c9957ba30953"} },
+  ],
+  "birch-polypore": [
+    { source: require('../../assets/mushrooms/birch-polypore-1.jpg'), credit: {"author":"StarStats","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/5a6ba815-a7ad-4345-bf8c-20d754e7950a"} },
+    { source: require('../../assets/mushrooms/birch-polypore-2.jpg'), credit: {"author":"Charlie Farrell","license":"CC0","sourceUrl":"https://www.inaturalist.org/observations/b026472a-fdb3-4960-a196-8b1a60616c0e"} },
+    { source: require('../../assets/mushrooms/birch-polypore-3.jpg'), credit: {"author":"Fluff Berger","license":"CC BY-SA","sourceUrl":"https://www.inaturalist.org/observations/faf8e7dc-a7fe-4835-933e-a7c600f2d1e7"} },
+  ],
+  "birds-nest-fungus": [
+    { source: require('../../assets/mushrooms/birds-nest-fungus-1.jpg'), credit: {"author":"Michele Wiseman","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/ef8293fb-699e-4ee5-ab45-14075ea37d74"} },
+    { source: require('../../assets/mushrooms/birds-nest-fungus-2.jpg'), credit: {"author":"cgmayers","license":"CC0","sourceUrl":"https://www.inaturalist.org/observations/2bf62878-1ee4-4829-b3b8-6c854a2ce900"} },
+    { source: require('../../assets/mushrooms/birds-nest-fungus-3.jpg'), credit: {"author":"Ken Kneidel","license":"CC0","sourceUrl":"https://www.inaturalist.org/observations/b2a558a0-9dd3-4e72-b416-1110229aacae"} },
+  ],
+  "bitter-bolete": [
+    { source: require('../../assets/mushrooms/bitter-bolete-1.jpg'), credit: {"author":"Niko Ioannidis","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/5dd59395-049a-4016-8673-72817279fe43"} },
+    { source: require('../../assets/mushrooms/bitter-bolete-2.jpg'), credit: {"author":"Petr Harant","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/0812d4a4-801a-4beb-af9a-a4e451243a57"} },
+    { source: require('../../assets/mushrooms/bitter-bolete-3.jpg'), credit: {"author":"Анна Рыбакова","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/a3ee6164-7390-4791-b360-7c905f7ee199"} },
+  ],
+  "black-trumpet": [
+    { source: require('../../assets/mushrooms/black-trumpet-1.jpg'), credit: {"author":"Johannes Graf","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/0cd7d94c-6ed0-4328-89d4-b7a3a928848a"} },
+    { source: require('../../assets/mushrooms/black-trumpet-2.jpg'), credit: {"author":"Daniel Castanhal García","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/e6c6645c-bf86-4f29-8127-52113e1e8759"} },
+    { source: require('../../assets/mushrooms/black-trumpet-3.jpg'), credit: {"author":"sugarsnap_t","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/c735787e-1a7d-4279-a711-75b44cb850c8"} },
+  ],
+  "blusher": [
+    { source: require('../../assets/mushrooms/blusher-1.jpg'), credit: {"author":"Pablo Silva","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/cbf6daa0-35a4-417f-b6ab-ce9e6c7ab5a6"} },
+    { source: require('../../assets/mushrooms/blusher-2.jpg'), credit: {"author":"Sheelagh Halsey","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/b95024f0-c168-4290-a0cc-4410e3638369"} },
+    { source: require('../../assets/mushrooms/blusher-3.jpg'), credit: {"author":"Carminda Santos","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/a0277abb-0719-40ff-87ef-8faeddd276e8"} },
+  ],
+  "brown-birch-bolete": [
+    { source: require('../../assets/mushrooms/brown-birch-bolete-1.jpg'), credit: {"author":"ikelman","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/f0f2f10d-d561-4a08-aa43-32e1696b757a"} },
+    { source: require('../../assets/mushrooms/brown-birch-bolete-2.jpg'), credit: {"author":"Michel Langeveld","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/a43dec58-2ee8-4368-b82c-5e9be5b52682"} },
+    { source: require('../../assets/mushrooms/brown-birch-bolete-3.jpg'), credit: {"author":"Radosław Puchałka","license":"CC0","sourceUrl":"https://www.inaturalist.org/observations/5017fd7a-358b-4586-952a-71b5650cc62e"} },
+  ],
+  "brown-roll-rim": [
+    { source: require('../../assets/mushrooms/brown-roll-rim-1.jpg'), credit: {"author":"Drew Palmer","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/a6d5afaf-0d8a-4ab8-84de-54fd5da8342e"} },
+    { source: require('../../assets/mushrooms/brown-roll-rim-2.jpg'), credit: {"author":"Eugene Popov","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/441fbcfd-d417-4f39-8f0b-27e599611aa0"} },
+    { source: require('../../assets/mushrooms/brown-roll-rim-3.jpg'), credit: {"author":"Paul Cook","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/ff099d83-f607-4bab-a75e-cb01b8bcca1a"} },
+  ],
+  "button-mushroom": [
+    { source: require('../../assets/mushrooms/button-mushroom-1.jpg'), credit: {"author":"Alan Rockefeller","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/c6e1601d-54db-43a2-9e7a-729887282464"} },
+    { source: require('../../assets/mushrooms/button-mushroom-2.jpg'), credit: {"author":"Adam J. Searcy","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/b23afa2f-778c-40ac-8abd-0b4bdfd1319c"} },
+    { source: require('../../assets/mushrooms/button-mushroom-3.jpg'), credit: {"author":"Елена А. Кизилова","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/1e466526-cc2c-4726-824a-11cf8761c932"} },
+  ],
+  "caesars-mushroom": [
+    { source: require('../../assets/mushrooms/caesars-mushroom-1.jpg'), credit: {"author":"Asrın Akıncıoğlu","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/37e34ce1-0ad1-4061-9d75-d43a9a939a82"} },
+    { source: require('../../assets/mushrooms/caesars-mushroom-2.jpg'), credit: {"author":"Lorenzo Emanuele Labate","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/c31fd0c1-095b-43a9-ad6d-46166300efa7"} },
+    { source: require('../../assets/mushrooms/caesars-mushroom-3.jpg'), credit: {"author":"Алена Ручка","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/70e4efc1-a10c-4ea9-9c57-dc1478565961"} },
+  ],
+  "candlesnuff-fungus": [
+    { source: require('../../assets/mushrooms/candlesnuff-fungus-1.jpg'), credit: {"author":"Jamie O'Neill","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/362db4d8-0b10-41dd-ae47-eeabf957ca68"} },
+    { source: require('../../assets/mushrooms/candlesnuff-fungus-2.jpg'), credit: {"author":"ca lou","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/5e1806b1-8a29-4f8f-8b14-bee5f99b92d7"} },
+    { source: require('../../assets/mushrooms/candlesnuff-fungus-3.jpg'), credit: {"author":"Alex","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/12119e05-7f18-451c-8f3a-de493efa0e85"} },
+  ],
+  "cauliflower-fungus": [
+    { source: require('../../assets/mushrooms/cauliflower-fungus-1.jpg'), credit: {"author":"Stanislav Murashkin","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/d1c9df53-6d84-429c-9307-2db2e08561c8"} },
+    { source: require('../../assets/mushrooms/cauliflower-fungus-2.jpg'), credit: {"author":"Vitaly Radionov","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/165f5656-9d65-42e9-99e8-8dfd53051871"} },
+    { source: require('../../assets/mushrooms/cauliflower-fungus-3.jpg'), credit: {"author":"Hel Smith","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/945cfe87-1666-4b65-b37a-371718a7059a"} },
+  ],
+  "chaga": [
+    { source: require('../../assets/mushrooms/chaga-1.jpg'), credit: {"author":"Mary E. Macaulay, P.Eng.","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/2206bba2-6a96-48ae-88ed-69f647a4214e"} },
+    { source: require('../../assets/mushrooms/chaga-2.jpg'), credit: {"author":"Stanislav Murashkin","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/23fd427b-4c74-4ef1-bb75-89b5be2d4da5"} },
+    { source: require('../../assets/mushrooms/chaga-3.jpg'), credit: {"author":"Patrick Jackson","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/5dd9ae42-550e-4785-8cbe-310112ad6156"} },
+  ],
+  "chanterelle": [
+    { source: require('../../assets/mushrooms/chanterelle-1.jpg'), credit: {"author":"Dr. Alan Inman","license":"CC0","sourceUrl":"https://www.inaturalist.org/observations/476f847b-b7c6-4769-90d2-080e15d0b6bc"} },
+    { source: require('../../assets/mushrooms/chanterelle-2.jpg'), credit: {"author":"Oleg Kosterin","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/1a4d3bfc-9edc-489c-bd38-1bea95d7b575"} },
+    { source: require('../../assets/mushrooms/chanterelle-3.jpg'), credit: {"author":"Поляков Александр","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/d196d0bc-b1f1-4381-8305-58f1b570d998"} },
+  ],
+  "charcoal-burner": [
+    { source: require('../../assets/mushrooms/charcoal-burner-1.jpg'), credit: {"author":"victor laborde","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/da8a996a-71e3-4245-bc1d-2c9bd9871bc8"} },
+    { source: require('../../assets/mushrooms/charcoal-burner-2.jpg'), credit: {"author":"Tyler Ekholm","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/f08e6688-cff3-4b50-9042-c625eec10c95"} },
+    { source: require('../../assets/mushrooms/charcoal-burner-3.jpg'), credit: {"author":"T. Pedro Hafermann","license":"CC0","sourceUrl":"https://www.inaturalist.org/observations/2abd0066-3e6a-42b1-8a60-ca90c2464a86"} },
+  ],
+  "chicken-of-the-woods": [
+    { source: require('../../assets/mushrooms/chicken-of-the-woods-1.jpg'), credit: {"author":"Erik","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/406a46f8-3e5c-490d-80f9-c907cf63fec8"} },
+    { source: require('../../assets/mushrooms/chicken-of-the-woods-2.jpg'), credit: {"author":"plant512","license":"CC0","sourceUrl":"https://www.inaturalist.org/observations/ffecd14c-0686-42a3-bab7-66fa0b1aed7e"} },
+    { source: require('../../assets/mushrooms/chicken-of-the-woods-3.jpg'), credit: {"author":"Elena Obradović","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/79dc8f07-b83f-4e8c-94f2-8f7e3119395a"} },
+  ],
+  "collared-earthstar": [
+    { source: require('../../assets/mushrooms/collared-earthstar-1.jpg'), credit: {"author":"Eileen Laidlaw","license":"CC0","sourceUrl":"https://www.inaturalist.org/observations/a4cd4b58-c0ef-4e6b-a40f-1b6e42ca9b6e"} },
+    { source: require('../../assets/mushrooms/collared-earthstar-2.jpg'), credit: {"author":"Nathan Cobbett","license":"CC0","sourceUrl":"https://www.inaturalist.org/observations/0bde5f5f-6b42-46a5-b96d-91c495c8758e"} },
+    { source: require('../../assets/mushrooms/collared-earthstar-3.jpg'), credit: {"author":"Wynand Uys","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/dce3edf8-abaa-49a1-a36f-46b417f719fb"} },
+  ],
+  "common-earthball": [
+    { source: require('../../assets/mushrooms/common-earthball-1.jpg'), credit: {"author":"Larry Jensen","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/2c8143e5-6f4a-41d9-a750-b04ae1e765cb"} },
+    { source: require('../../assets/mushrooms/common-earthball-2.jpg'), credit: {"author":"Michel Langeveld","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/109d1bda-67f2-4c52-b319-511ecbbe4299"} },
+    { source: require('../../assets/mushrooms/common-earthball-3.jpg'), credit: {"author":"Thierry Arbault","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/cba49a50-0be7-4ea4-a480-3b5727de4131"} },
+  ],
+  "common-ink-cap": [
+    { source: require('../../assets/mushrooms/common-ink-cap-1.jpg'), credit: {"author":"Vsevolod Rudyi","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/4cb52d24-231a-4b86-8b86-73fedc40fb0c"} },
+    { source: require('../../assets/mushrooms/common-ink-cap-2.jpg'), credit: {"author":"Ingimar","license":"CC BY-SA","sourceUrl":"https://www.inaturalist.org/observations/aa29d636-1bb8-4d70-86c3-a4955ecb46c4"} },
+    { source: require('../../assets/mushrooms/common-ink-cap-3.jpg'), credit: {"author":"Franky Adair","license":"CC0","sourceUrl":"https://www.inaturalist.org/observations/df8521f5-8994-47f7-9c0d-b8e50ee2014e"} },
+  ],
+  "common-puffball": [
+    { source: require('../../assets/mushrooms/common-puffball-1.jpg'), credit: {"author":"Katharine Khamhaengwong","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/bb725ec8-e2ef-4132-8f7b-9c1a8a65b0ec"} },
+    { source: require('../../assets/mushrooms/common-puffball-2.jpg'), credit: {"author":"Елена А. Кизилова","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/9868e763-136e-4231-82e9-16266855d432"} },
+    { source: require('../../assets/mushrooms/common-puffball-3.jpg'), credit: {"author":"Donatas Pocius","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/4356782c-8bfe-4baf-95c7-ded6410b440d"} },
+  ],
+  "common-stinkhorn": [
+    { source: require('../../assets/mushrooms/common-stinkhorn-1.jpg'), credit: {"author":"Paul van Maaren","license":"CC0","sourceUrl":"https://www.inaturalist.org/observations/5d1951af-6a5b-4921-927c-baaa4687ab0e"} },
+    { source: require('../../assets/mushrooms/common-stinkhorn-2.jpg'), credit: {"author":"J Castillo","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/55d87ab6-2c64-4ef9-a5b2-38e90cb1c8ac"} },
+    { source: require('../../assets/mushrooms/common-stinkhorn-3.jpg'), credit: {"author":"Eugene Popov","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/f8feb48b-50f6-43e8-8302-0b6e4bd2fc55"} },
+  ],
+  "dead-mans-fingers": [
+    { source: require('../../assets/mushrooms/dead-mans-fingers-1.jpg'), credit: {"author":"Matthew Rozanoff","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/583d2e84-dcfe-4d68-a404-a3f6ae36c36c"} },
+    { source: require('../../assets/mushrooms/dead-mans-fingers-2.jpg'), credit: {"author":"Larry Jensen","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/f9ee4fc4-04ef-44b3-a395-839b4b0d2060"} },
+    { source: require('../../assets/mushrooms/dead-mans-fingers-3.jpg'), credit: {"author":"Ross Krisztina","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/b2cc775f-7a2e-4a4e-b3a6-169f428734d4"} },
+  ],
+  "deadly-fibrecap": [
+    { source: require('../../assets/mushrooms/deadly-fibrecap-1.jpg'), credit: {"author":"Enrico Tomschke","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/ef05757a-039a-41e8-a215-764938e1050e"} },
+    { source: require('../../assets/mushrooms/deadly-fibrecap-2.jpg'), credit: {"author":"Sara Scorey","license":"CC0","sourceUrl":"https://www.inaturalist.org/observations/5d0a53b6-69b8-4e47-b17f-f97b776c8425"} },
+    { source: require('../../assets/mushrooms/deadly-fibrecap-3.jpg'), credit: {"author":"Jose Castro","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/712c99c8-df5a-43c6-b356-e049c00615a1"} },
+  ],
+  "deadly-webcap": [
+    { source: require('../../assets/mushrooms/deadly-webcap-1.jpg'), credit: {"author":"Virn Stothers","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/cb1c9808-8373-4948-be21-33b62e47f62a"} },
+    { source: require('../../assets/mushrooms/deadly-webcap-2.jpg'), credit: {"author":"wkee4ager","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/2acc8ed2-cd36-4815-9c46-b57a655d617d"} },
+    { source: require('../../assets/mushrooms/deadly-webcap-3.jpg'), credit: {"author":"ikelman","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/b0b62c6d-1562-4f72-b20a-84986f5f7330"} },
+  ],
+  "death-cap": [
+    { source: require('../../assets/mushrooms/death-cap-1.jpg'), credit: {"author":"Tim Sage","license":"CC BY-SA","sourceUrl":"https://www.inaturalist.org/observations/fd151961-6d8b-489b-b708-b646dea23b82"} },
+    { source: require('../../assets/mushrooms/death-cap-2.jpg'), credit: {"author":"reagan peschke","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/6f943c61-c467-4ed2-8be9-5bd1ec6117f9"} },
+    { source: require('../../assets/mushrooms/death-cap-3.jpg'), credit: {"author":"MichellePrice_CJBG","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/b539e95c-880b-42cf-9416-3d30c2eb57bb"} },
+  ],
+  "destroying-angel": [
+    { source: require('../../assets/mushrooms/destroying-angel-1.jpg'), credit: {"author":"wkee4ager","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/3944a95a-a505-4610-a72b-8230fdd975ae"} },
+    { source: require('../../assets/mushrooms/destroying-angel-2.jpg'), credit: {"author":"ionafraser","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/ac25535e-8f48-4c35-bb8f-3bbaa4dda9f6"} },
+    { source: require('../../assets/mushrooms/destroying-angel-3.jpg'), credit: {"author":"Солей","license":"CC0","sourceUrl":"https://www.inaturalist.org/observations/5ed14707-1fad-4e6c-9888-62e7fe1c3d50"} },
+  ],
+  "dryads-saddle": [
+    { source: require('../../assets/mushrooms/dryads-saddle-1.jpg'), credit: {"author":"Emmett Collins-Sussman","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/ba89cfd6-2212-4820-b207-0c3b414527d7"} },
+    { source: require('../../assets/mushrooms/dryads-saddle-2.jpg'), credit: {"author":"Jacob Malcom","license":"CC BY-SA","sourceUrl":"https://www.inaturalist.org/observations/511317a5-44f6-4fff-bb22-880f1c9ae472"} },
+    { source: require('../../assets/mushrooms/dryads-saddle-3.jpg'), credit: {"author":"Erin Collins","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/6359fa1d-73fe-4693-a061-656ef7248f67"} },
+  ],
+  "fairy-ring-champignon": [
+    { source: require('../../assets/mushrooms/fairy-ring-champignon-1.jpg'), credit: {"author":"Davide Puddu","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/da7d8273-72c3-4698-a324-03f5b627151f"} },
+    { source: require('../../assets/mushrooms/fairy-ring-champignon-2.jpg'), credit: {"author":"Yves Bas","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/99edd95f-ba4a-40c4-8cf0-afec461963e7"} },
+    { source: require('../../assets/mushrooms/fairy-ring-champignon-3.jpg'), credit: {"author":"mister_bumble","license":"CC0","sourceUrl":"https://www.inaturalist.org/observations/85b58a4d-c638-40a8-9244-83eb75e0091b"} },
+  ],
+  "false-chanterelle": [
+    { source: require('../../assets/mushrooms/false-chanterelle-1.jpg'), credit: {"author":"Björn Sothmann","license":"CC BY-SA","sourceUrl":"https://www.inaturalist.org/observations/ee52e350-9f86-4095-bd05-12705ea991ec"} },
+    { source: require('../../assets/mushrooms/false-chanterelle-2.jpg'), credit: {"author":"joqatana","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/510f220c-eca0-4049-8c2f-e7650139ae59"} },
+    { source: require('../../assets/mushrooms/false-chanterelle-3.jpg'), credit: {"author":"ikelman","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/05cb6c3d-6761-4cad-8cd6-3d91f772ed3d"} },
+  ],
+  "false-morel": [
+    { source: require('../../assets/mushrooms/false-morel-1.jpg'), credit: {"author":"Henry Mulligan","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/2537ec76-3a13-4e2d-a726-e689bec2f0b2"} },
+    { source: require('../../assets/mushrooms/false-morel-2.jpg'), credit: {"author":"Camille Boucher","license":"CC0","sourceUrl":"https://www.inaturalist.org/observations/9a227aa0-4a1c-4668-a093-d07c7d02ac5c"} },
+    { source: require('../../assets/mushrooms/false-morel-3.jpg'), credit: {"author":"Alexandria 'Alex' Wenninger","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/58f4477e-dd2b-4292-8880-cca80ec83718"} },
+  ],
+  "false-parasol": [
+    { source: require('../../assets/mushrooms/false-parasol-1.jpg'), credit: {"author":"Nicolas Olejnik","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/569e0675-631b-4adb-b306-7296ad016848"} },
+    { source: require('../../assets/mushrooms/false-parasol-2.jpg'), credit: {"author":"Annie Weissman","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/dbc8ef62-f5ad-47fb-965f-2d42404769db"} },
+    { source: require('../../assets/mushrooms/false-parasol-3.jpg'), credit: {"author":"pynklynx","license":"CC0","sourceUrl":"https://www.inaturalist.org/observations/4c95782c-02a3-4271-9db9-da3c60a311b7"} },
+  ],
+  "field-mushroom": [
+    { source: require('../../assets/mushrooms/field-mushroom-1.jpg'), credit: {"author":"Oscar Alejandro Morales Juárez","license":"CC BY-SA","sourceUrl":"https://www.inaturalist.org/observations/b8918b62-244f-41c8-b5ca-8cb84538ccf1"} },
+    { source: require('../../assets/mushrooms/field-mushroom-2.jpg'), credit: {"author":"Julian Pietragalla","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/44869197-4c48-41f3-ba2a-7e85e30c1778"} },
+    { source: require('../../assets/mushrooms/field-mushroom-3.jpg'), credit: {"author":"Peter Gabler","license":"CC0","sourceUrl":"https://www.inaturalist.org/observations/adaf4c77-26fc-472a-8486-aa7000c382fe"} },
+  ],
+  "fly-agaric": [
+    { source: require('../../assets/mushrooms/fly-agaric-1.jpg'), credit: {"author":"Alessandro Popoli","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/f06d5d35-5b09-4525-b474-507fc4f45a21"} },
+    { source: require('../../assets/mushrooms/fly-agaric-2.jpg'), credit: {"author":"Dmitriy Bochkov","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/6deaacd4-0fc6-40b5-980f-29f8c8832bf5"} },
+    { source: require('../../assets/mushrooms/fly-agaric-3.jpg'), credit: {"author":"brentnmoran","license":"CC BY-SA","sourceUrl":"https://www.inaturalist.org/observations/544737ac-7fbb-4093-a926-44f27bb6d363"} },
+  ],
+  "fools-funnel": [
+    { source: require('../../assets/mushrooms/fools-funnel-1.jpg'), credit: {"author":"Lucian Clanet","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/95bcda99-80da-48e7-9229-f537b12e8d9f"} },
+    { source: require('../../assets/mushrooms/fools-funnel-2.jpg'), credit: {"author":"Nadezhda Kiseleva","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/aa9dcea0-0870-491c-b166-8b5f4eaf7be3"} },
+    { source: require('../../assets/mushrooms/fools-funnel-3.jpg'), credit: {"author":"Jose Castro","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/072dda4f-30ff-4d9d-829c-9ad3b95f1673"} },
+  ],
+  "funeral-bell": [
+    { source: require('../../assets/mushrooms/funeral-bell-1.jpg'), credit: {"author":"Cody Johnson","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/46462605-bb73-4c76-9d0c-aea9c38dcafb"} },
+    { source: require('../../assets/mushrooms/funeral-bell-2.jpg'), credit: {"author":"Tom Sisan","license":"CC BY-SA","sourceUrl":"https://www.inaturalist.org/observations/d9b5eb6b-b461-439a-ba21-ce3566ba550c"} },
+    { source: require('../../assets/mushrooms/funeral-bell-3.jpg'), credit: {"author":"Clément Maouche","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/e21a9d3a-bfdf-4dbe-bea0-a203b23d222b"} },
+  ],
+  "giant-puffball": [
+    { source: require('../../assets/mushrooms/giant-puffball-1.jpg'), credit: {"author":"Emmett Collins-Sussman","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/3d62db05-d744-4640-b6a7-90039aa42bc0"} },
+    { source: require('../../assets/mushrooms/giant-puffball-2.jpg'), credit: {"author":"Brian White","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/966d2a95-4484-4bef-8e28-6d98c346a16e"} },
+    { source: require('../../assets/mushrooms/giant-puffball-3.jpg'), credit: {"author":"guywallbanks","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/def9616c-6a1e-4494-934b-0048b355605e"} },
+  ],
+  "hedgehog-mushroom": [
+    { source: require('../../assets/mushrooms/hedgehog-mushroom-1.jpg'), credit: {"author":"norgram","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/f3028463-1343-4fe0-ac39-46204c0f065a"} },
+    { source: require('../../assets/mushrooms/hedgehog-mushroom-2.jpg'), credit: {"author":"Tatiana Strus","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/587790b8-395a-4788-bca5-2c70dec5b481"} },
+    { source: require('../../assets/mushrooms/hedgehog-mushroom-3.jpg'), credit: {"author":"gerardbertrand","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/4649eaa9-d19c-4423-8d92-27a334286b25"} },
+  ],
+  "hen-of-the-woods": [
+    { source: require('../../assets/mushrooms/hen-of-the-woods-1.jpg'), credit: {"author":"Bethany Teigen","license":"CC0","sourceUrl":"https://www.inaturalist.org/observations/47c65c49-812f-4eb9-b224-df3b170a3f65"} },
+    { source: require('../../assets/mushrooms/hen-of-the-woods-2.jpg'), credit: {"author":"Elizabeth Axley","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/26955264-85a4-4ace-9cc6-989da368eb0e"} },
+    { source: require('../../assets/mushrooms/hen-of-the-woods-3.jpg'), credit: {"author":"Annie Weissman","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/29abf229-3bd3-4849-96fb-2901e290b302"} },
+  ],
+  "honey-fungus": [
+    { source: require('../../assets/mushrooms/honey-fungus-1.jpg'), credit: {"author":"Alex","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/22921418-530f-4b56-8d15-5c2268ba2935"} },
+    { source: require('../../assets/mushrooms/honey-fungus-2.jpg'), credit: {"author":"kk6zly","license":"CC0","sourceUrl":"https://www.inaturalist.org/observations/1fd5e1c3-5da4-49db-9371-690d9dc93a8c"} },
+    { source: require('../../assets/mushrooms/honey-fungus-3.jpg'), credit: {"author":"Caleb O'Reilly","license":"CC0","sourceUrl":"https://www.inaturalist.org/observations/5bdac57a-1bea-446d-9e99-ce441f492489"} },
+  ],
+  "horse-mushroom": [
+    { source: require('../../assets/mushrooms/horse-mushroom-1.jpg'), credit: {"author":"Sigrid Jakob","license":"CC0","sourceUrl":"https://www.inaturalist.org/observations/64ef3cc4-3287-48a5-b8fc-5c319b99294b"} },
+    { source: require('../../assets/mushrooms/horse-mushroom-2.jpg'), credit: {"author":"Michael Werth","license":"CC0","sourceUrl":"https://www.inaturalist.org/observations/c2d21f04-3b53-4af0-b75b-ed1dfec0255f"} },
+    { source: require('../../assets/mushrooms/horse-mushroom-3.jpg'), credit: {"author":"szegedigombasz","license":"CC0","sourceUrl":"https://www.inaturalist.org/observations/18fea878-b63b-4b8d-bfba-f7c443791841"} },
+  ],
+  "jack-o-lantern": [
+    { source: require('../../assets/mushrooms/jack-o-lantern-1.jpg'), credit: {"author":"Daniel Franco","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/258419af-85d0-40ba-bd66-775adf96b6c7"} },
+    { source: require('../../assets/mushrooms/jack-o-lantern-2.jpg'), credit: {"author":"zebedeugalinha","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/db35c2da-b82b-4357-9c39-da05e53c46fb"} },
+    { source: require('../../assets/mushrooms/jack-o-lantern-3.jpg'), credit: {"author":"Mario Bassini","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/11452c2f-93cc-434c-85ae-b8697508bb2a"} },
+  ],
+  "jelly-ear": [
+    { source: require('../../assets/mushrooms/jelly-ear-1.jpg'), credit: {"author":"Rob Drake","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/a04fece7-9206-403a-a9ad-da5959480e1e"} },
+    { source: require('../../assets/mushrooms/jelly-ear-2.jpg'), credit: {"author":"Rosie Bibby","license":"CC0","sourceUrl":"https://www.inaturalist.org/observations/fc520cd4-b8af-4214-aaa7-beb87f024a70"} },
+    { source: require('../../assets/mushrooms/jelly-ear-3.jpg'), credit: {"author":"Munster Mad","license":"CC0","sourceUrl":"https://www.inaturalist.org/observations/bdf72fb4-9b0a-4254-86a1-e4b4e8346d44"} },
+  ],
+  "lions-mane": [
+    { source: require('../../assets/mushrooms/lions-mane-1.jpg'), credit: {"author":"Samantha Knight","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/77585365-2b68-4122-b8dc-f4b5c0d426e0"} },
+    { source: require('../../assets/mushrooms/lions-mane-2.jpg'), credit: {"author":"Serenella Linares","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/02741108-1566-4b8c-92cd-4797c35d05b0"} },
+    { source: require('../../assets/mushrooms/lions-mane-3.jpg'), credit: {"author":"martin_livezey","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/37018825-c062-4ef1-afc3-a26dd0056849"} },
+  ],
+  "morel": [
+    { source: require('../../assets/mushrooms/morel-1.jpg'), credit: {"author":"Patrick Bayan","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/e04acb81-524e-4a63-b777-5272df899647"} },
+    { source: require('../../assets/mushrooms/morel-2.jpg'), credit: {"author":"Nico Hernandez","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/513bf18a-66d8-4f83-aae8-67a8fcc68490"} },
+    { source: require('../../assets/mushrooms/morel-3.jpg'), credit: {"author":"Andreas Stiller","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/ab50f344-c77c-4779-9026-a367fabe8980"} },
+  ],
+  "old-man-of-the-woods": [
+    { source: require('../../assets/mushrooms/old-man-of-the-woods-1.jpg'), credit: {"author":"Aubrey Inkster","license":"CC0","sourceUrl":"https://www.inaturalist.org/observations/7892ce67-3d41-441b-b1d3-0b2aa4dea038"} },
+    { source: require('../../assets/mushrooms/old-man-of-the-woods-2.jpg'), credit: {"author":"Tim Kennedy","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/6a94de0a-c1a6-47db-b763-2c675fa701eb"} },
+    { source: require('../../assets/mushrooms/old-man-of-the-woods-3.jpg'), credit: {"author":"Doug Suitor","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/f46d4156-de44-41a6-8206-930553b74ad4"} },
+  ],
+  "orange-peel-fungus": [
+    { source: require('../../assets/mushrooms/orange-peel-fungus-1.jpg'), credit: {"author":"Robyn Armstrong","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/a41c6bad-b5a6-4f32-bf04-d2b724a15570"} },
+    { source: require('../../assets/mushrooms/orange-peel-fungus-2.jpg'), credit: {"author":"martin_livezey","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/5b71a2e2-8bc5-476e-92e6-1ab2b096c6f9"} },
+    { source: require('../../assets/mushrooms/orange-peel-fungus-3.jpg'), credit: {"author":"aarongunnar","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/c7a062fd-8a81-4e70-8551-2eb84966b21c"} },
+  ],
+  "oyster-mushroom": [
+    { source: require('../../assets/mushrooms/oyster-mushroom-1.jpg'), credit: {"author":"Zachary Justus","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/af757851-b2cb-41fd-95d3-61e029f3f4af"} },
+    { source: require('../../assets/mushrooms/oyster-mushroom-2.jpg'), credit: {"author":"Sheelagh Halsey","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/d25b11fa-970e-4c1a-a5d6-c8b38f0e1bc6"} },
+    { source: require('../../assets/mushrooms/oyster-mushroom-3.jpg'), credit: {"author":"Александр Тихонов","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/b2650084-9a31-4de3-82b9-63abb08e6066"} },
+  ],
+  "panther-cap": [
+    { source: require('../../assets/mushrooms/panther-cap-1.jpg'), credit: {"author":"Ross Krisztina","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/3dc352fe-96d6-470a-bdfb-8c7f4ee7a3cd"} },
+    { source: require('../../assets/mushrooms/panther-cap-2.jpg'), credit: {"author":"Lukas Large","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/5d72e846-9d71-458f-a33f-1bc87a1ad91d"} },
+    { source: require('../../assets/mushrooms/panther-cap-3.jpg'), credit: {"author":"Scheufler Stefan","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/93fefedd-9259-43b1-a798-41449814a434"} },
+  ],
+  "parasol": [
+    { source: require('../../assets/mushrooms/parasol-1.jpg'), credit: {"author":"Jiří Podhorecký","license":"CC0","sourceUrl":"https://www.inaturalist.org/observations/3184db43-3e2f-4d3a-8050-a20ea53ac9c3"} },
+    { source: require('../../assets/mushrooms/parasol-2.jpg'), credit: {"author":"spoonbilling","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/9e3c4659-37a0-402d-80fb-fccc08b7224b"} },
+    { source: require('../../assets/mushrooms/parasol-3.jpg'), credit: {"author":"alcesevropsky","license":"CC BY-SA","sourceUrl":"https://www.inaturalist.org/observations/1424f6dc-48e6-4646-adf5-32a2ff0b7d26"} },
+  ],
+  "porcelain-fungus": [
+    { source: require('../../assets/mushrooms/porcelain-fungus-1.jpg'), credit: {"author":"Luke","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/c17c496e-2857-4111-a34e-133cbe398646"} },
+    { source: require('../../assets/mushrooms/porcelain-fungus-2.jpg'), credit: {"author":"Martin Kalfatovic","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/0836df84-a12c-4072-8aff-a6defe67ceff"} },
+    { source: require('../../assets/mushrooms/porcelain-fungus-3.jpg'), credit: {"author":"Michel Langeveld","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/e69d20f8-a907-4d60-8505-f0fb19316f4d"} },
+  ],
+  "porcini": [
+    { source: require('../../assets/mushrooms/porcini-1.jpg'), credit: {"author":"Marius K.","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/a52e7b2b-2429-45af-a311-39e32dbee5ed"} },
+    { source: require('../../assets/mushrooms/porcini-2.jpg'), credit: {"author":"Johan Adler","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/4c44d9ee-dc70-4aa2-8237-8dd36fdd0adc"} },
+    { source: require('../../assets/mushrooms/porcini-3.jpg'), credit: {"author":"Seth Musker","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/0e9f4802-3209-4078-a23f-f29bbb935abf"} },
+  ],
+  "reishi": [
+    { source: require('../../assets/mushrooms/reishi-1.jpg'), credit: {"author":"Dutza K.","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/d16b87ba-18e6-456e-8ba3-47829f4916a4"} },
+    { source: require('../../assets/mushrooms/reishi-2.jpg'), credit: {"author":"Tatiana Strus","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/fbb128d6-d663-47f2-b378-cdda2f56ce2f"} },
+    { source: require('../../assets/mushrooms/reishi-3.jpg'), credit: {"author":"yellowplant","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/b126d8dc-d8f5-4761-99f4-77a8a3e8a446"} },
+  ],
+  "saffron-milk-cap": [
+    { source: require('../../assets/mushrooms/saffron-milk-cap-1.jpg'), credit: {"author":"Alan Rockefeller","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/4b5c79ff-34f6-413f-aeee-0de20789be90"} },
+    { source: require('../../assets/mushrooms/saffron-milk-cap-2.jpg'), credit: {"author":"Heath Hunter","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/f36b6742-266e-4476-b537-1230b0b15508"} },
+    { source: require('../../assets/mushrooms/saffron-milk-cap-3.jpg'), credit: {"author":"stephvg","license":"CC0","sourceUrl":"https://www.inaturalist.org/observations/8e85b58e-637d-4545-9126-0711b1d16526"} },
+  ],
+  "satans-bolete": [
+    { source: require('../../assets/mushrooms/satans-bolete-1.jpg'), credit: {"author":"carnifex","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/86c6658d-fc75-468d-84f6-39a949818bfe"} },
+    { source: require('../../assets/mushrooms/satans-bolete-2.jpg'), credit: {"author":"Markéta Žlebková","license":"CC BY-SA","sourceUrl":"https://www.inaturalist.org/observations/b6c1ba53-76f7-44b7-ba04-353f2a409e26"} },
+    { source: require('../../assets/mushrooms/satans-bolete-3.jpg'), credit: {"author":"Fyodor Pudovikov","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/47494207-06d2-41f0-b43b-f92cd6a4015b"} },
+  ],
+  "scarlet-elf-cup": [
+    { source: require('../../assets/mushrooms/scarlet-elf-cup-1.jpg'), credit: {"author":"Eugene Popov","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/ced0bb01-9c37-48dc-90e6-b20c35c01508"} },
+    { source: require('../../assets/mushrooms/scarlet-elf-cup-2.jpg'), credit: {"author":"Sofia Voynovskaya","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/5db280e6-bd04-4a56-a7eb-c84d72fc5393"} },
+    { source: require('../../assets/mushrooms/scarlet-elf-cup-3.jpg'), credit: {"author":"Yehor Yatsiuk","license":"CC0","sourceUrl":"https://www.inaturalist.org/observations/ae37d145-f4b8-455d-80f7-d9f27e68ed8d"} },
+  ],
+  "shaggy-ink-cap": [
+    { source: require('../../assets/mushrooms/shaggy-ink-cap-1.jpg'), credit: {"author":"eboenzli","license":"CC0","sourceUrl":"https://www.inaturalist.org/observations/38fe8924-f9b5-4a13-889d-54acdd6e1927"} },
+    { source: require('../../assets/mushrooms/shaggy-ink-cap-2.jpg'), credit: {"author":"Simon Rolph","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/4f79bd39-d0e3-4e22-a0c4-b532c7718367"} },
+    { source: require('../../assets/mushrooms/shaggy-ink-cap-3.jpg'), credit: {"author":"bogsuckers","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/31df2c19-30f4-4b13-8716-00ef4fe5d50b"} },
+  ],
+  "shaggy-parasol": [
+    { source: require('../../assets/mushrooms/shaggy-parasol-1.jpg'), credit: {"author":"bogsuckers","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/b523c066-c19a-452a-aa42-5ff7e16e0a56"} },
+    { source: require('../../assets/mushrooms/shaggy-parasol-2.jpg'), credit: {"author":"Liubov Ilminska","license":"CC0","sourceUrl":"https://www.inaturalist.org/observations/7209664b-1b9e-40b3-b4a4-9b363f9a4a2f"} },
+    { source: require('../../assets/mushrooms/shaggy-parasol-3.jpg'), credit: {"author":"Petra Caltová","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/77a8a634-10ec-4b8e-88e9-9cf38c6a58af"} },
+  ],
+  "shiitake": [
+    { source: require('../../assets/mushrooms/shiitake-1.jpg'), credit: {"author":"りなべる","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/72c00955-1a4b-41e6-a06a-7af076965ea5"} },
+    { source: require('../../assets/mushrooms/shiitake-2.jpg'), credit: {"author":"MUNENORI YAMAKAWA","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/3622a70a-1a0a-415f-bced-f6c353462401"} },
+    { source: require('../../assets/mushrooms/shiitake-3.jpg'), credit: {"author":"Chris walker","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/9c429725-96cd-4960-b08e-0ab41ae58ae4"} },
+  ],
+  "sickener": [
+    { source: require('../../assets/mushrooms/sickener-1.jpg'), credit: {"author":"Charlotte Forrest-King","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/714fbc9d-8a5d-4156-997a-01ef089578be"} },
+    { source: require('../../assets/mushrooms/sickener-2.jpg'), credit: {"author":"Alan Rockefeller","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/58fddecb-3bae-4c1c-9679-166d9e708190"} },
+    { source: require('../../assets/mushrooms/sickener-3.jpg'), credit: {"author":"Scott Shanks","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/121707f8-9f32-41ac-b71d-0b0bd76d1a00"} },
+  ],
+  "slippery-jack": [
+    { source: require('../../assets/mushrooms/slippery-jack-1.jpg'), credit: {"author":"Mark","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/0ea60c57-8f65-4bd2-8304-e6ab58c1121c"} },
+    { source: require('../../assets/mushrooms/slippery-jack-2.jpg'), credit: {"author":"rempson","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/c738c5c8-cf7d-4c06-8bad-c9fc3b95ac5e"} },
+    { source: require('../../assets/mushrooms/slippery-jack-3.jpg'), credit: {"author":"arthur_haendler","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/0fd58eaa-93fd-4811-9e17-43e2fa457137"} },
+  ],
+  "st-georges-mushroom": [
+    { source: require('../../assets/mushrooms/st-georges-mushroom-1.jpg'), credit: {"author":"Lukas Large","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/7f0c5e13-1044-4508-b33e-2eebde0f9c42"} },
+    { source: require('../../assets/mushrooms/st-georges-mushroom-2.jpg'), credit: {"author":"T. Pedro Hafermann","license":"CC0","sourceUrl":"https://www.inaturalist.org/observations/c82e246c-6575-4b92-aa6a-f6d1a60a6d25"} },
+    { source: require('../../assets/mushrooms/st-georges-mushroom-3.jpg'), credit: {"author":"Cara Ennis","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/1344719e-0dbe-4b5f-8ea1-7448e227a892"} },
+  ],
+  "sulphur-tuft": [
+    { source: require('../../assets/mushrooms/sulphur-tuft-1.jpg'), credit: {"author":"Michael Bakker Paiva","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/11ef2e3c-bd32-43d5-8d1d-f1ec6f96e954"} },
+    { source: require('../../assets/mushrooms/sulphur-tuft-2.jpg'), credit: {"author":"Christina s.l.","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/99f4415d-89b5-4556-acd7-cc50df417550"} },
+    { source: require('../../assets/mushrooms/sulphur-tuft-3.jpg'), credit: {"author":"Susan Marley","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/b5695ef0-ead5-4436-b3e7-0f48b11780c7"} },
+  ],
+  "tinder-fungus": [
+    { source: require('../../assets/mushrooms/tinder-fungus-1.jpg'), credit: {"author":"Gijs Romijn","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/30cdefbe-156b-4c5a-805c-75f7f1ea7bce"} },
+    { source: require('../../assets/mushrooms/tinder-fungus-2.jpg'), credit: {"author":"Piotr Lukasik","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/975f458b-cf54-47cf-b746-87610dc1a8c5"} },
+    { source: require('../../assets/mushrooms/tinder-fungus-3.jpg'), credit: {"author":"Анна Митрошенкова","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/eb288cd8-084f-4431-b8a9-16437e596512"} },
+  ],
+  "turkey-tail": [
+    { source: require('../../assets/mushrooms/turkey-tail-1.jpg'), credit: {"author":"Leila Dasher","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/1550f8bb-df4d-4538-98f7-a711e3c00f82"} },
+    { source: require('../../assets/mushrooms/turkey-tail-2.jpg'), credit: {"author":"Jonathan Layman","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/7773f37d-253e-430e-9820-1967066272f2"} },
+    { source: require('../../assets/mushrooms/turkey-tail-3.jpg'), credit: {"author":"Bobo-X","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/c71f4056-af91-45a7-9dfa-a4a7364afe42"} },
+  ],
+  "velvet-shank": [
+    { source: require('../../assets/mushrooms/velvet-shank-1.jpg'), credit: {"author":"kristinpiston","license":"CC0","sourceUrl":"https://www.inaturalist.org/observations/82953140-9033-42d1-b3bc-2af683c578e1"} },
+    { source: require('../../assets/mushrooms/velvet-shank-2.jpg'), credit: {"author":"Cole Wolf","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/cdf2fdfb-1e1e-4fa8-9096-4833a272d0e1"} },
+    { source: require('../../assets/mushrooms/velvet-shank-3.jpg'), credit: {"author":"Josh Sutton","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/acaf3ece-fefa-4fd3-99de-7d2275fb3116"} },
+  ],
+  "wood-blewit": [
+    { source: require('../../assets/mushrooms/wood-blewit-1.jpg'), credit: {"author":"Mandy Hackney","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/5224081f-1f90-49ea-9004-1fab119a41c2"} },
+    { source: require('../../assets/mushrooms/wood-blewit-2.jpg'), credit: {"author":"Alan Rockefeller","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/898a3e60-b70c-43b0-b27c-303af0be9676"} },
+    { source: require('../../assets/mushrooms/wood-blewit-3.jpg'), credit: {"author":"Karen Kincy","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/11b908e0-ea75-4e17-bb3d-59051e4e756e"} },
+  ],
+  "yellow-brain": [
+    { source: require('../../assets/mushrooms/yellow-brain-1.jpg'), credit: {"author":"V. Ross Johnson","license":"CC BY-SA","sourceUrl":"https://www.inaturalist.org/observations/ec4e1a7a-09e7-4a81-b04f-171b747cb5a6"} },
+    { source: require('../../assets/mushrooms/yellow-brain-2.jpg'), credit: {"author":"Michael Berardozzi","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/ebb9e359-be2e-4504-872a-09ce51e08178"} },
+    { source: require('../../assets/mushrooms/yellow-brain-3.jpg'), credit: {"author":"John Steel","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/6c847035-3dac-4746-8768-f29627187dc4"} },
+  ],
+  "yellow-stainer": [
+    { source: require('../../assets/mushrooms/yellow-stainer-1.jpg'), credit: {"author":"Lee","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/e6636118-0807-4bcd-9f1f-663973a3c0df"} },
+    { source: require('../../assets/mushrooms/yellow-stainer-2.jpg'), credit: {"author":"Alan Rockefeller","license":"CC BY","sourceUrl":"https://www.inaturalist.org/observations/98c0b797-9ae9-4ad9-b4b1-2ec204e91b3c"} },
+    { source: require('../../assets/mushrooms/yellow-stainer-3.jpg'), credit: {"author":"pinonbistro","license":"CC BY-SA","sourceUrl":"https://www.inaturalist.org/observations/a122024f-037a-4fd2-a342-d1378d3cf3b4"} },
+  ],
+};
