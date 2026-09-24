@@ -27,7 +27,10 @@ export function MushroomPhoto({ mushroom, style, showHint, compact, photo = 0 }:
         style={[styles.fill, style as object]}
         contentFit="cover"
         transition={150}
-        accessibilityLabel="Photo of the mushroom to identify"
+        // In the quiz (showHint set) the label must not give the answer away.
+        accessibilityLabel={
+          showHint === undefined ? `Photo of ${mushroom.commonName}` : 'Photo of the mushroom to identify'
+        }
       />
     );
   }

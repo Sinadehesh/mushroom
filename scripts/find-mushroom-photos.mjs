@@ -27,10 +27,19 @@ if (!mushroom) {
 }
 
 const HEADERS = { 'User-Agent': 'MycoLock photo curator (https://github.com/sinadehesh/mushroom)' };
+const BLOCKED_HINT =
+  'api.inaturalist.org looks blocked by a proxy or firewall (iNaturalist itself rarely answers 403). ' +
+  'In a sandboxed cloud session, allow api.inaturalist.org and static.inaturalist.org in its network ' +
+  'settings, or run this on your own machine. photos:download is unaffected: it uses the ' +
+  'inaturalist-open-data S3 bucket.';
 const api = async (path, params) => {
-  const res = await fetch(`https://api.inaturalist.org/v1/${path}?${new URLSearchParams(params)}`, {
-    headers: HEADERS,
-  });
+  let res;
+  try {
+    res = await fetch(`https://api.inaturalist.org/v1/${path}?${new URLSearchParams(params)}`, { headers: HEADERS });
+  } catch (err) {
+    throw new Error(`Could not reach the iNaturalist API (${err.cause?.code ?? err.message}). ${BLOCKED_HINT}`);
+  }
+  if (res.status === 403) throw new Error(`iNaturalist API 403. ${BLOCKED_HINT}`);
   if (!res.ok) throw new Error(`iNaturalist API ${res.status}`);
   await new Promise((r) => setTimeout(r, 1000));
   return res.json();

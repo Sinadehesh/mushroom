@@ -320,10 +320,10 @@ const gilled = rows('gilled', [
   [
     'fools-funnel',
     "Fool's Funnel",
-    'Clitocybe rivulosa',
+    'Collybia rivulosa',
     'Clitocybaceae',
     'poisonous',
-    ['sweating mushroom', 'ivory funnel', 'clitocybe dealbata'],
+    ['sweating mushroom', 'ivory funnel', 'clitocybe rivulosa', 'clitocybe dealbata'],
     [],
     'It grows in lawns right beside fairy ring champignons and contains muscarine, which causes heavy sweating and drooling.',
   ],
