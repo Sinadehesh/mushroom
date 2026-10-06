@@ -27,7 +27,7 @@ interface Question {
 
 /**
  * Today's lesson: each new mushroom shown once on a study card, then an exam with one
- * multiple-choice question per new mushroom plus each mushroom due its repeat. Once the cards
+ * multiple-choice question per new mushroom plus each mushroom due for review. Once the cards
  * have been studied today it opens on the exam, unless `?review=1` asks for the cards again.
  */
 export default function Lesson() {

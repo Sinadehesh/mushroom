@@ -36,7 +36,7 @@ function haptic(success: boolean) {
  * The lock-screen intercept. Opened by the native blocker as
  * `shroomlock://challenge?source=Instagram`, or from the home screen with
  * `?practice=1` for extra practice (no unlock, no emergency exit).
- * Questions come from today's exam: the mushrooms learned today and the ones due their repeat.
+ * Questions come from today's exam: the mushrooms learned today and the ones due for review.
  */
 export default function ChallengeScreen() {
   // `package` is set when the Android blocker opened this screen over a locked app.
