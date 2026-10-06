@@ -132,7 +132,7 @@ npm run photos:download              # downloads from iNaturalist's open-data bu
 
 ## Next steps
 
-1. Add the signing secrets to this repo and host the privacy page (see [docs/PLAY_STORE.md](docs/PLAY_STORE.md)).
+1. Add the signing secrets to this repo (see [docs/PLAY_STORE.md](docs/PLAY_STORE.md)).
 2. Grow the deck to 300–500 species, with regional decks (Europe, North America) so the look-alikes match what
    grows near the user.
 3. Build the iOS blocker with Apple's Screen Time API; request the Family Controls entitlement early.

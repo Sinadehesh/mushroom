@@ -33,11 +33,11 @@ the build. It should match the upload key, and Play Console → Setup → App si
 1. Create the app with package name `com.shroomlock.app`, then upload `shroomlock-aab` from a workflow run to
    **Testing → Internal testing**.
 2. **App content:**
-   - **Privacy policy:** the page is generated into `site/` (at `privacy/` and `shroomlock/privacy/`) from
-     `src/data/privacyPolicy.ts` by `npm run privacy`, together with PRIVACY.md and the in-app screen. It still
-     needs hosting: the app and PRIVACY.md point to `https://www.sinadehesh.com/shroomlock/privacy/`, which
-     works once `site/` is served there (for example, the same way FloraLock's `site/` is served at
-     `/floralock/`). Use that URL in Play Console once it loads.
+   - **Privacy policy:** `https://www.sinadehesh.com/shroomlock/privacy/`. The page is generated into `site/`
+     (at `privacy/` and `shroomlock/privacy/`) from `src/data/privacyPolicy.ts` by `npm run privacy`, together
+     with PRIVACY.md and the in-app screen. It's served from FloraLock's website (the Flora repo's
+     `site/shroomlock/privacy/`), so after changing the policy, copy `site/shroomlock/privacy/index.html`
+     there. ShroomLock's landing page is `https://www.sinadehesh.com/shroomlock/`.
    - **Data safety:** the app collects and shares no user data (everything stays on the device), so answer "No"
      to collecting or sharing data.
    - **Ads:** no ads. **Target audience:** 13+ is simplest. **Content rating:** fill in the questionnaire.
