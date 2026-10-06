@@ -96,10 +96,22 @@ jobs:
           CMAKE_CXX_COMPILER_LAUNCHER: ccache
           CCACHE_BASEDIR: ${{ github.workspace }}
           CCACHE_MAXSIZE: 1500M
-        run: ./gradlew assembleRelease bundleRelease --no-daemon --build-cache
+          # Release builds compile with debug info, and by default ccache then keys every file on the
+          # directory it is compiled in; the generated android/ project must not cost cache hits.
+          CCACHE_NOHASHDIR: 'true'
+          # Codegen and prebuild write headers just before compiling; don't skip the cache for them.
+          CCACHE_SLOPPINESS: include_file_ctime,include_file_mtime,time_macros
+          CCACHE_LOGFILE: ${{ runner.temp }}/ccache.log
+        run: |
+          ccache --zero-stats
+          ./gradlew assembleRelease bundleRelease --no-daemon --build-cache
 
+      # Hits and the reasons for misses and uncacheable calls, to keep the compiler cache working.
       - name: Compiler cache use
-        run: ccache --show-stats
+        if: always()
+        run: |
+          ccache --show-stats --verbose
+          grep -m 1 -A 8 'Command line: .*clang++' "$RUNNER_TEMP/ccache.log" || true
 
       # Compare with the upload key's SHA-256 in Play Console (Setup > App signing).
       - name: Show signing certificate
