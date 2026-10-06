@@ -2,6 +2,7 @@ import * as Haptics from 'expo-haptics';
 import { router, useLocalSearchParams } from 'expo-router';
 import { useMemo, useState, type ReactNode } from 'react';
 import { Platform, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { EdibilityBadge } from '../components/EdibilityBadge';
 import { CluesList, Lookalikes, SafetyNote } from '../components/MushroomFacts';
@@ -39,6 +40,8 @@ export default function Lesson() {
 
 function LessonScreen() {
   const c = useColors();
+  // The card's buttons sit at the bottom: keep them above the navigation bar (Android draws edge to edge).
+  const insets = useSafeAreaInsets();
   const { state, dispatch } = useStore();
   const deck = useDeck();
 
@@ -132,7 +135,12 @@ function LessonScreen() {
           )}
           <SafetyNote />
         </ScrollView>
-        <View style={[styles.footer, { borderColor: c.border, backgroundColor: c.background }]}>
+        <View
+          style={[
+            styles.footer,
+            { borderColor: c.border, backgroundColor: c.background, paddingBottom: 16 + insets.bottom },
+          ]}
+        >
           {card > 0 && (
             <Button
               variant="ghost"
