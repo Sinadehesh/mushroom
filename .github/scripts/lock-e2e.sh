@@ -34,9 +34,9 @@ adb shell settings put global hide_error_dialogs 1 || true
 adb shell am broadcast -a android.intent.action.CLOSE_SYSTEM_DIALOGS >/dev/null 2>&1 || true
 
 # Runs a Maestro flow and copies Maestro's own logs (it keeps them in ~/.maestro/tests) into $OUT.
-# If not a single step completed (on Android 15 its driver sometimes can't reach a just-booted
-# emulator), it tries once more and says so in the job's warnings. A step that ran and then failed
-# is never retried, and an app that can't start fails both attempts.
+# On the Android 15 emulator, adb sometimes drops the device ("device offline") just as Maestro
+# restarts the app. Only when Maestro's log shows it lost the device: reconnect, wait for the
+# emulator and run the flow once more, with a warning on the run. A failed step is never retried.
 run_flow() {
   local flow=$1 name=$2 rc logs
   for attempt in 1 2; do
@@ -46,9 +46,15 @@ run_flow() {
     logs=$(find "$HOME/.maestro/tests" -mindepth 1 -maxdepth 1 -type d -newer "$OUT/.started" 2>/dev/null | head -n 1)
     [ -n "$logs" ] && cp -r "$logs" "$OUT/maestro-$name-$attempt"
     [ "$rc" -eq 0 ] && return 0
-    if [ "$attempt" = 2 ] || grep -rqs '"COMPLETED"' "$OUT/maestro-$name-$attempt"; then return "$rc"; fi
-    echo "::warning::No step of $flow completed; trying once more. $(grep -o 'message="[^"]*"' "$OUT/$name-report.xml" 2>/dev/null | head -n 1)"
-    sleep 10
+    if [ "$attempt" = 2 ] \
+      || ! grep -rqsE 'device offline|DeviceServerDiedException|device .* not found' "$OUT/maestro-$name-$attempt"; then
+      return "$rc"
+    fi
+    echo "::warning::The emulator went offline during $flow; reconnecting and running it once more."
+    adb reconnect offline || true
+    adb wait-for-device
+    for _ in $(seq 1 60); do [ "$(adb shell getprop sys.boot_completed 2>/dev/null | tr -d '\r')" = 1 ] && break; sleep 2; done
+    sleep 5
   done
 }
 

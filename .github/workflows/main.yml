@@ -157,6 +157,8 @@ jobs:
           echo "$HOME/.maestro/bin" >> "$GITHUB_PATH"
 
       - name: Lock test on Android API ${{ matrix.api-level }}
+        id: lock
+        continue-on-error: true
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: ${{ matrix.api-level }}
@@ -166,6 +168,26 @@ jobs:
           disable-animations: true
           emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
           script: bash .github/scripts/lock-e2e.sh
+
+      # Setting up the emulator can fail before the test script starts (a corrupt emulator download
+      # was seen on Android 15). Only in that case, when the script has written nothing, set the
+      # emulator up once more. A test that ran is never retried.
+      - name: Lock test on Android API ${{ matrix.api-level }} (emulator setup failed, second try)
+        id: lock-again
+        if: steps.lock.outcome == 'failure' && hashFiles('e2e-output/**') == ''
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: ${{ matrix.api-level }}
+          arch: x86_64
+          target: google_apis
+          profile: pixel_6
+          disable-animations: true
+          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
+          script: bash .github/scripts/lock-e2e.sh
+
+      - name: Fail the job when the lock test failed
+        if: steps.lock.outcome == 'failure' && steps.lock-again.outcome == 'skipped'
+        run: exit 1
 
       - name: Upload test output (only when the test fails)
         if: failure()
