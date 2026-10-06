@@ -10,6 +10,8 @@ on:
       - .github/scripts/fgs-video*
       - .github/workflows/fgs-video.yml
       - docs/**
+      - site/**
+      - store/**
 
 jobs:
   build:

@@ -20,15 +20,18 @@ Everything runs offline; nothing leaves the phone ([privacy policy](PRIVACY.md))
 > you it's edible. Have every find checked in person by an expert. The app says this in setup, on every lesson card
 > and on every mushroom page.
 
-## What ShroomLock adds over FloraLock
+## Built on FloraLock
 
-| Feature       | FloraLock          | ShroomLock                                                                                                |
-| ------------- | ------------------ | --------------------------------------------------------------------------------------------------------- |
-| Wrong answers | Same group         | The mushroom's real look-alikes first, even from other groups, with a how-to-tell note after a wrong pick |
-| Danger        | —                  | Edibility on every card (choice edible → deadly); deadly species marked ☠️ everywhere                     |
-| Lesson cards  | Name and a fact    | Field clues: cap, underneath, stem, spore print, where, when, and the one feature that tells it apart     |
-| Repeats       | Once, the next day | Spaced reviews after 1, 3, 7, 14 and 30 days; a miss starts over from tomorrow; then it's mastered        |
-| Progress      | Botany IQ          | Mycology IQ, a daily streak, a collection (collected and mastered), and milestones                        |
+ShroomLock introduced these features, and FloraLock and CloudLock now have them too:
+
+- **Look-alike answers:** the wrong names are the mushroom's real look-alikes first, even from other groups, with a
+  how-to-tell note after a wrong pick.
+- **Field clues** on every card: cap, underneath, stem, spore print, where, when, and the one feature that tells it
+  apart.
+- **Spaced reviews** after 1, 3, 7, 14 and 30 days; a miss starts over from tomorrow; then it's mastered.
+- **Progress:** Mycology IQ, a daily streak, a collection (collected and mastered) and milestones.
+
+Specific to ShroomLock: edibility on every card (choice edible → deadly), with deadly species marked ☠️ everywhere.
 
 ## Status
 
