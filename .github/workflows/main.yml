@@ -32,6 +32,27 @@ jobs:
           distribution: temurin
           java-version: 17
 
+      # Keeps Gradle's downloads and reusable build outputs between runs (free for public
+      # repositories). Saved from every branch, since builds also run on claude/** branches.
+      - uses: gradle/actions/setup-gradle@v6
+        with:
+          cache-read-only: false
+          add-job-summary: on-failure
+
+      # React Native and its libraries compile C++ for four CPU types, the slowest part of the build.
+      # ccache keeps the compiled files, so code that hasn't changed isn't compiled again.
+      - name: Install ccache
+        run: |
+          sudo apt-get install -y -q ccache || { sudo apt-get update -q && sudo apt-get install -y -q ccache; }
+          echo "CCACHE_DIR=$HOME/.ccache" >> "$GITHUB_ENV"
+      - uses: actions/cache@v6
+        with:
+          path: ~/.ccache
+          key: ccache-${{ runner.os }}-${{ hashFiles('package-lock.json') }}-${{ github.run_id }}
+          restore-keys: |
+            ccache-${{ runner.os }}-${{ hashFiles('package-lock.json') }}-
+            ccache-${{ runner.os }}-
+
       - run: npm ci
       - run: npm run typecheck && npm test
 
@@ -71,7 +92,14 @@ jobs:
           KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
           KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
           KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
-        run: ./gradlew assembleRelease bundleRelease --no-daemon
+          CMAKE_C_COMPILER_LAUNCHER: ccache
+          CMAKE_CXX_COMPILER_LAUNCHER: ccache
+          CCACHE_BASEDIR: ${{ github.workspace }}
+          CCACHE_MAXSIZE: 1500M
+        run: ./gradlew assembleRelease bundleRelease --no-daemon --build-cache
+
+      - name: Compiler cache use
+        run: ccache --show-stats
 
       # Compare with the upload key's SHA-256 in Play Console (Setup > App signing).
       - name: Show signing certificate
