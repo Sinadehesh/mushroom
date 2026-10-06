@@ -33,8 +33,27 @@ adb logcat -c 2>/dev/null || true
 adb shell settings put global hide_error_dialogs 1 || true
 adb shell am broadcast -a android.intent.action.CLOSE_SYSTEM_DIALOGS >/dev/null 2>&1 || true
 
+# Runs a Maestro flow and copies Maestro's own logs (it keeps them in ~/.maestro/tests) into $OUT.
+# If not a single step completed (on Android 15 its driver sometimes can't reach a just-booted
+# emulator), it tries once more and says so in the job's warnings. A step that ran and then failed
+# is never retried, and an app that can't start fails both attempts.
+run_flow() {
+  local flow=$1 name=$2 rc logs
+  for attempt in 1 2; do
+    rc=0
+    touch "$OUT/.started"
+    maestro test "$flow" --format junit --output "$OUT/$name-report.xml" || rc=$?
+    logs=$(find "$HOME/.maestro/tests" -mindepth 1 -maxdepth 1 -type d -newer "$OUT/.started" 2>/dev/null | head -n 1)
+    [ -n "$logs" ] && cp -r "$logs" "$OUT/maestro-$name-$attempt"
+    [ "$rc" -eq 0 ] && return 0
+    if [ "$attempt" = 2 ] || grep -rqs '"COMPLETED"' "$OUT/maestro-$name-$attempt"; then return "$rc"; fi
+    echo "::warning::No step of $flow completed; trying once more. $(grep -o 'message="[^"]*"' "$OUT/$name-report.xml" 2>/dev/null | head -n 1)"
+    sleep 10
+  done
+}
+
 status=0
-maestro test e2e/lock.yaml --format junit --output "$OUT/report.xml" --debug-output "$OUT/debug" || status=$?
+run_flow e2e/lock.yaml lock || status=$?
 
 # Updating must keep everything. Reinstall over the top (as a Play Store update does) and, without
 # opening ShroomLock, check the lock restarts on its own; then that setup and progress survived.
@@ -51,8 +70,7 @@ if [ "$status" -eq 0 ]; then
   fi
 fi
 if [ "$status" -eq 0 ]; then
-  maestro test e2e/update.yaml --format junit --output "$OUT/update-report.xml" --debug-output "$OUT/debug-update" \
-    || status=$?
+  run_flow e2e/update.yaml update || status=$?
 fi
 
 adb logcat -d -v time > "$OUT/logcat.txt" 2>/dev/null || true
@@ -69,6 +87,10 @@ for f in sorted(pathlib.Path(sys.argv[1]).rglob('commands-*.json')):
         err = (meta.get('error') or {}).get('message', '')
         print(f"{meta.get('status', '?'):10} {json.dumps(cmd)[:160]} {err[:200]}")
 PY
+  echo "::endgroup::"
+  echo "::group::Maestro errors and log"
+  grep -h -A3 '<failure' "$OUT"/*-report.xml 2>/dev/null | head -n 20 || true
+  find "$OUT" -path "$OUT/maestro-*" -name 'maestro.log' -exec tail -n 60 {} \; 2>/dev/null || true
   echo "::endgroup::"
   echo "::group::Text on screen at failure"
   adb shell uiautomator dump /sdcard/ui.xml >/dev/null 2>&1 && adb shell cat /sdcard/ui.xml \
