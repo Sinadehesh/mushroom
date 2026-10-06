@@ -1,14 +1,14 @@
 {
   "expo": {
-    "name": "MycoLock",
-    "slug": "mycolock",
+    "name": "ShroomLock",
+    "slug": "shroomlock",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "automatic",
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.mycolock.app"
+      "bundleIdentifier": "com.shroomlock.app"
     },
     "android": {
       "adaptiveIcon": {
@@ -18,7 +18,7 @@
         "monochromeImage": "./assets/android-icon-monochrome.png"
       },
       "predictiveBackGestureEnabled": false,
-      "package": "com.mycolock.app"
+      "package": "com.shroomlock.app"
     },
     "web": {
       "favicon": "./assets/favicon.png",
@@ -26,9 +26,32 @@
     },
     "plugins": [
       "expo-router",
-      "expo-image"
+      "expo-image",
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/splash-icon.png",
+          "imageWidth": 180,
+          "resizeMode": "contain",
+          "backgroundColor": "#F6F1EA",
+          "dark": {
+            "image": "./assets/splash-icon.png",
+            "backgroundColor": "#15110E"
+          }
+        }
+      ],
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "enableMinifyInReleaseBuilds": true,
+            "enableShrinkResourcesInReleaseBuilds": true,
+            "extraProguardRules": "# ShroomLock native modules (app lock, Play Billing): keep as-is for the Expo module registry.\n-keep class expo.modules.appblocker.** { *; }\n-keep class expo.modules.playbilling.** { *; }\n"
+          }
+        }
+      ]
     ],
-    "scheme": "mycolock",
+    "scheme": "shroomlock",
     "experiments": {
       "typedRoutes": true
     }

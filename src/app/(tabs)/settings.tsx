@@ -1,11 +1,13 @@
 import { router } from 'expo-router';
-import { useEffect, useState, type ReactNode } from 'react';
+import type { ReactNode } from 'react';
 import { Alert, Platform, ScrollView, StyleSheet, Text, View } from 'react-native';
 
-import { blocker, type BlockerStatus } from '../../blocker';
+import { LockSetup } from '../../components/LockSetup';
+import { MushroomsPerDay } from '../../components/MushroomsPerDay';
 import { Button, Card, Chip, SectionTitle } from '../../components/ui';
+import { deckCategories, FREE_APP_LIMIT, isPlusCategory } from '../../core/plus';
 import type { MushroomCategory } from '../../core/types';
-import { useStore } from '../../state/store';
+import { hasPlus, useDeck, useStore } from '../../state/store';
 import { CATEGORY_LABEL, useColors } from '../../theme';
 
 const CATEGORIES: MushroomCategory[] = ['gilled', 'pored', 'other'];
@@ -14,17 +16,16 @@ export default function SettingsScreen() {
   const c = useColors();
   const { state, dispatch } = useStore();
   const { settings } = state;
+  const deck = useDeck();
+  const plus = hasPlus(state);
   const update = (patch: Partial<typeof settings>) => dispatch({ type: 'updateSettings', patch });
-  const [status, setStatus] = useState<BlockerStatus>('notDetermined');
 
-  useEffect(() => {
-    blocker.getStatus().then(setStatus);
-  }, []);
-
+  const activeCategories = deckCategories(settings.categories, plus);
   const toggleCategory = (cat: MushroomCategory) => {
-    const next = settings.categories.includes(cat)
-      ? settings.categories.filter((x) => x !== cat)
-      : [...settings.categories, cat];
+    if (isPlusCategory(cat) && !plus) return router.push('/upgrade');
+    const next = activeCategories.includes(cat)
+      ? activeCategories.filter((x) => x !== cat)
+      : [...activeCategories, cat];
     if (next.length) update({ categories: next });
   };
 
@@ -34,7 +35,7 @@ export default function SettingsScreen() {
       if (window.confirm('Reset all learning progress?')) reset();
       return;
     }
-    Alert.alert('Reset progress?', 'Your Mycology IQ and review schedule will start over.', [
+    Alert.alert('Reset progress?', 'Your collection, reviews, streak and Mycology IQ will start over.', [
       { text: 'Cancel', style: 'cancel' },
       { text: 'Reset', style: 'destructive', onPress: reset },
     ]);
@@ -42,34 +43,31 @@ export default function SettingsScreen() {
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <SectionTitle>Blocked apps</SectionTitle>
-      <Card style={{ gap: 12 }}>
-        <Text style={{ color: c.text, fontSize: 15, lineHeight: 22 }}>
-          {status === 'unsupported'
-            ? 'App blocking needs the native iOS/Android build. In this preview, use “Preview the lock screen” on the Fungarium tab to try the flow.'
-            : status === 'authorized'
-              ? 'MycoLock can shield the apps you choose.'
-              : 'Give MycoLock permission to shield distracting apps.'}
+      <SectionTitle>App lock</SectionTitle>
+      <LockSetup />
+
+      <SectionTitle>ShroomLock Plus</SectionTitle>
+      <Card style={{ gap: 10 }}>
+        <Text style={{ color: plus ? c.success : c.text, fontSize: 16, fontWeight: '600' }}>
+          {plus
+            ? '✓ Plus unlocked: unlimited apps and every mushroom group.'
+            : `Free version: up to ${FREE_APP_LIMIT} locked apps and the gilled mushrooms.`}
         </Text>
-        {status !== 'unsupported' && (
-          <Button
-            label={status === 'authorized' ? 'Choose apps to lock' : 'Grant permission'}
-            onPress={async () => {
-              if (status === 'authorized') await blocker.chooseBlockedApps();
-              else setStatus(await blocker.requestAuthorization());
-            }}
-          />
-        )}
+        <Button
+          variant={plus ? 'ghost' : 'primary'}
+          label={plus ? 'About Plus' : 'See what Plus adds'}
+          onPress={() => router.push('/upgrade')}
+        />
       </Card>
 
+      <SectionTitle>Daily lesson</SectionTitle>
+      <MushroomsPerDay
+        value={settings.mushroomsPerDay}
+        deckSize={deck.length}
+        onChange={(mushroomsPerDay) => update({ mushroomsPerDay })}
+      />
+
       <SectionTitle>Lock screen</SectionTitle>
-      <Setting
-        label="Mode"
-        hint={settings.difficulty === 'easy' ? 'Pick from 4 names' : 'Type the name (small typos OK)'}
-      >
-        <Chip label="Easy" selected={settings.difficulty === 'easy'} onPress={() => update({ difficulty: 'easy' })} />
-        <Chip label="Hard" selected={settings.difficulty === 'hard'} onPress={() => update({ difficulty: 'hard' })} />
-      </Setting>
       <Setting label="Unlock for" hint="How long a correct answer opens the app">
         {[5, 10, 15, 30].map((m) => (
           <Chip
@@ -102,12 +100,15 @@ export default function SettingsScreen() {
       </Setting>
 
       <SectionTitle>Deck</SectionTitle>
-      <Setting label="Mushrooms to learn" hint="At least one group stays on">
+      <Setting
+        label="Mushrooms to learn"
+        hint={plus ? 'At least one group stays on' : 'Pores, brackets, ridges and spines come with Plus'}
+      >
         {CATEGORIES.map((cat) => (
           <Chip
             key={cat}
-            label={CATEGORY_LABEL[cat]}
-            selected={settings.categories.includes(cat)}
+            label={`${isPlusCategory(cat) && !plus ? '🔒 ' : ''}${CATEGORY_LABEL[cat]}`}
+            selected={activeCategories.includes(cat)}
             onPress={() => toggleCategory(cat)}
           />
         ))}
@@ -115,7 +116,9 @@ export default function SettingsScreen() {
 
       <SectionTitle>About</SectionTitle>
       <View style={{ gap: 8 }}>
+        <Button variant="secondary" label="Privacy policy" onPress={() => router.push('/privacy')} />
         <Button variant="secondary" label="Photo credits" onPress={() => router.push('/credits')} />
+        <Button variant="ghost" label="Run the setup again" onPress={() => update({ onboarded: false })} />
         <Button variant="ghost" label="Reset learning progress" onPress={confirmReset} />
       </View>
     </ScrollView>

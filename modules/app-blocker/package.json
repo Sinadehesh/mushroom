@@ -1,0 +1,6 @@
+{
+  "name": "app-blocker",
+  "version": "1.0.0",
+  "description": "ShroomLock's Android app blocker: watches the foreground app and opens the mushroom challenge over blocked apps",
+  "private": true
+}

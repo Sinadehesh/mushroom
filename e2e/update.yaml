@@ -1,0 +1,12 @@
+# Run by .github/scripts/lock-e2e.sh after lock.yaml and a reinstall over the top (what a Play Store
+# update does): setup, the locked app and today's lesson must all still be there.
+appId: com.shroomlock.app
+---
+- launchApp:
+    appId: com.shroomlock.app
+    stopApp: false
+- extendedWaitUntil:
+    visible: "Tomorrow: .*"
+    timeout: 60000
+- assertVisible: ".*Guarding 1 app"
+- assertNotVisible: "Get started"

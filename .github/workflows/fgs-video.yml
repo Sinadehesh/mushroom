@@ -1,0 +1,86 @@
+name: Foreground service demo video
+
+# Records the screen video Play Console asks for in the foreground service declaration, on an
+# Android 14 emulator (the version that introduced the "special use" service type), with captions.
+# Run it from the Actions tab, or push a change to the video flow. The download is fgs-demo-video.
+on:
+  workflow_dispatch:
+  push:
+    branches: [main, 'claude/**']
+    paths:
+      - e2e/fgs-video/**
+      - .github/scripts/fgs-video*
+      - .github/workflows/fgs-video.yml
+
+jobs:
+  video:
+    runs-on: ubuntu-latest
+    timeout-minutes: 75
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - run: npm ci
+
+      # Signed with the debug key: fine for an emulator, never uploaded to the Play Store.
+      - name: Build APK
+        run: |
+          npx expo prebuild --platform android --no-install
+          (cd android && ./gradlew assembleRelease --no-daemon)
+          mkdir apk && cp android/app/build/outputs/apk/release/*.apk apk/
+          rm -rf android ~/.gradle/caches   # leave disk space for the emulator
+
+      - name: Enable KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+
+      - name: Install Maestro and ffmpeg
+        run: |
+          curl -fsSL "https://get.maestro.mobile.dev" | bash
+          echo "$HOME/.maestro/bin" >> "$GITHUB_PATH"
+          if ! command -v ffmpeg || [ ! -f /usr/share/fonts/truetype/dejavu/DejaVuSans.ttf ]; then
+            sudo apt-get update && sudo apt-get install -y ffmpeg fonts-dejavu-core
+          fi
+
+      - name: Record on Android 14
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 34
+          arch: x86_64
+          target: google_apis
+          profile: pixel_6
+          disable-animations: false
+          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
+          script: bash .github/scripts/fgs-video.sh
+
+      - name: Add captions
+        if: always()
+        run: python3 .github/scripts/fgs-video-captions.py video-output
+
+      - name: Video
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: fgs-demo-video
+          path: |
+            video-output/shroomlock-fgs-demo.mp4
+            video-output/timestamps.txt
+          if-no-files-found: ignore
+
+      - name: Debug output (only when it fails)
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: fgs-video-debug
+          path: video-output

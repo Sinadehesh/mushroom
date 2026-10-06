@@ -1,39 +1,37 @@
-import { MAX_BOX } from './srs';
-import type { Mushroom, ProgressMap } from './types';
+import { MASTERED_STEP } from './daily';
+import type { LearnMap, Mushroom, StatsMap } from './types';
 
 /**
- * Mycology IQ: 60 for a beginner, 160 when every mushroom in the deck is mastered.
- * Each mushroom contributes its Leitner box / MAX_BOX, so it only rises with
- * repeated, spaced correct answers — not with one lucky guess.
+ * Mycology IQ: 60 for a beginner, 160 when the whole deck is mastered. A mushroom counts a fifth
+ * once introduced, and the rest grows with each review it passes.
  */
-export function mycologyIQ(mushrooms: Mushroom[], progress: ProgressMap): number {
-  if (!mushrooms.length) return 60;
-  const mastery = mushrooms.reduce((sum, p) => sum + (progress[p.id]?.box ?? 0) / MAX_BOX, 0) / mushrooms.length;
-  return Math.round(60 + 100 * mastery);
+export function mycologyIQ(deck: Mushroom[], learn: LearnMap): number {
+  if (!deck.length) return 60;
+  const score = deck.reduce((sum, m) => {
+    const r = learn[m.id];
+    return sum + (r ? 0.2 + (0.8 * Math.min(r.step, MASTERED_STEP)) / MASTERED_STEP : 0);
+  }, 0);
+  return Math.round(60 + (100 * score) / deck.length);
 }
 
-export function accuracy(progress: ProgressMap): number | null {
+export function accuracy(stats: StatsMap): number | null {
   let correct = 0;
   let seen = 0;
-  for (const p of Object.values(progress)) {
-    correct += p.correct;
-    seen += p.seen;
+  for (const s of Object.values(stats)) {
+    correct += s.correct;
+    seen += s.seen;
   }
   return seen ? correct / seen : null;
 }
 
-export function masteredCount(mushrooms: Mushroom[], progress: ProgressMap): number {
-  return mushrooms.filter((p) => (progress[p.id]?.box ?? 0) >= MAX_BOX - 1).length;
-}
-
 /** Mushrooms the user keeps missing, worst first. */
-export function troubleMushrooms(mushrooms: Mushroom[], progress: ProgressMap, limit = 5): Mushroom[] {
+export function troubleMushrooms(mushrooms: Mushroom[], stats: StatsMap, limit = 5): Mushroom[] {
   return mushrooms
-    .filter((p) => (progress[p.id]?.wrong ?? 0) > 0)
+    .filter((m) => (stats[m.id]?.wrong ?? 0) > 0)
     .sort((a, b) => {
-      const pa = progress[a.id];
-      const pb = progress[b.id];
-      return pb.wrong / pb.seen - pa.wrong / pa.seen || pb.wrong - pa.wrong;
+      const sa = stats[a.id];
+      const sb = stats[b.id];
+      return sb.wrong / sb.seen - sa.wrong / sa.seen || sb.wrong - sa.wrong;
     })
     .slice(0, limit);
 }

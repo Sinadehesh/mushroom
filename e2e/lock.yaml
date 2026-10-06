@@ -1,0 +1,126 @@
+# End-to-end check of the Android app (run by .github/scripts/lock-e2e.sh on emulators).
+# Goes through first-launch setup (mushrooms per day, lock the system Settings app, turn the lock on),
+# opens Settings and expects the mushroom challenge, uses an emergency unlock and expects Settings
+# to stay open, does today's lesson and exam, then opens the ShroomLock Plus screen.
+appId: com.shroomlock.app
+---
+- launchApp:
+    clearState: true
+- extendedWaitUntil:
+    visible: "Get started|.*isn.t responding"
+    timeout: 90000
+# A just-booted emulator can show "System UI isn't responding" over the app; let it carry on.
+- runFlow:
+    when:
+      visible: ".*isn.t responding"
+    commands:
+      - tapOn: "Wait"
+- extendedWaitUntil:
+    visible: "Get started"
+    timeout: 60000
+
+# Setup: welcome > mushrooms a day (keep 3) > apps to lock > turn the lock on
+- tapOn: "Get started"
+- extendedWaitUntil:
+    visible: "How many mushrooms a day\\?"
+    timeout: 10000
+- tapOn: "Next"
+- tapOn: "Search apps"
+- inputText: "settings"
+- hideKeyboard
+# By testID: tapping the text would hit the search box, which also shows the typed text.
+- tapOn:
+    id: "app-com.android.settings"
+- tapOn: "Next"
+- extendedWaitUntil:
+    visible: "1 app locked"
+    timeout: 10000
+- tapOn: "Turn lock on"
+- extendedWaitUntil:
+    visible: ".*Lock is on"
+    timeout: 10000
+- tapOn: "Finish setup"
+- extendedWaitUntil:
+    visible: "Start today.s lesson"
+    timeout: 10000
+
+# Opening the locked app must bring up the challenge (directly, or via the fallback overlay).
+- launchApp:
+    appId: com.android.settings
+- extendedWaitUntil:
+    visible: "What is this mushroom\\?|Identify the mushroom"
+    timeout: 20000
+# If the fallback overlay shows first, tap through it. The challenge screen may replace the
+# overlay a moment later on its own, so the tap is optional.
+- runFlow:
+    when:
+      visible: "Identify the mushroom"
+    commands:
+      - tapOn:
+          text: "Identify the mushroom"
+          optional: true
+- extendedWaitUntil:
+    visible: "What is this mushroom\\?"
+    timeout: 15000
+- takeScreenshot: challenge-over-locked-app
+
+# Emergency unlock opens Settings and it stays open during the unlock window.
+# (Scroll first: on small screens these links sit below the photo and the answers.)
+- scrollUntilVisible:
+    element:
+      text: "Emergency unlock.*"
+    direction: DOWN
+- tapOn: "Emergency unlock.*"
+- scrollUntilVisible:
+    element:
+      text: "Continue to Settings"
+    direction: DOWN
+- tapOn: "Continue to Settings"
+- extendedWaitUntil:
+    notVisible: "What is this mushroom\\?"
+    timeout: 10000
+- waitForAnimationToEnd:
+    timeout: 5000
+- assertNotVisible: "What is this mushroom\\?"
+- assertNotVisible: "Identify the mushroom"
+- takeScreenshot: unlocked-app
+
+# Today's lesson: each new mushroom once, then a multiple-choice exam on them.
+- launchApp:
+    appId: com.shroomlock.app
+- tapOn: "Start today.s lesson"
+- repeat:
+    while:
+      visible: "Next mushroom"
+    commands:
+      - tapOn: "Next mushroom"
+- tapOn: "Start the exam"
+- repeat:
+    while:
+      notVisible: "\\d+ of \\d+ right"
+    commands:
+      - tapOn:
+          id: "choice-0"
+      - scrollUntilVisible:
+          element:
+            text: "Next question|See my score"
+          direction: DOWN
+      - tapOn: "Next question|See my score"
+- takeScreenshot: exam-score
+- tapOn: "Done for today"
+- extendedWaitUntil:
+    visible: "Tomorrow: .*"
+    timeout: 10000
+
+# ShroomLock Plus: the billing module loads and the screen copes with an emulator that has no
+# Play Store (or, where there is one, shows the price or "not on sale yet").
+- tapOn: "Settings"
+- scrollUntilVisible:
+    element:
+      text: "See what Plus adds"
+    direction: DOWN
+- tapOn: "See what Plus adds"
+- extendedWaitUntil:
+    visible: "Purchases need the Google Play Store.*|Unlock Plus for.*|ShroomLock Plus isn.t on sale yet.*"
+    timeout: 20000
+- takeScreenshot: plus-screen

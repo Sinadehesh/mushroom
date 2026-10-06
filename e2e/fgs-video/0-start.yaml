@@ -1,0 +1,18 @@
+# Foreground service demo video, step 0 (before recording): fresh start on the welcome screen.
+# The steps are run in order by .github/scripts/fgs-video.sh, which records the screen.
+appId: com.shroomlock.app
+---
+- launchApp:
+    clearState: true
+- extendedWaitUntil:
+    visible: "Get started|.*isn.t responding"
+    timeout: 90000
+# A just-booted emulator can show "System UI isn't responding" over the app; let it carry on.
+- runFlow:
+    when:
+      visible: ".*isn.t responding"
+    commands:
+      - tapOn: "Wait"
+- extendedWaitUntil:
+    visible: "Get started"
+    timeout: 60000

@@ -40,11 +40,12 @@ Docs: https://docs.expo.dev/eas/index.md
 - Expo Go only includes its bundled native modules. After adding a library with native code, the app needs a development build: `npx expo run:ios|android` locally, or `eas build --profile development`.
 - Prefer recommended Expo modules over third-party libraries, and check your available skills before adding dependencies. Docs: https://docs.expo.dev/versions/latest/index.md
 
-## MycoLock project notes
+## ShroomLock project notes
 
 - Pure logic lives in `src/core/` (no React imports) and is covered by `npm test` (vitest). Keep new learning/quiz rules there, with tests.
 - In this sandbox, `npx expo install` needs `EXPO_OFFLINE=1` because the Expo API host is unreachable.
 - The OS-level blocker is abstracted behind `src/blocker/index.ts`; see `docs/PLATFORM_INTEGRATION.md` before touching native code.
 - `src/data/mushroomImages.generated.ts` is written by `scripts/download-mushroom-photos.mjs` from `scripts/mushroom-photos.json` — don't edit it by hand.
-- MycoLock is a sibling of FloraLock (github.com/sinadehesh/flora) and keeps the same architecture. Port fixes both ways where they apply.
-- Mushroom facts and edibility are shown to learners. Keep them accurate, and never phrase anything as permission to eat a wild mushroom.
+- Saved progress must survive app updates: never rename the storage key in `src/core/saved.ts` or the native `shroomlock_blocker` preferences; change the saved shape only with a `SAVE_VERSION` bump, a step in `migrate()` and a test.
+- ShroomLock is a sibling of FloraLock (github.com/sinadehesh/flora) and is built from the same code. Port fixes both ways where they apply.
+- Mushroom facts, clues and edibility are shown to learners. Keep them accurate, and never phrase anything as permission to eat a wild mushroom.

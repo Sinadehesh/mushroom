@@ -3,7 +3,13 @@ name: Android builds
 on:
   workflow_dispatch:        # "Run workflow" button in the Actions tab
   push:
-    branches: [main]
+    branches: [main, 'claude/**']
+    # The demo video has its own workflow (fgs-video.yml); docs don't change the app.
+    paths-ignore:
+      - e2e/fgs-video/**
+      - .github/scripts/fgs-video*
+      - .github/workflows/fgs-video.yml
+      - docs/**
 
 jobs:
   build:
@@ -34,7 +40,8 @@ jobs:
       - name: Generate native Android project
         run: npx expo prebuild --platform android --no-install
 
-      # Without these secrets, builds are signed with Android's debug key: the APK installs fine, but the Play Store rejects the AAB.
+      # Needs the ANDROID_KEYSTORE_BASE64 and ANDROID_KEYSTORE_PASSWORD secrets (see docs/PLAY_STORE.md).
+      # Without them, builds are signed with Android's debug key: the APK installs fine, but the Play Store rejects the AAB.
       - name: Sign release builds with the upload key
         if: env.HAS_UPLOAD_KEY == 'true'
         env:
@@ -47,8 +54,9 @@ jobs:
                   upload {
                       storeFile file('upload.jks')
                       storePassword System.getenv('KEYSTORE_PASSWORD')
-                      keyAlias System.getenv('KEY_ALIAS')
-                      keyPassword System.getenv('KEY_PASSWORD')
+                      // Alias and key password are optional secrets; a PKCS12 key uses the store password.
+                      keyAlias System.getenv('KEY_ALIAS') ?: 'upload'
+                      keyPassword System.getenv('KEY_PASSWORD') ?: System.getenv('KEYSTORE_PASSWORD')
                   }
               }
               buildTypes { release { signingConfig signingConfigs.upload } }
@@ -63,14 +71,86 @@ jobs:
           KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
         run: ./gradlew assembleRelease bundleRelease --no-daemon
 
-      - name: "1. APK (install on phones)"
-        uses: actions/upload-artifact@v4
-        with:
-          name: mycolock-apk
-          path: android/app/build/outputs/apk/release/*.apk
+      # Compare with the upload key's SHA-256 in Play Console (Setup > App signing).
+      - name: Show signing certificate
+        run: |
+          APKSIGNER=$(ls "$ANDROID_HOME"/build-tools/*/apksigner | sort -V | tail -n 1)
+          "$APKSIGNER" verify --print-certs android/app/build/outputs/apk/release/*.apk | grep -E "certificate (DN|SHA-256)"
+          [ "$HAS_UPLOAD_KEY" = true ] || echo "::warning::No upload key secrets: signed with the debug key, so the Play Store will reject the AAB."
 
-      - name: "2. AAB (Play Store)"
+      # Only for the emulator tests below; deleted once they pass, so a green run leaves just the AAB.
+      - name: APK for the emulator tests
         uses: actions/upload-artifact@v4
         with:
-          name: mycolock-aab
+          name: shroomlock-apk
+          path: android/app/build/outputs/apk/release/*.apk
+          retention-days: 3
+
+      - name: AAB for the Play Store
+        uses: actions/upload-artifact@v4
+        with:
+          name: shroomlock-aab
           path: android/app/build/outputs/bundle/release/*.aab
+
+  # Installs the APK on emulators across Android versions and checks that opening a locked
+  # app really brings up the mushroom challenge (e2e/lock.yaml).
+  lock-test:
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix:
+        api-level: [26, 29, 33, 35] # Android 8, 10, 13, 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: shroomlock-apk
+          path: apk
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - name: Enable KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+
+      - name: Install Maestro
+        run: |
+          curl -fsSL "https://get.maestro.mobile.dev" | bash
+          echo "$HOME/.maestro/bin" >> "$GITHUB_PATH"
+
+      - name: Lock test on Android API ${{ matrix.api-level }}
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: ${{ matrix.api-level }}
+          arch: x86_64
+          target: google_apis
+          profile: pixel_6
+          disable-animations: true
+          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
+          script: bash .github/scripts/lock-e2e.sh
+
+      - name: Upload test output (only when the test fails)
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lock-test-api-${{ matrix.api-level }}
+          path: e2e-output
+
+  # After every emulator test passes, remove the APK so the run's only download is the Play Store AAB.
+  keep-only-aab:
+    needs: lock-test
+    runs-on: ubuntu-latest
+    permissions:
+      actions: write
+    steps:
+      - uses: geekyeggo/delete-artifact@v5
+        with:
+          name: shroomlock-apk

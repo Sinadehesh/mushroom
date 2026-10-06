@@ -1,12 +1,12 @@
 # Platform integration: how the lock actually reaches the user
 
-The JS app (quiz, spaced repetition, Fungarium) is platform-neutral. The part that
+The JS app (daily lessons, quiz, mushroom guide) is platform-neutral. The part that
 intercepts Instagram/TikTok is native and differs a lot between iOS and Android.
 All of it plugs into the `AppBlocker` interface in `src/blocker/index.ts`. The
 challenge screen already calls `blocker.grantTemporaryAccess(source, minutes)`
 on a correct answer.
 
-Both platforms open the same route: `mycolock://challenge?source=<app name>`.
+Both platforms open the same route: `shroomlock://challenge?source=<app name>`.
 
 ---
 
@@ -26,12 +26,12 @@ The flow used by shipping apps (Opal, one sec, etc.) works around this:
    and the primary button **"Identify a mushroom"**.
 2. The `ShieldAction` extension handles the tap by posting a **local notification**
    ("Tap to identify your mushroom") whose payload deep-links to
-   `mycolock://challenge?source=Instagram`, and responds `.close`/`.defer`.
-3. The user taps the notification. MycoLock opens on the challenge screen.
+   `shroomlock://challenge?source=Instagram`, and responds `.close`/`.defer`.
+3. The user taps the notification. ShroomLock opens on the challenge screen.
 4. On a correct answer, the app removes that app's token from the
    `ManagedSettingsStore` shield set and starts a `DeviceActivity` schedule of
    `unlockMinutes`. The `DeviceActivityMonitor` extension re-applies the
-   shield when the interval ends, even if MycoLock is killed.
+   shield when the interval ends, even if ShroomLock is killed.
 
 That's one extra tap. It feels fine, and the notification step adds a little
 friction of its own.
@@ -47,7 +47,7 @@ friction of its own.
   `Label(token)` in SwiftUI renders the name and icon. For the `source` query
   param, pass the app's display name from the shield extension, which receives the
   `Application` and its `localizedDisplayName`.
-- **Extensions share state via an App Group** (`group.com.mycolock.app`):
+- **Extensions share state via an App Group** (`group.com.shroomlock.app`):
   selected tokens, unlock expiry, difficulty.
 - **Implementation path in Expo:** the
   [`react-native-device-activity`](https://github.com/kingstinct/react-native-device-activity)
@@ -64,7 +64,7 @@ friction of its own.
   for blocked packages. It needs the special **Usage Access** permission
   (`PACKAGE_USAGE_STATS`), which the user grants in system settings.
 - **Showing the quiz:** rather than drawing a `SYSTEM_ALERT_WINDOW` overlay with
-  custom views, launch MycoLock's own activity with the deep link
+  custom views, launch ShroomLock's own activity with the deep link
   (`FLAG_ACTIVITY_NEW_TASK`). That reuses the React Native challenge screen.
   Android 10+ blocks background activity starts, **but apps holding
   `SYSTEM_ALERT_WINDOW` ("Display over other apps") are exempt**, so you still
@@ -76,24 +76,27 @@ friction of its own.
   accessibility tools, and it's the "hacky" route the pitch rightly avoids.
 - **Play Console declarations:** Usage Access and the special-use foreground
   service both require a declaration and a short video of the feature. The
-  Fungarium's standalone study value helps the "core functionality" argument.
+  The daily lessons' standalone study value helps the "core functionality" argument.
 - **Battery optimisation:** some OEMs (Xiaomi, Huawei, Samsung) kill foreground
-  services aggressively. Add a "keep MycoLock running" help screen that links
+  services aggressively. Add a "keep ShroomLock running" help screen that links
   to the battery optimisation exemption.
 - **Unlock window:** the service keeps `unlockedUntil[package]` and ignores that
   package until the window expires.
 
-**Implementation path in Expo:** a local Expo module (`modules/app-blocker`)
-written in Kotlin, with a config plugin that adds the permissions and the
-service to the manifest. `npx create-expo-module@latest --local` scaffolds it.
+**Implemented** in `modules/app-blocker` (a local Expo module, autolinked):
+`BlockerService.kt` polls usage events every 600 ms and opens
+`shroomlock://challenge?source=<label>&package=<pkg>`. `BootReceiver.kt`
+restarts it after a reboot, and `AppBlockerModule.kt` is the JS API. Its
+`AndroidManifest.xml` is merged into the app, so no config plugin is needed.
+Unlock windows are stored per app in SharedPreferences.
 
 ## Shared: offline content
 
 - Everything works offline. Photos are bundled under `assets/mushrooms/`, and
   progress lives in AsyncStorage.
 - Budget: 3 photos per mushroom at 1000 px (mozjpeg, quality 74) averages about
-  110 KB per photo, so today's 71 mushrooms take 23 MB. At 400 mushrooms that
-  would be about 130 MB. At that size, bundle 1–2 photos per mushroom and
+  105 KB per photo, so today's 70 mushrooms take 22 MB. At 400 mushrooms that
+  would be about 125 MB. At that size, bundle 1–2 photos per mushroom and
   download the rest on demand, or switch to WebP.
 - **Licensing:** photos come from iNaturalist. Only CC0, CC BY and CC BY-SA
   are allowed; CC BY-NC is excluded because the app may be sold. CC BY and

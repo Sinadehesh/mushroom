@@ -1,0 +1,19 @@
+# Step 4: the right answer opens the locked app.
+appId: com.shroomlock.app
+---
+- tapOn: "Death Cap"
+- extendedWaitUntil:
+    visible: "Yes .*Death Cap!"
+    timeout: 10000
+- extendedWaitUntil:
+    visible: "__pause__"
+    timeout: 3000
+    optional: true
+- scrollUntilVisible:
+    element:
+      text: "Continue to .*"
+    direction: DOWN
+- tapOn: "Continue to .*"
+- extendedWaitUntil:
+    notVisible: "Continue to .*"
+    timeout: 10000

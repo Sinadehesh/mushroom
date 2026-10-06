@@ -1,0 +1,28 @@
+# Step 5: turn the lock off, which stops the foreground service.
+appId: com.shroomlock.app
+---
+# stopApp: false, or Maestro would force-stop ShroomLock and its service with it.
+- launchApp:
+    appId: com.shroomlock.app
+    stopApp: false
+- extendedWaitUntil:
+    visible: "Start today.s lesson"
+    timeout: 15000
+- tapOn: "Settings"
+- scrollUntilVisible:
+    element:
+      text: "Turn lock off"
+    direction: DOWN
+- extendedWaitUntil:
+    visible: "__pause__"
+    timeout: 2000
+    optional: true
+- tapOn: "Turn lock off"
+- extendedWaitUntil:
+    visible: "Turn lock on"
+    timeout: 10000
+- extendedWaitUntil:
+    visible: "__pause__"
+    timeout: 2500
+    optional: true
+- pressKey: Home

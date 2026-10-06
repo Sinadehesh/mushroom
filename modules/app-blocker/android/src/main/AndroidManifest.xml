@@ -1,0 +1,54 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools">
+
+  <!-- See which app is in the foreground (granted by the user under Settings > Usage access). -->
+  <uses-permission android:name="android.permission.PACKAGE_USAGE_STATS" tools:ignore="ProtectedPermissions" />
+  <!-- "Display over other apps": lets the watcher open the challenge while another app is in front. -->
+  <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+  <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+  <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
+  <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+  <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+  <!-- Lets the app show the "Let ShroomLock always run in background?" system dialog. -->
+  <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
+
+  <!-- Android 11+ package visibility: list apps that have a launcher icon, for the app picker. -->
+  <queries>
+    <!-- Manufacturer battery/autostart screens opened by openManufacturerSettings(). -->
+    <package android:name="com.miui.securitycenter" />
+    <package android:name="com.huawei.systemmanager" />
+    <package android:name="com.hihonor.systemmanager" />
+    <package android:name="com.coloros.safecenter" />
+    <package android:name="com.oppo.safe" />
+    <package android:name="com.oneplus.security" />
+    <package android:name="com.vivo.permissionmanager" />
+    <package android:name="com.iqoo.secure" />
+    <package android:name="com.samsung.android.lool" />
+    <package android:name="com.samsung.android.sm" />
+    <package android:name="com.asus.mobilemanager" />
+    <intent>
+      <action android:name="android.intent.action.MAIN" />
+      <category android:name="android.intent.category.LAUNCHER" />
+    </intent>
+  </queries>
+
+  <application>
+    <service
+      android:name="expo.modules.appblocker.BlockerService"
+      android:exported="false"
+      android:foregroundServiceType="specialUse">
+      <property
+        android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
+        android:value="Watches which app is in the foreground so the user's chosen distracting apps can be paused behind a mushroom-identification challenge." />
+    </service>
+
+    <receiver
+      android:name="expo.modules.appblocker.BootReceiver"
+      android:exported="true">
+      <intent-filter>
+        <action android:name="android.intent.action.BOOT_COMPLETED" />
+        <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+      </intent-filter>
+    </receiver>
+  </application>
+</manifest>

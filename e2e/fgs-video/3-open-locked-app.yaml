@@ -1,0 +1,24 @@
+# Step 3: open the locked app; the foreground service notices and shows the mushroom question.
+appId: com.shroomlock.app
+---
+- launchApp:
+    appId: ${LOCK_PKG}
+    stopApp: false
+- extendedWaitUntil:
+    visible: "What is this mushroom\\?|Identify the mushroom"
+    timeout: 20000
+# If the fallback overlay shows first, tap through it (the challenge may replace it on its own).
+- runFlow:
+    when:
+      visible: "Identify the mushroom"
+    commands:
+      - tapOn:
+          text: "Identify the mushroom"
+          optional: true
+- extendedWaitUntil:
+    visible: "What is this mushroom\\?"
+    timeout: 15000
+- extendedWaitUntil:
+    visible: "__pause__"
+    timeout: 3000
+    optional: true

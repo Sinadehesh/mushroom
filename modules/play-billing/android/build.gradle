@@ -1,0 +1,23 @@
+plugins {
+  id 'com.android.library'
+  id 'expo-module-gradle-plugin'
+}
+
+group = 'expo.modules.playbilling'
+version = '1.0.0'
+
+android {
+  namespace "expo.modules.playbilling"
+  defaultConfig {
+    versionCode 1
+    versionName "1.0.0"
+  }
+  lintOptions {
+    abortOnError false
+  }
+}
+
+dependencies {
+  // Adds the com.android.vending.BILLING permission through manifest merging.
+  implementation "com.android.billingclient:billing:9.1.0"
+}

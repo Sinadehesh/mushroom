@@ -1,0 +1,46 @@
+# Step 1: choose the app to lock and turn the lock on, which starts the foreground service.
+# The optional waits for "__pause__" (never on screen) are pauses, so viewers can follow along.
+appId: com.shroomlock.app
+---
+- extendedWaitUntil:
+    visible: "__pause__"
+    timeout: 2500
+    optional: true
+- tapOn: "Get started"
+- extendedWaitUntil:
+    visible: "How many mushrooms a day\\?"
+    timeout: 10000
+# One mushroom a day: the lock then asks about today's mushroom, the first in the deck (Death Cap), so step 4
+# knows the right answer.
+- repeat:
+    times: 2
+    commands:
+      - tapOn: "Fewer"
+- assertVisible: "mushroom a day"
+- tapOn: "Next"
+- tapOn: "Search apps"
+- inputText: ${LOCK_SEARCH}
+- hideKeyboard
+- tapOn:
+    id: "app-${LOCK_PKG}"
+- extendedWaitUntil:
+    visible: "__pause__"
+    timeout: 1500
+    optional: true
+- tapOn: "Next"
+- extendedWaitUntil:
+    visible: "1 app locked"
+    timeout: 10000
+- tapOn: "Turn lock on"
+- extendedWaitUntil:
+    visible: ".*Lock is on"
+    timeout: 10000
+- extendedWaitUntil:
+    visible: "__pause__"
+    timeout: 3000
+    optional: true
+- tapOn: "Finish setup"
+- extendedWaitUntil:
+    visible: "Start today.s lesson"
+    timeout: 10000
+- pressKey: Home

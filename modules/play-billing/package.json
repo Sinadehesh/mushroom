@@ -1,0 +1,6 @@
+{
+  "name": "play-billing",
+  "version": "1.0.0",
+  "description": "ShroomLock's one-time in-app purchase (ShroomLock Plus) through Google Play Billing",
+  "private": true
+}

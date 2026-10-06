@@ -1,5 +1,3 @@
-import type { Difficulty } from './types';
-
 /**
  * The lock-screen intercept as a pure state machine, so the Genius Penalty
  * can't be bypassed by tapping fast: answers are ignored while frozen, and a
@@ -42,13 +40,4 @@ export function challengeReducer(state: ChallengeState, event: ChallengeEvent): 
 export function penaltySecondsLeft(state: ChallengeState, now: number): number {
   if (state.phase !== 'penalty') return 0;
   return Math.max(0, Math.ceil((state.endsAt - now) / 1000));
-}
-
-/**
- * Which mushroom to ask after a penalty. Hard Mode re-asks the same mushroom: you just
- * stared at its name for 10 seconds, now recall it (retrieval after feedback).
- * Easy Mode moves on, otherwise the retry is a free 1-in-3 guess.
- */
-export function retryUsesSameMushroom(difficulty: Difficulty): boolean {
-  return difficulty === 'hard';
 }
