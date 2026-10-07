@@ -94,8 +94,13 @@ jobs:
           KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
           CMAKE_C_COMPILER_LAUNCHER: ccache
           CMAKE_CXX_COMPILER_LAUNCHER: ccache
-          CCACHE_BASEDIR: ${{ github.workspace }}
+          # Paths under the home directory (the project, and the headers Gradle unpacks into
+          # ~/.gradle) are made relative, so they don't change the cache keys between runs.
+          CCACHE_BASEDIR: /home/runner
           CCACHE_MAXSIZE: 1500M
+          # The NDK is downloaded fresh in every build, so its files' timestamps always change;
+          # recognise the compiler by its version instead.
+          CCACHE_COMPILERCHECK: '%compiler% --version'
           # Release builds compile with debug info, and by default ccache then keys every file on the
           # directory it is compiled in; the generated android/ project must not cost cache hits.
           CCACHE_NOHASHDIR: 'true'
@@ -111,7 +116,6 @@ jobs:
         if: always()
         run: |
           ccache --show-stats --verbose
-          grep -m 1 -A 8 'Command line: .*clang++' "$RUNNER_TEMP/ccache.log" || true
 
       # Compare with the upload key's SHA-256 in Play Console (Setup > App signing).
       - name: Show signing certificate
