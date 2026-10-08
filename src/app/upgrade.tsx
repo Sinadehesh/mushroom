@@ -1,13 +1,16 @@
 import { useEffect, useState } from 'react';
-import { ActivityIndicator, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
+import { ActivityIndicator, Linking, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
 
 import {
   billingAvailable,
   billingBuiltIn,
   buyPlus,
-  getPlusProduct,
+  getPlusOffers,
+  MANAGE_SUBSCRIPTION_URL,
   onPurchaseUpdate,
-  plusOwnership,
+  periodName,
+  plusStatus,
+  type PlusPlan,
   type StoreProduct,
 } from '../billing';
 import { Button, Card } from '../components/ui';
@@ -19,12 +22,12 @@ import { serif, useColors } from '../theme';
 type Shop =
   | { status: 'loading' }
   | { status: 'unavailable'; reason: string }
-  | { status: 'ready'; product: StoreProduct };
+  | { status: 'ready'; lifetime: StoreProduct | null; monthly: StoreProduct | null };
 
 const gilled = MUSHROOMS.filter((m) => m.category === 'gilled').length;
 const others = MUSHROOMS.length - gilled;
 
-/** What Plus adds, and the one-time purchase through Google Play. */
+/** What Plus adds, and the two ways to buy it through Google Play: once, or monthly. */
 export default function Upgrade() {
   const c = useColors();
   const { state, dispatch } = useStore();
@@ -33,6 +36,7 @@ export default function Upgrade() {
   const [note, setNote] = useState<{ text: string; tone: 'info' | 'error' } | null>(null);
   const [codeOpen, setCodeOpen] = useState(false);
   const [code, setCode] = useState('');
+  const [plan, setPlan] = useState<PlusPlan | null>(null);
   const plus = hasPlus(state);
 
   useEffect(() => {
@@ -49,18 +53,21 @@ export default function Upgrade() {
           reason: 'Purchases need the Google Play Store. Install ShroomLock from Google Play to upgrade.',
         });
       }
-      const product = await getPlusProduct().catch(() => null);
+      const [offers, status] = await Promise.all([getPlusOffers(), plusStatus()]);
       if (!live) return;
+      setPlan(status.plan);
       setShop(
-        product
-          ? { status: 'ready', product }
+        offers.lifetime || offers.monthly
+          ? { status: 'ready', ...offers }
           : { status: 'unavailable', reason: 'ShroomLock Plus isn’t on sale yet. Please check back soon.' },
       );
     })();
     const unsubscribe = onPurchaseUpdate((u) => {
       setBusy(false);
-      if (u.state === 'purchased') setNote({ text: 'Thank you! Plus is unlocked. 🍄', tone: 'info' });
-      else if (u.state === 'pending')
+      if (u.state === 'purchased') {
+        plusStatus().then((s) => live && setPlan(s.plan));
+        setNote({ text: 'Thank you! Plus is unlocked. 🍄', tone: 'info' });
+      } else if (u.state === 'pending')
         setNote({ text: 'Payment pending. Plus unlocks as soon as Google Play confirms it.', tone: 'info' });
       else if (u.state === 'error') setNote({ text: u.message ?? 'Something went wrong.', tone: 'error' });
     });
@@ -70,11 +77,11 @@ export default function Upgrade() {
     };
   }, []);
 
-  const buy = async () => {
+  const buy = async (chosen: PlusPlan) => {
     setNote(null);
     setBusy(true);
     try {
-      await buyPlus();
+      await buyPlus(chosen);
     } catch (e) {
       setBusy(false);
       setNote({ text: e instanceof Error ? e.message : 'Couldn’t open Google Play.', tone: 'error' });
@@ -84,8 +91,9 @@ export default function Upgrade() {
   const restore = async () => {
     setNote(null);
     setBusy(true);
-    const owned = await plusOwnership();
+    const { ownership: owned, plan: ownedPlan } = await plusStatus();
     setBusy(false);
+    setPlan(ownedPlan);
     if (owned === 'owned') {
       dispatch({ type: 'setPlus', plus: true });
       setNote({ text: 'Purchase restored. Plus is unlocked. 🍄', tone: 'info' });
@@ -113,7 +121,7 @@ export default function Upgrade() {
       <Text style={styles.hero}>🍄</Text>
       <Text style={[styles.title, { color: c.text, fontFamily: serif }]}>ShroomLock Plus</Text>
       <Text style={[styles.subtitle, { color: c.textMuted }]}>
-        One payment. Yours for good, on every phone you use.
+        Buy it once and keep it, or go monthly and cancel anytime.
       </Text>
 
       <Card style={{ gap: 14, marginTop: 20 }}>
@@ -122,22 +130,63 @@ export default function Upgrade() {
           title={`All ${MUSHROOMS.length} mushrooms`}
           body={`${others} boletes, brackets, chanterelles, morels, puffballs and more join the ${gilled} gilled mushrooms in your lessons and on the lock screen.`}
         />
-        <Feature title="Support a small, ad-free app" body="No ads, no tracking, no subscription." />
+        <Feature title="Support a small, ad-free app" body="No ads and no tracking, whichever way you pay." />
       </Card>
 
       <View style={{ marginTop: 24, gap: 10 }}>
         {plus ? (
-          <Text style={[styles.owned, { color: c.success }]}>✓ You have ShroomLock Plus</Text>
+          <>
+            <Text style={[styles.owned, { color: c.success }]}>✓ You have ShroomLock Plus</Text>
+            {plan === 'monthly' && (
+              <>
+                <Text style={[styles.body, { color: c.textMuted, textAlign: 'center' }]}>
+                  Monthly plan: it renews automatically until you cancel it in Google Play.
+                </Text>
+                <Button
+                  variant="secondary"
+                  label="Manage or cancel subscription"
+                  onPress={() => Linking.openURL(MANAGE_SUBSCRIPTION_URL)}
+                />
+                {shop.status === 'ready' && shop.lifetime && (
+                  <Button
+                    variant="ghost"
+                    label={`Switch to a one-time ${shop.lifetime.price ?? 'payment'}`}
+                    disabled={busy}
+                    onPress={() => buy('lifetime')}
+                  />
+                )}
+              </>
+            )}
+          </>
         ) : shop.status === 'loading' ? (
           <ActivityIndicator color={c.primary} />
         ) : shop.status === 'unavailable' ? (
           <Text style={[styles.body, { color: c.textMuted, textAlign: 'center' }]}>{shop.reason}</Text>
         ) : (
-          <Button
-            label={busy ? 'Opening Google Play…' : `Unlock Plus for ${shop.product.price ?? 'a one-time price'}`}
-            disabled={busy}
-            onPress={buy}
-          />
+          <>
+            {shop.lifetime && (
+              <Button
+                label={busy ? 'Opening Google Play…' : `Unlock Plus for ${shop.lifetime.price ?? 'a one-time price'}, once`}
+                disabled={busy}
+                onPress={() => buy('lifetime')}
+              />
+            )}
+            {shop.monthly && (
+              <>
+                <Button
+                  variant={shop.lifetime ? 'secondary' : 'primary'}
+                  label={`Or ${shop.monthly.price ?? 'a small price'} a ${periodName(shop.monthly.period)}`}
+                  disabled={busy}
+                  onPress={() => buy('monthly')}
+                />
+                <Text style={[styles.terms, { color: c.textMuted }]}>
+                  {`Monthly plan: ${shop.monthly.price ?? ''} a ${periodName(shop.monthly.period)}, renews automatically ` +
+                    'until you cancel. Cancel anytime in Google Play under Payments & subscriptions; Plus stays until ' +
+                    'the end of the period you paid for.'}
+                </Text>
+              </>
+            )}
+          </>
         )}
 
         {note && (
@@ -184,7 +233,8 @@ export default function Upgrade() {
 
       <Text style={[styles.small, { color: c.textMuted }]}>
         Payment is handled by Google Play. ShroomLock never sees your card details. Plus is tied to your Google account,
-        so “Restore purchase” brings it back after reinstalling or on a new phone.
+        so “Restore purchase” brings it back after reinstalling or on a new phone. If you switch from monthly to the
+        one-time purchase, cancel the subscription in Google Play so it doesn’t renew.
       </Text>
     </ScrollView>
   );
@@ -213,4 +263,5 @@ const styles = StyleSheet.create({
   input: { minHeight: 48, borderWidth: 1, borderRadius: 12, paddingHorizontal: 14, fontSize: 16, letterSpacing: 1 },
   codeLink: { fontSize: 14, textAlign: 'center', textDecorationLine: 'underline', paddingVertical: 6 },
   small: { fontSize: 13, lineHeight: 19, textAlign: 'center', marginTop: 24 },
+  terms: { fontSize: 12, lineHeight: 17, textAlign: 'center' },
 });

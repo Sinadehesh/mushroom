@@ -30,6 +30,9 @@ import {
   FREE_APP_LIMIT,
   isReviewCode,
   normalizeCode,
+  plusFromOwned,
+  PLUS_MONTHLY_ID,
+  PLUS_PRODUCT_ID,
   REVIEW_CODE_HASHES,
 } from './plus';
 import {
@@ -323,6 +326,22 @@ describe('ShroomLock Plus', () => {
     expect(canLockAnother(50, true)).toBe(true);
     expect(allowedLockedApps(['a', 'b', 'c'], false)).toEqual(['a', 'b']);
     expect(allowedLockedApps(['a', 'b', 'c'], true)).toEqual(['a', 'b', 'c']);
+  });
+
+  it('counts either the one-time purchase or an active monthly subscription as Plus', () => {
+    const bought = { productId: PLUS_PRODUCT_ID, state: 'purchased' } as const;
+    const monthly = { productId: PLUS_MONTHLY_ID, state: 'purchased' } as const;
+    expect(plusFromOwned([bought])).toEqual({ status: 'owned', plan: 'lifetime' });
+    expect(plusFromOwned([monthly])).toEqual({ status: 'owned', plan: 'monthly' });
+    // Someone who switched from monthly to the one-time purchase keeps Plus for good.
+    expect(plusFromOwned([monthly, bought])).toEqual({ status: 'owned', plan: 'lifetime' });
+    expect(plusFromOwned([{ productId: PLUS_MONTHLY_ID, state: 'pending' }])).toEqual({ status: 'pending', plan: null });
+    expect(plusFromOwned([{ ...bought, state: 'pending' }, monthly])).toEqual({ status: 'owned', plan: 'monthly' });
+  });
+
+  it('drops Plus when the subscription ends or the purchase is refunded (Play no longer lists it)', () => {
+    expect(plusFromOwned([])).toEqual({ status: 'none', plan: null });
+    expect(plusFromOwned([{ productId: 'something_else', state: 'purchased' }])).toEqual({ status: 'none', plan: null });
   });
 });
 

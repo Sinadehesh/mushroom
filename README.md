@@ -43,7 +43,7 @@ Specific to ShroomLock: edibility on every card (choice edible → deadly), with
 | Mushroom database                                             | ✅ 71 species (35 gilled, 16 pores & brackets, 20 ridges, spines and more)                                               |
 | Photos                                                        | ✅ 3 real iNaturalist photos per species, CC0 / CC BY / CC BY-SA, bundled                                                |
 | Android app lock (UsageStats + foreground service)            | ✅ Same module as FloraLock; emulator test on Android 8, 10, 13 and 15                                                   |
-| ShroomLock Plus (one-time purchase, Google Play Billing)      | ✅ Built; product `shroomlock_plus` must be created in Play Console                                                      |
+| ShroomLock Plus (one-time or monthly, Google Play Billing)    | ✅ Built; `shroomlock_plus` and `shroomlock_plus_monthly` must be created in Play |
 | Play Store signing and privacy policy                         | ⏳ Needs the signing secrets in this repo and hosting for the privacy page; see [docs/PLAY_STORE.md](docs/PLAY_STORE.md) |
 | iOS shield (Screen Time API)                                  | ⏳ Not started. See [docs/PLATFORM_INTEGRATION.md](docs/PLATFORM_INTEGRATION.md)                                         |
 
@@ -117,7 +117,7 @@ src/
   blocker/              Bridge to the native Android lock
   state/store.tsx       App state, persisted to AsyncStorage
 modules/app-blocker/    Native Android lock: foreground service, overlay fallback, boot receiver
-modules/play-billing/   Google Play Billing for the one-time Plus purchase
+modules/play-billing/   Google Play Billing for Plus (one-time purchase and monthly subscription)
 ```
 
 ## Photos

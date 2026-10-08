@@ -64,10 +64,11 @@ export const PRIVACY_POLICY = {
     {
       heading: 'Purchases',
       paragraphs: [
-        'ShroomLock Plus is an optional one-time purchase made through Google Play. Google Play processes the ' +
-          'payment under Google’s privacy policy (https://policies.google.com/privacy); ShroomLock never sees ' +
-          'your card or payment details. The app only asks Google Play on your phone whether your Google account ' +
-          'owns Plus, and remembers the answer on your device.',
+        'ShroomLock Plus is optional and sold through Google Play, as a one-time purchase or a monthly ' +
+          'subscription. Google Play processes the payment under Google’s privacy policy ' +
+          '(https://policies.google.com/privacy); ShroomLock never sees your card or payment details. The app only ' +
+          'asks Google Play on your phone whether your Google account owns Plus or has an active subscription, and ' +
+          'remembers the answer on your device.',
       ],
     },
     {
