@@ -5,6 +5,7 @@ import { AppState } from 'react-native';
 
 import { usePlusSync } from '../billing/usePlusSync';
 import { blocker } from '../blocker';
+import { useReminders } from '../reminders/useReminders';
 
 import { StoreProvider } from '../state/store';
 import { useColors } from '../theme';
@@ -21,6 +22,7 @@ export default function RootLayout() {
   return (
     <StoreProvider>
       <PlusSync />
+      <Reminders />
       <StatusBar style="auto" />
       <Stack
         screenOptions={{
@@ -51,5 +53,10 @@ export default function RootLayout() {
 
 function PlusSync() {
   usePlusSync();
+  return null;
+}
+
+function Reminders() {
+  useReminders();
   return null;
 }

@@ -1,4 +1,5 @@
-# Step 1: choose the app to lock and turn the lock on, which starts the foreground service.
+# Step 1: choose the app to lock and turn the lock on, which starts the foreground service,
+# then learn today's mushroom so the lock has something to ask.
 # The optional waits for "__pause__" (never on screen) are pauses, so viewers can follow along.
 appId: com.shroomlock.app
 ---
@@ -42,5 +43,22 @@ appId: com.shroomlock.app
 - tapOn: "Finish setup"
 - extendedWaitUntil:
     visible: "Start today.s lesson"
+    timeout: 10000
+# Learn today's mushroom (Death Cap): the lock only asks about mushrooms the user has studied.
+- tapOn: "Start today.s lesson"
+- tapOn: "Start the exam"
+- tapOn: "Death Cap"
+- scrollUntilVisible:
+    element:
+      text: "See my score"
+    direction: DOWN
+- tapOn: "See my score"
+- scrollUntilVisible:
+    element:
+      text: "Done for today"
+    direction: DOWN
+- tapOn: "Done for today"
+- extendedWaitUntil:
+    visible: "Tomorrow: .*"
     timeout: 10000
 - pressKey: Home

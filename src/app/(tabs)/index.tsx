@@ -43,6 +43,15 @@ export default function Home() {
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
+      <View style={styles.greet}>
+        <Text style={[styles.hello, { color: c.text, fontFamily: serif }]}>{greeting(new Date(now))}</Text>
+        {streak > 0 && (
+          <View style={[styles.streakPill, { backgroundColor: c.surface, borderColor: c.border }]}>
+            <Text style={{ color: c.text, fontSize: 15, fontWeight: '800' }}>🔥 {streak}</Text>
+          </View>
+        )}
+      </View>
+
       {blocker.available && (
         <Pressable
           accessibilityRole="button"
@@ -201,7 +210,15 @@ function Stat({ label, value }: { label: string; value: string }) {
   );
 }
 
+function greeting(date: Date): string {
+  const h = date.getHours();
+  return h < 5 ? 'Good night 🌙' : h < 12 ? 'Good morning 🍄' : h < 18 ? 'Good afternoon 🍂' : 'Good evening 🌲';
+}
+
 const styles = StyleSheet.create({
+  greet: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: 2 },
+  hello: { fontSize: 28, fontWeight: '700', flexShrink: 1 },
+  streakPill: { borderRadius: 999, borderWidth: StyleSheet.hairlineWidth, paddingHorizontal: 12, paddingVertical: 6 },
   container: { padding: 16, paddingBottom: 48, maxWidth: 640, width: '100%', alignSelf: 'center', gap: 12 },
   lockBanner: { borderRadius: 14, borderWidth: StyleSheet.hairlineWidth, padding: 14 },
   cardLabel: { fontSize: 14, fontWeight: '600', letterSpacing: 0.6, textTransform: 'uppercase' },

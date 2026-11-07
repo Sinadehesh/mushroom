@@ -40,6 +40,7 @@ Specific to ShroomLock: edibility on every card (choice edible → deadly), with
 | First-launch setup: safety, mushrooms per day, apps, the lock | ✅ Built                                                                                                                 |
 | Daily lesson + exam, spaced reviews, lock-screen quiz         | ✅ Built and unit-tested                                                                                                 |
 | Look-alike distractors, field clues, streaks and milestones   | ✅ Built and unit-tested                                                                                                 |
+| Evening reminder when the lesson isn’t done (can be off)      | ✅ Built (`expo-notifications`), timing unit-tested                                                                      |
 | Mushroom database                                             | ✅ 71 species (35 gilled, 16 pores & brackets, 20 ridges, spines and more)                                               |
 | Photos                                                        | ✅ 3 real iNaturalist photos per species, CC0 / CC BY / CC BY-SA, bundled                                                |
 | Android app lock (UsageStats + foreground service)            | ✅ Same module as FloraLock; emulator test on Android 8, 10, 13 and 15                                                   |

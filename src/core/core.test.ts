@@ -3,6 +3,7 @@ import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 
 import { MUSHROOM_CLUES } from '../data/mushroomClues';
+import { reminderText, reminderTimes } from './reminders';
 import { privacyHtml, privacyMarkdown } from '../data/privacyPolicy';
 import { MUSHROOMS, MUSHROOMS_BY_ID } from '../data/mushrooms';
 import { challengeReducer, penaltySecondsLeft, startChallenge } from './challenge';
@@ -218,12 +219,22 @@ describe('daily plan and spaced reviews', () => {
   });
 
   it('keeps the lock screen on what is due, then on anything learned', () => {
-    expect(ids(lockScreenPool(deck, {}, DAY1, 2))).toEqual(ids(deck.slice(0, 2)));
     let learn = markStudied({}, [deck[0].id], DAY1);
     expect(ids(lockScreenPool(deck, learn, DAY1, 1))).toEqual([deck[0].id]);
     learn = recordReview(learn, deck[0].id, true, DAY2);
     // Day 2, review done, lesson not studied yet: nothing due, so anything learned.
     expect(ids(lockScreenPool(deck, learn, DAY2, 1))).toEqual([deck[0].id]);
+  });
+
+  it('never asks about a mushroom the user has not studied', () => {
+    // Nothing studied yet: nothing to ask (the lock screen sends the user to the lesson).
+    expect(lockScreenPool(deck, {}, DAY1, 3)).toEqual([]);
+    const learn = markStudied({}, [deck[1].id, deck[deck.length - 1].id], DAY1);
+    for (const day of [DAY1, DAY2, addDays(DAY1, 40)]) {
+      const pool = ids(lockScreenPool(deck, learn, day, 3));
+      expect(pool.length).toBeGreaterThan(0);
+      expect(pool.every((id) => learn[id])).toBe(true);
+    }
   });
 
   it('asks mushrooms not yet answered right today first, never twice in a row', () => {
@@ -379,6 +390,28 @@ describe('privacy policy', () => {
   });
 });
 
+describe('daily reminder', () => {
+  const at = (d: number, h: number, m = 0) => new Date(2026, 10, d, h, m);
+  it('reminds today in the evening only while the lesson is not done', () => {
+    expect(reminderTimes(at(7, 9), false, 19, 3)).toEqual([at(7, 19), at(8, 19), at(9, 19)]);
+    expect(reminderTimes(at(7, 9), true, 19, 2)).toEqual([at(8, 19), at(9, 19)]);
+    // Past the reminder time: start tomorrow.
+    expect(reminderTimes(at(7, 20), false, 19, 1)).toEqual([at(8, 19)]);
+  });
+
+  it('names what is waiting and the streak it can save', () => {
+    expect(reminderText({ newCount: 3, streak: 6, things: 'mushrooms', first: true })).toEqual({
+      title: '3 new mushrooms are waiting',
+      body: 'One minute keeps your 6-day streak going 🔥',
+    });
+    expect(reminderText({ newCount: 1, streak: 0, things: 'mushrooms', first: true }).title).toBe('1 new mushroom is waiting');
+    expect(reminderText({ newCount: 0, streak: 6, things: 'mushrooms', first: false })).toEqual({
+      title: 'Time for a quick review',
+      body: 'Your daily lesson takes about a minute.',
+    });
+  });
+});
+
 describe('saved progress across app updates', () => {
   const saved: SavedState = {
     settings: { ...DEFAULT_SETTINGS, mushroomsPerDay: 3, categories: ['gilled'], onboarded: true },
@@ -408,9 +441,16 @@ describe('saved progress across app updates', () => {
   });
 
   it('fills settings added in later releases with defaults', () => {
-    const { onboarded: _, ...older } = saved.settings;
+    const { onboarded: _, reminders: __, ...older } = saved.settings;
     const { state } = readSaved(JSON.stringify({ ...saved, settings: older }));
-    expect(state.settings).toEqual({ ...saved.settings, onboarded: DEFAULT_SETTINGS.onboarded });
+    expect(state.settings).toEqual({
+      ...saved.settings,
+      onboarded: DEFAULT_SETTINGS.onboarded,
+      reminders: DEFAULT_SETTINGS.reminders,
+    });
+    // Turning reminders off is remembered.
+    const off = readSaved(serializeSaved({ ...saved, settings: { ...saved.settings, reminders: false } })).state;
+    expect(off.settings?.reminders).toBe(false);
     expect(state.learn).toEqual(saved.learn);
   });
 

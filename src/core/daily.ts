@@ -82,17 +82,15 @@ export function recordReview(learn: LearnMap, mushroomId: string, correct: boole
 }
 
 /**
- * Mushrooms the lock screen asks about: today's exam first; once the user has nothing due,
- * anything they've learned; on day one before the lesson, today's new mushrooms (the
- * penalty screen teaches the name).
+ * The mushrooms the lock screen may ask about: only ones the user has studied. Today's exam
+ * first (today's new mushrooms once studied, then the reviews due), else anything learned.
+ * Empty when nothing has been studied yet: the lock screen then sends the user to the
+ * lesson instead of quizzing them on a mushroom they've never seen.
  */
 export function lockScreenPool(deck: Mushroom[], learn: LearnMap, today: string, perDay: number): Mushroom[] {
   const exam = examMushrooms(deck, learn, today, perDay);
   if (exam.length) return exam;
-  const learned = deck.filter((m) => learn[m.id]);
-  if (learned.length) return learned;
-  const fresh = todaysNewMushrooms(deck, learn, today, perDay);
-  return fresh.length ? fresh : deck;
+  return deck.filter((m) => learn[m.id]);
 }
 
 /**

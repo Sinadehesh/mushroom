@@ -4,11 +4,13 @@ import { useMemo, useState, type ReactNode } from 'react';
 import { Platform, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
+import { blocker } from '../blocker';
 import { EdibilityBadge } from '../components/EdibilityBadge';
 import { CluesList, Lookalikes, SafetyNote } from '../components/MushroomFacts';
 import { MushroomPhoto } from '../components/MushroomPhoto';
 import { Button } from '../components/ui';
 import { dayKey, dueReviews, lessonStudied, REVIEW_DAYS, todaysNewMushrooms } from '../core/daily';
+import { collectedCount, currentStreak, masteredCount, milestones, nextMilestone } from '../core/progress';
 import { areLookalikes, buildChoices, lookalikesOf, shuffle } from '../core/quiz';
 import type { Mushroom } from '../core/types';
 import { MUSHROOM_CLUES } from '../data/mushroomClues';
@@ -30,6 +32,8 @@ interface Question {
  * Today's lesson: each new mushroom shown once on a study card, then an exam with one
  * multiple-choice question per new mushroom plus each mushroom due for review. Once the cards
  * have been studied today it opens on the exam, unless `?review=1` asks for the cards again.
+ * Opened from a lock (`?source=Instagram&unlock=<package>`) when nothing was learned yet:
+ * a right answer in the exam opens that app at the end.
  */
 export default function Lesson() {
   // The lesson is fixed when the screen opens, so wait for saved progress (e.g. when Android
@@ -46,7 +50,7 @@ function LessonScreen() {
   const deck = useDeck();
 
   // Freeze the lesson when the screen opens, so answering doesn't reshuffle it.
-  const { review } = useLocalSearchParams<{ review?: string }>();
+  const { review, source, unlock } = useLocalSearchParams<{ review?: string; source?: string; unlock?: string }>();
   const [{ fresh, repeats, studied }] = useState(() => {
     const today = dayKey(Date.now());
     return {
@@ -168,19 +172,78 @@ function LessonScreen() {
 
   if (phase === 'done') {
     const missed = questions.length - score;
+    const today = dayKey(Date.now());
+    const streak = currentStreak(state.streak, today);
+    const collected = collectedCount(deck, state.learn);
+    const goal = nextMilestone(
+      milestones({ collected, mastered: masteredCount(deck, state.learn), bestStreak: state.streak.best, total: MUSHROOMS.length }),
+    );
     return (
       <Centered>
         <Text style={styles.hero}>{missed === 0 ? '🍄' : '🌱'}</Text>
         <Text style={[styles.title, { color: c.text, fontFamily: serif }]}>
+          {missed === 0 ? 'Perfect score!' : 'Lesson done'}
+        </Text>
+        <Text style={[styles.score, { color: c.textMuted }]}>
           {score} of {questions.length} right
         </Text>
+        <View style={styles.wins}>
+          <Win value={`🔥 ${streak}`} label={streak === 1 ? 'day streak' : 'days in a row'} />
+          <Win value={`${collected}/${deck.length}`} label="mushrooms collected" />
+        </View>
+        {fresh.length > 0 && (
+          <View style={[styles.newCard, { backgroundColor: c.surface, borderColor: c.border }]}>
+            <Text style={[styles.newTitle, { color: c.textMuted }]}>New in your collection</Text>
+            <View style={styles.newRow}>
+              {fresh.map((p) => (
+                <View key={p.id} style={styles.newItem}>
+                  <View style={[styles.newThumb, { backgroundColor: c.surfaceMuted }]}>
+                    <MushroomPhoto mushroom={p} compact />
+                  </View>
+                  <Text numberOfLines={2} style={[styles.newName, { color: c.text }]}>
+                    {p.commonName}
+                  </Text>
+                </View>
+              ))}
+            </View>
+          </View>
+        )}
+        {goal && (
+          <Text style={[styles.goal, { color: c.text }]}>
+            Next goal: {goal.emoji} {goal.label} ({goal.value}/{goal.target})
+          </Text>
+        )}
         <Text style={[styles.body, { color: c.textMuted, textAlign: 'center' }]}>
           {fresh.length > 0 && `Today’s mushrooms come back for review in ${REVIEW_DAYS[0]} day. `}
           {missed > 0
             ? 'Mushrooms you missed start their reviews again tomorrow.'
             : 'Each right review pushes the next one further out.'}
         </Text>
-        <Button label="Done for today" onPress={close} />
+        {source && score > 0 ? (
+          <>
+            <Button
+              label={`Open ${source}`}
+              onPress={() => {
+                blocker.grantTemporaryAccess(unlock, state.settings.unlockMinutes);
+                router.replace('/');
+                if (unlock) blocker.returnToApp(unlock);
+              }}
+            />
+            <Button variant="ghost" label="Done for today" onPress={close} />
+          </>
+        ) : source ? (
+          <>
+            <Button
+              label={`Answer one to open ${source}`}
+              onPress={() =>
+                router.replace({ pathname: '/challenge', params: { source, ...(unlock ? { package: unlock } : {}) } })
+              }
+            />
+            <Button variant="ghost" label="Done for today" onPress={close} />
+          </>
+        ) : (
+          <Button label="Done for today" onPress={close} />
+        )}
       </Centered>
     );
   }
@@ -275,6 +338,16 @@ function LookalikeNote({ answer, pickedId }: { answer: Mushroom; pickedId: strin
   );
 }
 
+function Win({ value, label }: { value: string; label: string }) {
+  const c = useColors();
+  return (
+    <View style={[styles.win, { backgroundColor: c.surface, borderColor: c.border }]}>
+      <Text style={[styles.winValue, { color: c.text }]}>{value}</Text>
+      <Text style={[styles.winLabel, { color: c.textMuted }]}>{label}</Text>
+    </View>
+  );
+}
+
 function Centered({ children }: { children: ReactNode }) {
   return <ScrollView contentContainerStyle={[styles.scroll, styles.centered]}>{children}</ScrollView>;
 }
@@ -300,6 +373,18 @@ const styles = StyleSheet.create({
   sci: { fontSize: 16, fontStyle: 'italic', marginBottom: 8 },
   title: { fontSize: 28, fontWeight: '700', textAlign: 'center' },
   hero: { fontSize: 64, textAlign: 'center' },
+  score: { fontSize: 17, textAlign: 'center', marginTop: -6 },
+  wins: { flexDirection: 'row', gap: 12 },
+  win: { flex: 1, alignItems: 'center', borderRadius: 18, borderWidth: StyleSheet.hairlineWidth, paddingVertical: 14 },
+  winValue: { fontSize: 26, fontWeight: '800' },
+  winLabel: { fontSize: 13, marginTop: 2 },
+  newCard: { borderRadius: 18, borderWidth: StyleSheet.hairlineWidth, padding: 14, gap: 10 },
+  newTitle: { fontSize: 13, fontWeight: '700', letterSpacing: 0.8, textTransform: 'uppercase' },
+  newRow: { flexDirection: 'row', flexWrap: 'wrap', gap: 12 },
+  newItem: { width: 72, alignItems: 'center', gap: 6 },
+  newThumb: { width: 64, height: 64, borderRadius: 16, overflow: 'hidden' },
+  newName: { fontSize: 12, textAlign: 'center', lineHeight: 15 },
+  goal: { fontSize: 15, textAlign: 'center', fontWeight: '600' },
   body: { fontSize: 17, lineHeight: 25 },
   prompt: { fontSize: 24, fontWeight: '700', marginVertical: 14 },
   actions: { gap: 10, marginTop: 8 },

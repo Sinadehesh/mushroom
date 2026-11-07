@@ -1,7 +1,8 @@
 # End-to-end check of the Android app (run by .github/scripts/lock-e2e.sh on emulators).
 # Goes through first-launch setup (mushrooms per day, lock the system Settings app, turn the lock on),
-# opens Settings and expects the mushroom challenge, uses an emergency unlock and expects Settings
-# to stay open, does today's lesson and exam, then opens the ShroomLock Plus screen.
+# opens Settings and expects today's lesson to be offered instead of a question (nothing is learned
+# yet), uses an emergency unlock and expects Settings to stay open, does today's lesson and exam,
+# then opens the ShroomLock Plus screen.
 appId: com.shroomlock.app
 ---
 - launchApp:
@@ -44,14 +45,16 @@ appId: com.shroomlock.app
     visible: "Start today.s lesson"
     timeout: 10000
 
-# Opening the locked app must bring up the challenge (directly, or via the fallback overlay).
+# Opening the locked app must bring up ShroomLock (directly, or via the fallback overlay). Nothing
+# has been learned yet, so instead of a question about a mushroom the user has never seen, it offers
+# today's lesson.
 - launchApp:
     appId: com.android.settings
 - extendedWaitUntil:
-    visible: "What is this mushroom\\?|Identify the mushroom"
+    visible: "Meet your first mushrooms|Identify the mushroom"
     timeout: 20000
-# If the fallback overlay shows first, tap through it. The challenge screen may replace the
-# overlay a moment later on its own, so the tap is optional.
+# If the fallback overlay shows first, tap through it. ShroomLock may replace the overlay a moment
+# later on its own, so the tap is optional.
 - runFlow:
     when:
       visible: "Identify the mushroom"
@@ -60,12 +63,12 @@ appId: com.shroomlock.app
           text: "Identify the mushroom"
           optional: true
 - extendedWaitUntil:
-    visible: "What is this mushroom\\?"
+    visible: "Meet your first mushrooms"
     timeout: 15000
-- takeScreenshot: challenge-over-locked-app
+- assertNotVisible: "What is this mushroom\\?"
+- takeScreenshot: learn-first-over-locked-app
 
 # Emergency unlock opens Settings and it stays open during the unlock window.
-# (Scroll first: on small screens these links sit below the photo and the answers.)
 - scrollUntilVisible:
     element:
       text: "Emergency unlock.*"
@@ -77,11 +80,11 @@ appId: com.shroomlock.app
     direction: DOWN
 - tapOn: "Continue to Settings"
 - extendedWaitUntil:
-    notVisible: "What is this mushroom\\?"
+    notVisible: "Meet your first mushrooms"
     timeout: 10000
 - waitForAnimationToEnd:
     timeout: 5000
-- assertNotVisible: "What is this mushroom\\?"
+- assertNotVisible: "Meet your first mushrooms"
 - assertNotVisible: "Identify the mushroom"
 - takeScreenshot: unlocked-app
 
@@ -107,6 +110,10 @@ appId: com.shroomlock.app
           direction: DOWN
       - tapOn: "Next question|See my score"
 - takeScreenshot: exam-score
+- scrollUntilVisible:
+    element:
+      text: "Done for today"
+    direction: DOWN
 - tapOn: "Done for today"
 - extendedWaitUntil:
     visible: "Tomorrow: .*"

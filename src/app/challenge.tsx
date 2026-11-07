@@ -15,7 +15,8 @@ import {
   type ChallengeEvent,
   type ChallengeState,
 } from '../core/challenge';
-import { dayKey, lockScreenPool, pickLockMushroom } from '../core/daily';
+import { dayKey, lockScreenPool, pickLockMushroom, todaysNewMushrooms } from '../core/daily';
+import { collectedCount, currentStreak } from '../core/progress';
 import { areLookalikes, buildChoices } from '../core/quiz';
 import type { Mushroom } from '../core/types';
 import { MUSHROOM_CLUES } from '../data/mushroomClues';
@@ -37,6 +38,8 @@ function haptic(success: boolean) {
  * `shroomlock://challenge?source=Instagram`, or from the home screen with
  * `?practice=1` for extra practice (no unlock, no emergency exit).
  * Questions come from today's exam: the mushrooms learned today and the ones due for review.
+ * It never asks about a mushroom the user hasn't studied: with nothing learned yet, it sends
+ * them to today's lesson, which then unlocks the app.
  */
 export default function ChallengeScreen() {
   // `package` is set when the Android blocker opened this screen over a locked app.
@@ -53,6 +56,7 @@ export default function ChallengeScreen() {
   const [challenge, setChallenge] = useState<ChallengeState | null>(null);
   const [now, setNow] = useState(Date.now);
   const [emergencyUsed, setEmergencyUsed] = useState(false);
+  const [nothingLearned, setNothingLearned] = useState(false);
   // A fresh photo for every question, so users learn the mushroom rather than one picture.
   const [photo, setPhoto] = useState(randomPhoto);
 
@@ -64,7 +68,10 @@ export default function ChallengeScreen() {
 
   // Pick the first mushroom only once saved progress has loaded, so the daily plan sees it.
   useEffect(() => {
-    if (store.hydrated && !challenge && deck.length) setChallenge(startChallenge(pickMushroom().id));
+    if (!store.hydrated || challenge || !deck.length) return;
+    const pool = lockScreenPool(deck, store.learn, dayKey(Date.now()), store.settings.mushroomsPerDay);
+    if (pool.length) setChallenge(startChallenge(pickMushroom().id));
+    else setNothingLearned(true);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [store.hydrated, challenge, deck]);
 
@@ -82,6 +89,69 @@ export default function ChallengeScreen() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [mushroom?.id],
   );
+
+  if (nothingLearned) {
+    const appName = source ?? 'your app';
+    const emergencies = emergencyLeft(store, Date.now());
+    const lessonSize = todaysNewMushrooms(deck, store.learn, dayKey(Date.now()), store.settings.mushroomsPerDay).length;
+    const startLesson = () =>
+      router.replace({
+        pathname: '/lesson',
+        params: isPractice ? {} : { source: appName, ...(lockedPackage ? { unlock: lockedPackage } : {}) },
+      });
+    const skip = () => {
+      router.replace('/');
+      if (lockedPackage) blocker.goHome();
+    };
+    if (emergencyUsed) {
+      return (
+        <Result
+          title="Emergency unlock"
+          body={`${appName} is open for ${store.settings.unlockMinutes} minutes. ${emergencies} emergency unlock${emergencies === 1 ? '' : 's'} left today.`}
+          primary={{
+            label: `Continue to ${appName}`,
+            onPress: () => {
+              router.replace('/');
+              if (lockedPackage) blocker.returnToApp(lockedPackage);
+            },
+          }}
+        />
+      );
+    }
+    return (
+      <SafeAreaView style={[styles.screen, { backgroundColor: c.background }]} edges={['top', 'bottom']}>
+        <ScrollView contentContainerStyle={[styles.scroll, { justifyContent: 'center' }]}>
+          <Text style={[styles.kicker, { color: c.textMuted, textAlign: 'center' }]}>
+            {isPractice ? 'Practice' : `${appName} is locked`}
+          </Text>
+          <Text style={styles.firstHero}>🍄</Text>
+          <Text style={[styles.answerName, { color: c.text, fontFamily: serif, textAlign: 'center' }]}>
+            Meet your first mushrooms
+          </Text>
+          <Text style={[styles.fact, { color: c.textMuted, textAlign: 'center' }]}>
+            {isPractice
+              ? `There’s nothing to practise yet. Learn today’s ${lessonSize} mushrooms first; it takes about a minute.`
+              : `You haven’t learned any mushrooms yet, so there’s nothing to ask you. Learn today’s ${lessonSize} mushrooms (about a minute) and ${appName} opens.`}
+          </Text>
+          <Button label="Start today’s lesson" onPress={startLesson} />
+          {isPractice ? (
+            <Button variant="ghost" label="Not now" onPress={leave} />
+          ) : (
+            <View style={styles.escapes}>
+              <Button variant="ghost" label={`I don't need ${appName} right now`} onPress={skip} />
+              {emergencies > 0 && (
+                <Pressable accessibilityRole="button" onPress={emergencyUnlock} hitSlop={8}>
+                  <Text style={[styles.emergency, { color: c.textMuted }]}>
+                    Emergency unlock ({emergencies} left today)
+                  </Text>
+                </Pressable>
+              )}
+            </View>
+          )}
+        </ScrollView>
+      </SafeAreaView>
+    );
+  }
 
   if (!challenge || !mushroom) {
     return <View style={[styles.screen, { backgroundColor: c.background }]} />;
@@ -110,13 +180,16 @@ export default function ChallengeScreen() {
     setChallenge(startChallenge(pickMushroom(mushroom.id).id));
   };
 
-  const emergencyUnlock = () => {
+  function emergencyUnlock() {
     dispatch({ type: 'useEmergency', now: Date.now() });
     blocker.grantTemporaryAccess(lockedPackage, store.settings.unlockMinutes);
     setEmergencyUsed(true);
-  };
+  }
 
-  const leave = () => (router.canGoBack() ? router.back() : router.replace('/'));
+  function leave() {
+    if (router.canGoBack()) router.back();
+    else router.replace('/');
+  }
   // Leaving a real lock: close the challenge, then open the unlocked app or go to the home screen.
   const continueToApp = () => {
     router.replace('/');
@@ -145,11 +218,14 @@ export default function ChallengeScreen() {
   }
 
   if (challenge.phase === 'unlocked') {
+    const streak = currentStreak(store.streak, dayKey(now));
+    const collected = collectedCount(deck, store.learn);
     return (
       <Result
         mushroom={mushroom}
         photo={photo}
         title={`Yes — ${mushroom.commonName}!`}
+        progress={`${streak > 0 ? `🔥 ${streak}-day streak · ` : ''}${collected} of ${deck.length} mushrooms collected`}
         body={
           isPractice
             ? mushroom.fact
@@ -262,10 +338,12 @@ function Result({
   body,
   primary,
   secondary,
+  progress,
 }: {
   mushroom?: Mushroom;
   photo?: number;
   title: string;
+  progress?: string;
   body: string;
   primary: { label: string; onPress: () => void };
   secondary?: { label: string; onPress: () => void };
@@ -281,6 +359,11 @@ function Result({
         )}
         <View style={styles.panel}>
           <Text style={[styles.answerName, { color: c.success, fontFamily: serif }]}>{title}</Text>
+          {progress && (
+            <Text style={[styles.progress, { color: c.text, backgroundColor: c.surface, borderColor: c.border }]}>
+              {progress}
+            </Text>
+          )}
           {mushroom && <EdibilityBadge edibility={mushroom.edibility} />}
           {mushroom && (
             <Text style={[styles.sci, { color: c.textMuted, fontFamily: serif }]}>
@@ -311,6 +394,17 @@ const styles = StyleSheet.create({
   escapes: { marginTop: 8, alignItems: 'center', gap: 4 },
   emergency: { fontSize: 14, textDecorationLine: 'underline', paddingVertical: 6 },
   wrong: { fontSize: 16, fontWeight: '700' },
+  firstHero: { fontSize: 72, textAlign: 'center', marginTop: 12 },
+  progress: {
+    alignSelf: 'flex-start',
+    fontSize: 14,
+    fontWeight: '700',
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    borderRadius: 999,
+    borderWidth: StyleSheet.hairlineWidth,
+    overflow: 'hidden',
+  },
   answerName: { fontSize: 32, fontWeight: '700' },
   sci: { fontSize: 16, fontStyle: 'italic' },
   fact: { fontSize: 17, lineHeight: 25, marginVertical: 8 },

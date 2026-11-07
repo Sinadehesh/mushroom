@@ -16,7 +16,7 @@ ShroomLock: Learn Mushrooms
 Lock distracting apps. Name the mushroom in the photo to open them.
 ```
 
-## Full description (2448/4000)
+## Full description (2547/4000)
 
 ```text
 ShroomLock is an app blocker that teaches you something. Turn every urge to scroll into a five-second mushroom lesson.
@@ -37,6 +37,7 @@ LEARN A FEW MUSHROOMS A DAY
 WHAT'S INSIDE
 • 71 mushrooms: gilled mushrooms, boletes, brackets, chanterelles, morels, puffballs and more, each with real photos.
 • A daily streak, a collection with milestones, and your Mycology IQ.
+• A gentle evening reminder on days you haven’t done your lesson (you can turn it off).
 • Light and dark mode.
 
 FREE, WITH AN OPTIONAL UPGRADE

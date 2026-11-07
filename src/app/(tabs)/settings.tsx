@@ -3,6 +3,8 @@ import type { ReactNode } from 'react';
 import { Alert, Platform, ScrollView, StyleSheet, Text, View } from 'react-native';
 
 import { LockSetup } from '../../components/LockSetup';
+import { REMINDER_HOUR } from '../../core/reminders';
+import { allowReminders } from '../../reminders/useReminders';
 import { MushroomsPerDay } from '../../components/MushroomsPerDay';
 import { Button, Card, Chip, SectionTitle } from '../../components/ui';
 import { deckCategories, FREE_APP_LIMIT, isPlusCategory } from '../../core/plus';
@@ -66,6 +68,19 @@ export default function SettingsScreen() {
         deckSize={deck.length}
         onChange={(mushroomsPerDay) => update({ mushroomsPerDay })}
       />
+      {Platform.OS === 'android' && (
+        <Setting label="Daily reminder" hint="One notification in the evening, only if today’s lesson isn’t done">
+          <Chip label="Off" selected={!settings.reminders} onPress={() => update({ reminders: false })} />
+          <Chip
+            label={`On, ${REMINDER_HOUR > 12 ? REMINDER_HOUR - 12 : REMINDER_HOUR} ${REMINDER_HOUR >= 12 ? 'pm' : 'am'}`}
+            selected={settings.reminders}
+            onPress={() => {
+              update({ reminders: true });
+              allowReminders().catch(() => {});
+            }}
+          />
+        </Setting>
+      )}
 
       <SectionTitle>Lock screen</SectionTitle>
       <Setting label="Unlock for" hint="How long a correct answer opens the app">

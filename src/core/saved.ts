@@ -108,6 +108,7 @@ function readSettings(s: Record<string, unknown>): Settings {
     if (categories.length) settings.categories = categories;
   }
   if (typeof s.onboarded === 'boolean') settings.onboarded = s.onboarded;
+  if (typeof s.reminders === 'boolean') settings.reminders = s.reminders;
   return settings;
 }
 

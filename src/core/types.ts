@@ -74,6 +74,8 @@ export interface Settings {
   categories: MushroomCategory[];
   /** First-launch setup finished. */
   onboarded: boolean;
+  /** A notification in the evening on days the lesson isn't done yet (see core/reminders.ts). */
+  reminders: boolean;
 }
 
 export const DEFAULT_SETTINGS: Settings = {
@@ -83,6 +85,7 @@ export const DEFAULT_SETTINGS: Settings = {
   emergencyUnlocksPerDay: 2,
   categories: ['gilled', 'pored', 'other'],
   onboarded: false,
+  reminders: true,
 };
 
 export const MUSHROOMS_PER_DAY_MIN = 1;
