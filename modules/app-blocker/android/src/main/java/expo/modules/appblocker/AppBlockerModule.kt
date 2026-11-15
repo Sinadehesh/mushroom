@@ -109,6 +109,18 @@ class AppBlockerModule : Module() {
       goHome(context)
     }
 
+    // --- The app family (ShroomLock, ShroomLock, CloudLock) -----------------------
+
+    /** Records whether this app has Plus, for the sister apps' family price. */
+    Function("setFamilyPlus") { plus: Boolean ->
+      Family.setPlus(context, plus)
+    }
+
+    /** The sister apps: [{ packageName, installed, plus }]. */
+    AsyncFunction("getFamilyApps") {
+      Family.sisters(context)
+    }
+
     // --- Staying alive ---------------------------------------------------------
 
     /** True while the watcher service is alive in this process. */

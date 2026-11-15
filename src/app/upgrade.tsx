@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { router } from 'expo-router';
 import { ActivityIndicator, Linking, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
 
 import {
@@ -10,19 +11,29 @@ import {
   onPurchaseUpdate,
   periodName,
   plusStatus,
+  type PlusOffer,
   type PlusPlan,
   type StoreProduct,
 } from '../billing';
 import { Button, Card } from '../components/ui';
+import { familyPriceFrom, listNames, sisterApps, thisApp, type FamilyApp } from '../core/family';
 import { FREE_APP_LIMIT, isReviewCode } from '../core/plus';
 import { MUSHROOMS } from '../data/mushrooms';
+import { sisterStatuses } from '../family';
 import { hasPlus, useStore } from '../state/store';
 import { serif, useColors } from '../theme';
 
 type Shop =
   | { status: 'loading' }
   | { status: 'unavailable'; reason: string }
-  | { status: 'ready'; lifetime: StoreProduct | null; monthly: StoreProduct | null };
+  | {
+      status: 'ready';
+      lifetime: StoreProduct | null;
+      monthly: StoreProduct | null;
+      family: StoreProduct | null;
+      /** The sister app whose Plus earns the family price here, if any. */
+      familyVia: FamilyApp | null;
+    };
 
 const gilled = MUSHROOMS.filter((m) => m.category === 'gilled').length;
 const others = MUSHROOMS.length - gilled;
@@ -53,12 +64,13 @@ export default function Upgrade() {
           reason: 'Purchases need the Google Play Store. Install ShroomLock from Google Play to upgrade.',
         });
       }
-      const [offers, status] = await Promise.all([getPlusOffers(), plusStatus()]);
+      const [offers, status, sisters] = await Promise.all([getPlusOffers(), plusStatus(), sisterStatuses()]);
       if (!live) return;
       setPlan(status.plan);
+      const familyVia = offers.family ? familyPriceFrom(sisters) : null;
       setShop(
-        offers.lifetime || offers.monthly
-          ? { status: 'ready', ...offers }
+        offers.lifetime || offers.monthly || familyVia
+          ? { status: 'ready', ...offers, familyVia }
           : { status: 'unavailable', reason: 'ShroomLock Plus isn’t on sale yet. Please check back soon.' },
       );
     })();
@@ -77,7 +89,7 @@ export default function Upgrade() {
     };
   }, []);
 
-  const buy = async (chosen: PlusPlan) => {
+  const buy = async (chosen: PlusOffer) => {
     setNote(null);
     setBusy(true);
     try {
@@ -116,6 +128,14 @@ export default function Upgrade() {
     }
   };
 
+  // The one-time purchase on offer: at the family price when another of our apps has Plus.
+  const familyDeal = shop.status === 'ready' && shop.familyVia && shop.family ? shop : null;
+  const oneTime: { offer: PlusOffer; product: StoreProduct } | null = familyDeal?.family
+    ? { offer: 'family', product: familyDeal.family }
+    : shop.status === 'ready' && shop.lifetime
+      ? { offer: 'lifetime', product: shop.lifetime }
+      : null;
+
   return (
     <ScrollView contentContainerStyle={styles.container} keyboardShouldPersistTaps="handled">
       <Text style={styles.hero}>🍄</Text>
@@ -147,12 +167,12 @@ export default function Upgrade() {
                   label="Manage or cancel subscription"
                   onPress={() => Linking.openURL(MANAGE_SUBSCRIPTION_URL)}
                 />
-                {shop.status === 'ready' && shop.lifetime && (
+                {oneTime && (
                   <Button
                     variant="ghost"
-                    label={`Switch to a one-time ${shop.lifetime.price ?? 'payment'}`}
+                    label={`Switch to a one-time ${oneTime.product.price ?? 'payment'}`}
                     disabled={busy}
-                    onPress={() => buy('lifetime')}
+                    onPress={() => buy(oneTime.offer)}
                   />
                 )}
               </>
@@ -162,6 +182,21 @@ export default function Upgrade() {
           <ActivityIndicator color={c.primary} />
         ) : shop.status === 'unavailable' ? (
           <Text style={[styles.body, { color: c.textMuted, textAlign: 'center' }]}>{shop.reason}</Text>
+        ) : familyDeal?.familyVia && familyDeal.family ? (
+          <>
+            <Card style={{ gap: 6, borderWidth: 2, borderColor: c.primary }}>
+              <Text style={[styles.dealTitle, { color: c.text }]}>🎁 Family price</Text>
+              <Text style={[styles.body, { color: c.textMuted }]}>
+                {`You have Plus in ${familyDeal.familyVia.name}, so ${thisApp().name} Plus is yours for ` +
+                  `${familyDeal.family.price ?? 'much less'}, once. Thank you for supporting our apps!`}
+              </Text>
+            </Card>
+            <Button
+              label={busy ? 'Opening Google Play…' : `Unlock Plus for ${familyDeal.family.price ?? 'the family price'}, once`}
+              disabled={busy}
+              onPress={() => buy('family')}
+            />
+          </>
         ) : (
           <>
             {shop.lifetime && (
@@ -170,6 +205,14 @@ export default function Upgrade() {
                 disabled={busy}
                 onPress={() => buy('lifetime')}
               />
+            )}
+            {shop.family && (
+              <Pressable accessibilityRole="link" onPress={() => router.push('/mission')} hitSlop={8}>
+                <Text style={[styles.familyHint, { color: c.textMuted }]}>
+                  {`Have Plus in ${listNames(sisterApps())}? Then Plus here is only ${shop.family.price ?? 'a family price'}. `}
+                  <Text style={{ color: c.primary, textDecorationLine: 'underline' }}>See our apps</Text>
+                </Text>
+              </Pressable>
             )}
             {shop.monthly && (
               <>
@@ -264,4 +307,6 @@ const styles = StyleSheet.create({
   codeLink: { fontSize: 14, textAlign: 'center', textDecorationLine: 'underline', paddingVertical: 6 },
   small: { fontSize: 13, lineHeight: 19, textAlign: 'center', marginTop: 24 },
   terms: { fontSize: 12, lineHeight: 17, textAlign: 'center' },
+  dealTitle: { fontSize: 18, fontWeight: '700' },
+  familyHint: { fontSize: 13, lineHeight: 19, textAlign: 'center' },
 });

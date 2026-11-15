@@ -25,6 +25,16 @@ export interface AppBlockerNativeModule {
   requestIgnoreBatteryOptimizations(): void;
   getManufacturer(): string;
   openManufacturerSettings(): boolean;
+  /** Tells the sister apps whether this app has Plus (for their family price). */
+  setFamilyPlus(plus: boolean): void;
+  /** The sister apps on this phone, and whether each has Plus. */
+  getFamilyApps(): Promise<FamilyAppStatus[]>;
+}
+
+export interface FamilyAppStatus {
+  packageName: string;
+  installed: boolean;
+  plus: boolean;
 }
 
 /** Android only. `null` on iOS, on the web, and in Expo Go (which can't load custom native code). */

@@ -39,6 +39,7 @@ export default function RootLayout() {
         <Stack.Screen name="apps" options={{ title: 'Apps to lock' }} />
         <Stack.Screen name="privacy" options={{ title: 'Privacy policy' }} />
         <Stack.Screen name="upgrade" options={{ title: 'ShroomLock Plus' }} />
+        <Stack.Screen name="mission" options={{ title: 'Our mission' }} />
         <Stack.Screen name="lesson" options={{ title: 'Today’s lesson' }} />
         <Stack.Screen name="onboarding" options={{ headerShown: false, gestureEnabled: false }} />
         {/* The lock-screen intercept: no swipe-to-dismiss, no back gesture. */}

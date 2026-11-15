@@ -9,6 +9,13 @@ import type { MushroomCategory } from './types';
  */
 export const PLUS_PRODUCT_ID = 'shroomlock_plus';
 export const PLUS_MONTHLY_ID = 'shroomlock_plus_monthly';
+/**
+ * The family price: the same one-time Plus, cheaper, for someone who has Plus in one of our
+ * other apps (see family.ts). The app only offers it then.
+ */
+export const PLUS_FAMILY_ID = 'shroomlock_plus_family';
+
+export const PLUS_PRODUCT_IDS = [PLUS_PRODUCT_ID, PLUS_FAMILY_ID, PLUS_MONTHLY_ID];
 
 export type PlusPlan = 'lifetime' | 'monthly';
 
@@ -19,18 +26,20 @@ export interface OwnedPlusProduct {
 }
 
 /**
- * How this account has Plus: the one-time purchase wins over a subscription, since it never
- * ends. "pending" while a payment hasn't gone through yet; "none" when Play lists neither.
+ * How this account has Plus: a one-time purchase (at full or family price) wins over a
+ * subscription, since it never ends. "pending" while a payment hasn't gone through yet;
+ * "none" when Play lists none of them.
  */
 export function plusFromOwned(owned: OwnedPlusProduct[]): { status: 'owned' | 'pending' | 'none'; plan: PlusPlan | null } {
   const find = (id: string) => owned.find((p) => p.productId === id);
   for (const [id, plan] of [
     [PLUS_PRODUCT_ID, 'lifetime'],
+    [PLUS_FAMILY_ID, 'lifetime'],
     [PLUS_MONTHLY_ID, 'monthly'],
   ] as const) {
     if (find(id)?.state === 'purchased') return { status: 'owned', plan };
   }
-  if (find(PLUS_PRODUCT_ID) || find(PLUS_MONTHLY_ID)) return { status: 'pending', plan: null };
+  if (PLUS_PRODUCT_IDS.some(find)) return { status: 'pending', plan: null };
   return { status: 'none', plan: null };
 }
 export const FREE_APP_LIMIT = 2;

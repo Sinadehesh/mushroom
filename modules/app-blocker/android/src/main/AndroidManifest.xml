@@ -26,6 +26,10 @@
     <package android:name="com.samsung.android.lool" />
     <package android:name="com.samsung.android.sm" />
     <package android:name="com.asus.mobilemanager" />
+    <!-- The sister apps, for the family price (expo.modules.appblocker.Family). -->
+    <package android:name="com.floralock.app" />
+    <package android:name="com.shroomlock.app" />
+    <package android:name="com.cloudlock.app" />
     <intent>
       <action android:name="android.intent.action.MAIN" />
       <category android:name="android.intent.category.LAUNCHER" />
@@ -50,5 +54,12 @@
         <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
       </intent-filter>
     </receiver>
+
+    <!-- Answers the sister apps' "has Plus here?" (it checks the caller is one of them). -->
+    <provider
+      android:name="expo.modules.appblocker.FamilyProvider"
+      android:authorities="${applicationId}.family"
+      android:exported="true"
+      android:grantUriPermissions="false" />
   </application>
 </manifest>

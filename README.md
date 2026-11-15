@@ -45,6 +45,8 @@ Specific to ShroomLock: edibility on every card (choice edible → deadly), with
 | Photos                                                        | ✅ 3 real iNaturalist photos per species, CC0 / CC BY / CC BY-SA, bundled                                                |
 | Android app lock (UsageStats + foreground service)            | ✅ Same module as FloraLock; emulator test on Android 8, 10, 13 and 15                                                   |
 | ShroomLock Plus (one-time or monthly, Google Play Billing)    | ✅ Built; `shroomlock_plus` and `shroomlock_plus_monthly` must be created in Play |
+| Family price: Plus for less with Plus in FloraLock/CloudLock | ✅ Built; `shroomlock_plus_family` (one-time, $1.99) must be created in Play |
+| Our mission screen: sister apps, donate (website), rate, share | ✅ Built; donations happen on www.sinadehesh.com/support/ |
 | Play Store signing and privacy policy                         | ⏳ Needs the signing secrets in this repo and hosting for the privacy page; see [docs/PLAY_STORE.md](docs/PLAY_STORE.md) |
 | iOS shield (Screen Time API)                                  | ⏳ Not started. See [docs/PLATFORM_INTEGRATION.md](docs/PLATFORM_INTEGRATION.md)                                         |
 
@@ -101,7 +103,8 @@ src/
     (tabs)/index.tsx      Today: lesson card, streak, next goal, Mycology IQ, trouble mushrooms
     (tabs)/browse.tsx     Collection: collected and mastered, milestones, searchable guide
     (tabs)/settings.tsx   Lock, Plus, mushrooms per day, unlock window, penalty, emergency unlocks, deck
-    upgrade.tsx           ShroomLock Plus: what it adds, purchase and restore
+    upgrade.tsx           ShroomLock Plus: what it adds, purchase and restore, the family price
+    mission.tsx           Our mission, the sister apps, and ways to help (donate, rate, share)
     lesson.tsx            Study cards (clues, edibility, look-alikes), then the exam
     challenge.tsx         The lock-screen intercept (shroomlock://challenge?source=Instagram)
     mushroom/[id].tsx     Mushroom page: clues, look-alikes, your reviews
@@ -113,11 +116,13 @@ src/
     challenge.ts          Lock-screen state machine (question → penalty → unlocked)
     stats.ts              Mycology IQ, accuracy, trouble mushrooms
     plus.ts               What's free and what Plus unlocks
+    family.ts             The sister apps and who gets the family price
     saved.ts              Saved progress: reading older saves after an app update
   data/                 Mushrooms, field clues, photos (generated), privacy policy
   blocker/              Bridge to the native Android lock
+  family/               Asks the sister apps (through the native module) whether they have Plus
   state/store.tsx       App state, persisted to AsyncStorage
-modules/app-blocker/    Native Android lock: foreground service, overlay fallback, boot receiver
+modules/app-blocker/    Native Android lock: foreground service, overlay fallback, boot receiver, FamilyProvider (Plus status for the sister apps)
 modules/play-billing/   Google Play Billing for Plus (one-time purchase and monthly subscription)
 ```
 

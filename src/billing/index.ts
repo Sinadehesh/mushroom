@@ -4,16 +4,20 @@
  * `PlayBilling` is null.
  */
 import PlayBilling, { type ProductType, type PurchaseUpdate, type StoreProduct } from '../../modules/play-billing';
-import { plusFromOwned, PLUS_MONTHLY_ID, PLUS_PRODUCT_ID, type PlusPlan } from '../core/plus';
+import { plusFromOwned, PLUS_FAMILY_ID, PLUS_MONTHLY_ID, PLUS_PRODUCT_ID, PLUS_PRODUCT_IDS, type PlusPlan } from '../core/plus';
 
 export type { PlusPlan, PurchaseUpdate, StoreProduct };
 
 /** "owned", "pending" (payment not through yet), "none", or null when Google Play couldn't be asked. */
 export type PlusOwnership = 'owned' | 'pending' | 'none' | null;
 
-const PLANS: Record<PlusPlan, { id: string; type: ProductType }> = {
+/** What the Plus screen can sell: once, monthly, or once at the family price (see core/family.ts). */
+export type PlusOffer = PlusPlan | 'family';
+
+const PLANS: Record<PlusOffer, { id: string; type: ProductType }> = {
   lifetime: { id: PLUS_PRODUCT_ID, type: 'inapp' },
   monthly: { id: PLUS_MONTHLY_ID, type: 'subs' },
+  family: { id: PLUS_FAMILY_ID, type: 'inapp' },
 };
 
 const CONNECT_TIMEOUT_MS = 10_000;
@@ -34,16 +38,16 @@ export async function billingAvailable(): Promise<boolean> {
   );
 }
 
-/** The two ways to buy Plus as listed in Play Console, with local prices; null where one isn't set up. */
-export async function getPlusOffers(): Promise<Record<PlusPlan, StoreProduct | null>> {
-  const get = (plan: PlusPlan) =>
+/** The ways to buy Plus as listed in Play Console, with local prices; null where one isn't set up. */
+export async function getPlusOffers(): Promise<Record<PlusOffer, StoreProduct | null>> {
+  const get = (plan: PlusOffer) =>
     PlayBilling ? PlayBilling.getProduct(PLANS[plan].id, PLANS[plan].type).catch(() => null) : Promise.resolve(null);
-  const [lifetime, monthly] = await Promise.all([get('lifetime'), get('monthly')]);
-  return { lifetime, monthly };
+  const [lifetime, monthly, family] = await Promise.all([get('lifetime'), get('monthly'), get('family')]);
+  return { lifetime, monthly, family };
 }
 
 /** Opens Google Play's purchase sheet; the result arrives through `onPurchaseUpdate`. */
-export async function buyPlus(plan: PlusPlan): Promise<void> {
+export async function buyPlus(plan: PlusOffer): Promise<void> {
   if (!PlayBilling) throw new Error('Purchases aren’t available in this version of ShroomLock');
   await PlayBilling.purchase(PLANS[plan].id, PLANS[plan].type);
 }
@@ -78,7 +82,7 @@ export function periodName(period: string | null): string {
 export function onPurchaseUpdate(listener: (update: PurchaseUpdate) => void): () => void {
   if (!PlayBilling) return () => {};
   const sub = PlayBilling.addListener('onPurchaseUpdate', (update) => {
-    if (!update.productId || update.productId === PLUS_PRODUCT_ID || update.productId === PLUS_MONTHLY_ID) listener(update);
+    if (!update.productId || PLUS_PRODUCT_IDS.includes(update.productId)) listener(update);
   });
   return () => sub.remove();
 }

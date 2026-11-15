@@ -7,6 +7,7 @@ import { REMINDER_HOUR } from '../../core/reminders';
 import { allowReminders } from '../../reminders/useReminders';
 import { MushroomsPerDay } from '../../components/MushroomsPerDay';
 import { Button, Card, Chip, SectionTitle } from '../../components/ui';
+import { sisterApps, thisApp } from '../../core/family';
 import { deckCategories, FREE_APP_LIMIT, isPlusCategory } from '../../core/plus';
 import type { MushroomCategory } from '../../core/types';
 import { hasPlus, useDeck, useStore } from '../../state/store';
@@ -128,6 +129,17 @@ export default function SettingsScreen() {
           />
         ))}
       </Setting>
+
+      <SectionTitle>Our mission</SectionTitle>
+      <Card style={{ gap: 10, marginBottom: 8 }}>
+        <Text style={{ color: c.text, fontSize: 16, lineHeight: 22 }}>
+          {`${thisApp().name} is made by a small independent developer, to help you notice the nature around you. ` +
+            `Meet ${sisterApps()
+              .map((a) => `${a.emoji} ${a.name}`)
+              .join(' and ')} (Plus there at a family price), and see how you can help.`}
+        </Text>
+        <Button variant="secondary" label="Our mission and apps" onPress={() => router.push('/mission')} />
+      </Card>
 
       <SectionTitle>About</SectionTitle>
       <View style={{ gap: 8 }}>

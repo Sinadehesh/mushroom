@@ -4,6 +4,7 @@ import { describe, expect, it } from 'vitest';
 
 import { MUSHROOM_CLUES } from '../data/mushroomClues';
 import { reminderText, reminderTimes } from './reminders';
+import { FAMILY_APPS, familyPriceFrom, listNames, sisterApps, thisApp } from './family';
 import { privacyHtml, privacyMarkdown } from '../data/privacyPolicy';
 import { MUSHROOMS, MUSHROOMS_BY_ID } from '../data/mushrooms';
 import { challengeReducer, penaltySecondsLeft, startChallenge } from './challenge';
@@ -32,8 +33,10 @@ import {
   isReviewCode,
   normalizeCode,
   plusFromOwned,
+  PLUS_FAMILY_ID,
   PLUS_MONTHLY_ID,
   PLUS_PRODUCT_ID,
+  PLUS_PRODUCT_IDS,
   REVIEW_CODE_HASHES,
 } from './plus';
 import {
@@ -350,9 +353,56 @@ describe('ShroomLock Plus', () => {
     expect(plusFromOwned([{ ...bought, state: 'pending' }, monthly])).toEqual({ status: 'owned', plan: 'monthly' });
   });
 
+  it('counts Plus bought at the family price as the one-time purchase', () => {
+    const family = { productId: PLUS_FAMILY_ID, state: 'purchased' } as const;
+    expect(plusFromOwned([family])).toEqual({ status: 'owned', plan: 'lifetime' });
+    expect(plusFromOwned([{ productId: PLUS_MONTHLY_ID, state: 'purchased' }, family])).toEqual({
+      status: 'owned',
+      plan: 'lifetime',
+    });
+    expect(plusFromOwned([{ ...family, state: 'pending' }])).toEqual({ status: 'pending', plan: null });
+    expect(new Set(PLUS_PRODUCT_IDS).size).toBe(3);
+    for (const id of PLUS_PRODUCT_IDS) expect(id.startsWith(`${thisApp().id}_plus`)).toBe(true);
+  });
+
   it('drops Plus when the subscription ends or the purchase is refunded (Play no longer lists it)', () => {
     expect(plusFromOwned([])).toEqual({ status: 'none', plan: null });
     expect(plusFromOwned([{ productId: 'something_else', state: 'purchased' }])).toEqual({ status: 'none', plan: null });
+  });
+});
+
+describe('app family', () => {
+  it('lists the same apps as the native side, and this app as itself', () => {
+    const kotlin = readFileSync(
+      new URL('../../modules/app-blocker/android/src/main/java/expo/modules/appblocker/Family.kt', import.meta.url),
+      'utf8',
+    );
+    const native = [...kotlin.match(/PACKAGES = listOf\(([^)]*)\)/)![1].matchAll(/"([^"]+)"/g)].map((m) => m[1]);
+    expect(native).toEqual(FAMILY_APPS.map((a) => a.packageName));
+    const manifest = readFileSync(new URL('../../modules/app-blocker/android/src/main/AndroidManifest.xml', import.meta.url), 'utf8');
+    for (const pkg of native) expect(manifest).toContain(`<package android:name="${pkg}" />`);
+    const appJson = JSON.parse(readFileSync(new URL('../../app.json', import.meta.url), 'utf8'));
+    expect(thisApp().packageName).toBe(appJson.expo.android.package);
+    expect(sisterApps()).toHaveLength(2);
+    expect(sisterApps()).not.toContain(thisApp());
+  });
+
+  it('gives the family price only when an installed sister app has Plus', () => {
+    const [a, b] = sisterApps();
+    const status = (app: typeof a, installed: boolean, plus: boolean) => ({ packageName: app.packageName, installed, plus });
+    expect(familyPriceFrom([])).toBeNull();
+    expect(familyPriceFrom([status(a, true, false), status(b, false, false)])).toBeNull();
+    expect(familyPriceFrom([status(a, false, true)])).toBeNull();
+    expect(familyPriceFrom([status(a, true, false), status(b, true, true)])).toBe(b);
+    // This app's own Plus never counts.
+    expect(familyPriceFrom([{ packageName: thisApp().packageName, installed: true, plus: true }])).toBeNull();
+  });
+
+  it('names apps in a list', () => {
+    const [a, b] = sisterApps();
+    expect(listNames([])).toBe('');
+    expect(listNames([a])).toBe(a.name);
+    expect(listNames([a, b])).toBe(`${a.name} and ${b.name}`);
   });
 });
 
