@@ -5,8 +5,9 @@ appId: com.shroomlock.app
 - launchApp:
     appId: com.shroomlock.app
     stopApp: false
+# Today's lesson was done in step 1, so wait for the tab bar rather than the lesson card.
 - extendedWaitUntil:
-    visible: "Start today.s lesson"
+    visible: "Settings"
     timeout: 15000
 - tapOn: "Settings"
 - scrollUntilVisible:
