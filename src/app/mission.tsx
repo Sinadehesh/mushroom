@@ -77,11 +77,15 @@ export default function Mission() {
             ) : state.plus ? (
               <Text style={[styles.small, { color: c.success }]}>🎁 Plus there is yours at the family price.</Text>
             ) : null}
-            <Button
-              variant="secondary"
-              label={status?.installed ? `Open ${app.name}` : 'Get it on Google Play'}
-              onPress={() => openSister(app.packageName, !!status?.installed)}
-            />
+            {app.comingSoon && !status?.installed ? (
+              <Button variant="secondary" label="Coming soon to Google Play" disabled onPress={() => {}} />
+            ) : (
+              <Button
+                variant="secondary"
+                label={status?.installed ? `Open ${app.name}` : 'Get it on Google Play'}
+                onPress={() => openSister(app.packageName, !!status?.installed)}
+              />
+            )}
             {status?.plus && !hasPlus(state) && (
               <Button variant="ghost" label="Get the family price here" onPress={() => router.push('/upgrade')} />
             )}

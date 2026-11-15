@@ -209,7 +209,7 @@ export default function Upgrade() {
             {shop.family && (
               <Pressable accessibilityRole="link" onPress={() => router.push('/mission')} hitSlop={8}>
                 <Text style={[styles.familyHint, { color: c.textMuted }]}>
-                  {`Have Plus in ${listNames(sisterApps())}? Then Plus here is only ${shop.family.price ?? 'a family price'}. `}
+                  {`Have Plus in ${listNames(sisterApps().filter((a) => !a.comingSoon))}? Then Plus here is only ${shop.family.price ?? 'a family price'}. `}
                   <Text style={{ color: c.primary, textDecorationLine: 'underline' }}>See our apps</Text>
                 </Text>
               </Pressable>

@@ -16,6 +16,8 @@ export interface FamilyApp {
   things: string;
   /** A nudge to go and look for them. */
   goOutside: string;
+  /** Not on Google Play for everyone yet: shown as "coming soon" instead of a store link. */
+  comingSoon?: boolean;
 }
 
 export const FAMILY_APPS: FamilyApp[] = [
@@ -27,6 +29,8 @@ export const FAMILY_APPS: FamilyApp[] = [
     tagline: 'Learn the flowers, houseplants and trees around you.',
     things: 'plants',
     goOutside: 'Today, step outside and find one plant you’ve learned. 🌿',
+    // Still in its closed test; set to false (or remove) once FloraLock is public on Google Play.
+    comingSoon: true,
   },
   {
     id: 'shroomlock',

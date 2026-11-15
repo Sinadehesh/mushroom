@@ -135,7 +135,7 @@ export default function SettingsScreen() {
         <Text style={{ color: c.text, fontSize: 16, lineHeight: 22 }}>
           {`${thisApp().name} is made by a small independent developer, to help you notice the nature around you. ` +
             `Meet ${sisterApps()
-              .map((a) => `${a.emoji} ${a.name}`)
+              .map((a) => `${a.emoji} ${a.name}${a.comingSoon ? ' (coming soon)' : ''}`)
               .join(' and ')} (Plus there at a family price), and see how you can help.`}
         </Text>
         <Button variant="secondary" label="Our mission and apps" onPress={() => router.push('/mission')} />
