@@ -73,8 +73,11 @@ through Google Play Billing in `modules/play-billing`.
    - Price: $5.99 (Play converts it for other countries), then **Activate** it.
 4. **Create the subscription:** Monetize with Play → Products → Subscriptions → Create subscription:
    - Product ID: `shroomlock_plus_monthly` (must match exactly) · Name: ShroomLock Plus (monthly)
-   - Add a **base plan**: ID `monthly`, Auto-renewing, billing period **1 month**, price $0.99. **Activate** the
+   - Add a **base plan**: ID `monthly`, Auto-renewing, billing period **1 month**, price $1.99. **Activate** the
      base plan. No free trial or offers are needed; the app buys the base plan.
+   - Plus at the family price: a second one-time product, Product ID `shroomlock_plus_family` (must match
+     exactly) · Name: ShroomLock Plus (family price) · Price: $1.99, then **Activate** it. The app offers it
+     only to someone who has Plus in one of the sister apps (see src/core/family.ts).
 5. **Test without paying:** Setup → License testing → add your Google account. On a phone signed in with that
    account, install ShroomLock from the internal testing link (not the APK from GitHub: purchases only work
    for installs from Google Play). The purchase sheet then offers test cards that are never charged.
